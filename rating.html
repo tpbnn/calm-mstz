@@ -541,10 +541,10 @@ function parseScores(raw) {
 
     const value = Number(part);
 
-    if (value < 1 || value > 10) {
+    if (value < 0 || value > 10) {
       return {
         scores: [],
-        error: "점수는 1~10점만 가능합니다."
+        error: "점수는 0~10점까지 가능합니다."
       };
     }
 
@@ -789,7 +789,7 @@ function renderInputArea() {
 
     area.innerHTML = `
       <div class="empty">
-        아직 등록된 학생가 없습니다.
+        아직 등록된 학생이 없습니다.
       </div>
     `;
 
