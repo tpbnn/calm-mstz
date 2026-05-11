@@ -98,50 +98,51 @@
        HERO
     ========================= */
 
-    .hero {
-      background:
-        linear-gradient(
-          135deg,
-          #1d4ed8,
-          #7c3aed
-        );
+.hero {
+  background:
+    linear-gradient(
+      135deg,
+      #1d4ed8,
+      #7c3aed
+    );
 
-      color: white;
+  color: white;
 
-      padding: 28px;
+  padding: 28px;
 
-      border-radius: 24px;
+  border-radius: 24px;
 
-      margin-bottom: 20px;
+  margin-bottom: 20px;
 
-      box-shadow:
-        0 18px 40px rgba(37,99,235,.22);
-    }
+  box-shadow:
+    0 18px 40px rgba(37,99,235,.22);
+}
 
-    .hero-title {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 8px;
-    }
+.hero-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
 
-    .hero-logo {
-      width: 58px;
-      height: 58px;
-      object-fit: contain;
-      border-radius: 14px;
-    }
+.hero-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 14px;
+}
 
-    .hero h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+.hero h1 {
+  margin: 0;
+  font-size: 24px;
+}
 
-    .hero p {
-      margin: 0;
-      line-height: 1.6;
-      opacity: .92;
-    }
+.hero p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: .92;
+}
 
     /* =========================
        GRID
@@ -521,24 +522,33 @@
       margin-top: 14px;
     }
 
-    @media (max-width: 920px) {
+@media (max-width: 920px) {
 
-      .grid {
-        grid-template-columns: 1fr;
-      }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-      .hero h1 {
-        font-size: 24px;
-      }
+  .hero h1 {
+    font-size: 24px;
+  }
 
-      .result-grid,
-      .special-grid {
-        grid-template-columns: 1fr;
-      }
+  .hero-logo {
+    width: 48px;
+    height: 48px;
+  }
 
-    }
+  .result-grid,
+  .special-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
 
   </style>
+
+
 </head>
 
 <body>
@@ -560,7 +570,7 @@
       href="/rating.html"
       class="tab-btn"
     >
-      암푸평점
+      캄푸평점
     </a>
 
   </div>
@@ -577,7 +587,7 @@
         alt="로고"
       />
 
-      <h1>덕몽어스</h1>
+      <h1>덕몽어스 계산기</h1>
 
     </div>
 
