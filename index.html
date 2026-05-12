@@ -6,7 +6,7 @@
 
   <title>덕몽어스</title>
 
-  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="icon" href="./favicon.png" type="image/png" />
 
   <style>
     :root {
@@ -412,6 +412,56 @@ html {
         grid-template-columns: 1fr;
       }
     }
+    .hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-side-image {
+  position: absolute;
+  right: 24px;
+  bottom: 0;
+  height: 100%;
+  max-height: 130px;
+  object-fit: contain;
+  z-index: 1;
+  opacity: 0.95;
+  pointer-events: none;
+}
+.footer{
+  margin-top:40px;
+  padding:28px 20px 40px;
+  text-align:center;
+  color:#94a3b8;
+}
+
+.footer-copy{
+  font-size:13px;
+  margin-bottom:2px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+}
+
+.footer-icon{
+  text-decoration:none;
+}
+
+.footer-icon img{
+  height:32px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
   </style>
 </head>
 
@@ -419,17 +469,22 @@ html {
 
 <div class="wrap">
 
-  <div class="top-tabs">
-    <a href="/" class="tab-btn active">
-      덕몽어스
-    </a>
+<div class="top-tabs">
+  <a href="./index.html" class="tab-btn active">
+    덕몽어스
+  </a>
 
-    <a href="/rating.html" class="tab-btn">
-      캄푸평점
-    </a>
-  </div>
+  <a href="./rating.html" class="tab-btn">
+    캄푸평점
+  </a>
 
-  <section class="hero">
+  <a href="./suttda.html" class="tab-btn">
+    스타 게이머 섯다
+  </a>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
     <div class="hero-title">
       <img
         class="hero-logo"
@@ -443,6 +498,13 @@ html {
     <p>
       참가자 이름 등록 → 게임 진행 → 점수 입력 → 핀볼 순서 입력 후 팀 합계를 계산합니다.
     </p>
+      </div>
+
+<img
+  class="hero-side-image"
+  src="./goose.png"
+  alt="덕몽어스 이미지"
+/>
   </section>
 
   <div class="grid">
@@ -504,12 +566,16 @@ html {
 
     <section class="card">
       <div class="section-head">
-        <h2>팀 합계 결과</h2>
+     <h2>게임 결과</h2>
 
-        <span id="resultPill" class="pill">
-          계산 전
-        </span>
-      </div>
+  <button
+    class="btn-light"
+    type="button"
+    onclick="window.open('https://bluedell.com/%ED%95%80%EB%B3%BC-%EB%9E%9C%EB%8D%A4-%EC%88%AB%EC%9E%90-%EB%BD%91%EA%B8%B0-%EA%B3%B5%EB%BD%91%EA%B8%B0/', '_blank')"
+  >
+    핀볼 게임 열기
+  </button>
+</div>
 
       <div id="specialArea"></div>
       <div id="tieSelectArea"></div>
@@ -601,6 +667,8 @@ function addPerson() {
 
   renderPeople();
   renderSpecial();
+
+input.focus();
 }
 
 function updateScore(id, value) {
@@ -614,7 +682,7 @@ function updateScore(id, value) {
   renderSpecial();
 
   document.getElementById("resultArea").innerHTML = "";
-  document.getElementById("resultPill").textContent = "계산 전";
+
   document.getElementById("calcMessage").textContent = "";
 }
 
@@ -631,7 +699,7 @@ function deletePerson(id) {
   renderSpecial();
 
   document.getElementById("resultArea").innerHTML = "";
-  document.getElementById("resultPill").textContent = "계산 전";
+
   document.getElementById("calcMessage").textContent = "";
 }
 
@@ -977,10 +1045,7 @@ function calculateTeams() {
     winner = "짝팀";
   }
 
-  document.getElementById("resultPill").textContent =
-    winner === "무승부"
-      ? "무승부"
-      : `${winner} 승리`;
+
 
   message.className = "ok";
   message.textContent = "계산 완료!";
@@ -1161,4 +1226,37 @@ renderSpecial();
 </script>
 
 </body>
+<footer class="footer">
+
+  <div class="footer-copy">
+    © 2026 주니.킨콘. All Rights Reserved.
+  </div>
+
+  <div class="footer-links">
+
+    <a
+      href="https://www.sooplive.com/station/joony86"
+      target="_blank"
+      class="footer-icon"
+    >
+      <img
+  src="icons/soop-logo.png"
+  alt="SOOP"
+/>
+    </a>
+
+    <a
+      href="https://www.youtube.com/@kinkonvv"
+      target="_blank"
+      class="footer-icon"
+    >
+      <img
+  src="icons/youtube-logo.png"
+  alt="YouTube"
+/>
+    </a>
+
+  </div>
+
+</footer>
 </html>

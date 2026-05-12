@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>캄푸평점 랭킹보드</title>
 
-  <link
-    rel="icon"
-    type="image/webp"
-    href="https://i.namu.wiki/i/2MezOuRVaXA9wmpXfo_cRrZOgYwVNV3RCshjTkarjhpvR0JdlBF6CREXT_3tnRVgYVewwGNcW-ysl2fRs0VGWk50WgH7z6iTN5VHxzNzkiWl1-Qoame_PUvi6WnPGHbU65L3xH_aogqOQuEULPhz1A.webp"
-  />
+ <link rel="icon" href="./favicon.png" type="image/png" />
 
   <style>
     :root {
@@ -350,6 +346,35 @@ td {
         height: 48px;
       }
     }
+    .footer{
+  margin-top:40px;
+  padding:28px 20px 40px;
+  text-align:center;
+  color:#94a3b8;
+}
+
+.footer-copy{
+  font-size:13px;
+  margin-bottom:2px;
+}
+
+.footer-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+}
+
+.footer-icon{
+  text-decoration:none;
+}
+
+.footer-icon img{
+  height:32px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
   </style>
 </head>
 
@@ -357,15 +382,19 @@ td {
 
 <div class="wrap">
 
-  <div class="top-tabs">
-    <a href="/index.html" class="tab-btn">
-      덕몽어스
-    </a>
+<div class="top-tabs">
+  <a href="./index.html" class="tab-btn">
+    덕몽어스
+  </a>
 
-    <a href="/rating.html" class="tab-btn active">
-      캄푸평점
-    </a>
-  </div>
+  <a href="./rating.html" class="tab-btn active">
+    캄푸평점
+  </a>
+
+  <a href="./suttda.html" class="tab-btn">
+    스타 게이머 섯다
+  </a>
+</div>
 
   <section class="hero">
 <div class="hero-title">
@@ -1042,4 +1071,37 @@ if (lastRanking.length) {
 </script>
 
 </body>
+<footer class="footer">
+
+  <div class="footer-copy">
+    © 2026 주니.킨콘. All Rights Reserved.
+  </div>
+
+  <div class="footer-links">
+
+    <a
+      href="https://www.sooplive.com/station/joony86"
+      target="_blank"
+      class="footer-icon"
+    >
+      <img
+  src="icons/soop-logo.png"
+  alt="SOOP"
+/>
+    </a>
+
+    <a
+      href="https://www.youtube.com/@kinkonvv"
+      target="_blank"
+      class="footer-icon"
+    >
+      <img
+  src="icons/youtube-logo.png"
+  alt="YouTube"
+/>
+    </a>
+
+  </div>
+
+</footer>
 </html>
