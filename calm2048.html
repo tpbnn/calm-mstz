@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>캄몬 2048</title>
+<title>캄몬스타즈</title>
 <link rel="icon" href="./favicon.png" type="image/png" />
 <style>
 :root{--bg:#f6f7fb;--card:#fff;--text:#171923;--muted:#718096;--line:#e2e8f0;--primary:#2563eb;--primary-dark:#1d4ed8;--danger:#dc2626;--success:#16a34a}
@@ -151,13 +151,13 @@ h2{margin:0 0 16px;font-size:20px;line-height:1}
 .tile img{width:86%;height:86%;object-fit:contain;display:block;pointer-events:none}
 .stage-badge{
   display:none;
-  /* 표시하려면 none -> flex */
+  /* 주석 : 표시하려면 none -> flex */
   position:absolute;
   left:6px;top:6px;
-  /* 왼쪽아래 left:6px; bottom:6px; top:auto; */
+  /* 주석 : 왼쪽아래 left:6px; bottom:6px; top:auto; */
   min-width:24px;height:24px;align-items:center;justify-content:center;padding:0 6px;border-radius:999px;
   background:rgba(15,23,42,.78);color:white;font-size:12px;font-weight:1000}
-  /* 배경색 background:#0356FE; */
+  /* 주석 : 배경색 background:#0356FE; */
 
 
 @keyframes tileNew{from{transform:scale(.55);opacity:.2}to{transform:scale(1);opacity:1}}
