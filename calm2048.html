@@ -215,6 +215,21 @@ button{border:0;border-radius:14px;padding:12px 14px;font-weight:900;cursor:poin
   flex-shrink:0;
 }
 
+.side-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  flex-shrink:0;
+}
+
+.give-up-btn{
+  width:140px;
+  height:56px;
+  border-radius:18px;
+  font-size:20px;
+  font-weight:1000;
+}
+
 .hero-image{
   width:140px;
   height:100px;
@@ -243,6 +258,41 @@ html, body{
     padding:16px 12px 40px;
     overflow:hidden;
   }
+
+.game-box{
+  padding-top:8px;
+}
+
+.board-wrap{
+  margin-top:-15px;
+}
+
+  .layout{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .game-box{
+    order:1;
+  }
+
+  .layout > .box:first-child{
+    order:2;
+  }
+
+.side-buttons{
+  width:100%;
+  display:flex;
+  flex-direction:column-reverse;
+  gap:10px;
+}
+
+.give-up-btn{
+  width:100%;
+  height:56px;
+  border-radius:16px;
+  font-size:18px;
+}
 
   .top-tabs{
     display:none;
@@ -425,7 +475,7 @@ html, body{
 
     <p>
       키보드 방향키를 이용해 같은 이미지를 합쳐 캄몬의 '유일신' 을 만나보세요. 존명!<br>
-      랭킹 기준은 도달 레벨 → 점수 → 빠른 시간 순입니다.
+      랭킹 기준은 도달 레벨 → 점수 → 시간 순입니다.
     </p>
   </div>
 
@@ -458,9 +508,9 @@ html, body{
             같은 레벨 이미지끼리 합치면 다음 레벨로 업그레이드 됩니다.<br>
             더 이상 움직일 수 없으면 게임오버입니다.<br><br>
             랭킹 기준:<br>
-            1순위 도달 레벨<br>
-            2순위 게임판 숫자 총합<br>
-            3순위 빠른 시간
+            1순위 도달 레벨순<br>
+            2순위 게임판 숫자 총합순<br>
+            3순위 플레이 시간 짧은 순
           </div>
         </div>
       </div>
@@ -468,9 +518,18 @@ html, body{
       <div class="board-wrap">
   <div id="board" class="board"></div>
 
+
+  <div class="side-buttons">
+  <button class="btn-danger give-up-btn" onclick="giveUpGame()">
+    포기
+  </button>
+
   <button class="btn-primary side-new-game" onclick="newGame()">
     새 게임
   </button>
+</div>
+
+
 </div>
       <div id="gameMessage" class="message">방향키로 조작하세요. 모바일에서는 스와이프로 이동할 수 있습니다.</div>
     </section>
@@ -545,6 +604,16 @@ function restartGame(){
   }
 }
 window.restartGame = restartGame;
+
+function giveUpGame(){
+  if(gameEnded) return;
+
+  if(confirm("포기하시겠습니까?")){
+    endGame(false);
+  }
+}
+
+window.giveUpGame = giveUpGame;
 
 function makeTile(stage){
   return { id: nextId++, stage, merged:false, isNew:true };
