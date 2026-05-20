@@ -126,7 +126,7 @@
 
   align-items:center;
 
-  padding:14px 28px;
+  padding:0px 28px;
 
   border-bottom:1px solid var(--line);
 
@@ -141,7 +141,7 @@
 
 .round-line{
   display:grid;
-  grid-template-columns:64px 1fr 1fr 1fr 120px;
+  grid-template-columns:64px 0.75fr 1fr 1fr 120px 42px;
   column-gap:12px;
   align-items:center;
 
@@ -155,17 +155,55 @@
   background:var(--card);
 }
 
+.drag-handle{
+  height:34px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--muted);
+  font-size:24px;
+  font-weight:900;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:grab;
+  user-select:none;
+}
+
+.dragging{
+  opacity:.45;
+}
+
 .round-line input,
 .round-line button{
   width:100%;
   min-width:0;
 }
 
-.round-line > *{
+.round-line{
+  width:100%;
   min-width:0;
+
+  grid-template-columns:
+    6%
+    22%
+    24%
+    24%
+    14%
+    6%;
+
+  column-gap:1%;
+  padding:0 1px;
+
+  height:54px;
+  min-height:54px;
+  max-height:54px;
 }
 
-body.dark .round-line{background:transparent}.round-no{height:54px;display:flex;align-items:center;justify-content:flex-start;padding-left:12px;color:#334155;font-size:20px;font-weight:900}
+body.dark 
+.round-line{background:transparent}.round-no{height:54px;display:flex;align-items:center;justify-content:flex-start;padding-left:12px;color:#334155;font-size:20px;font-weight:900}
 
 
 body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34px;min-height:34px;max-height:34px;display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--card);box-shadow:none}.round-line input{text-align:left}.round-line button{justify-content:center;text-align:center}.round-line:last-child{border-bottom:0}body.dark .round-line input,body.dark .round-line button{background:#111827}input,select,button{font-family:inherit}input,select{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);outline:none;font-size:17px;font-weight:900;height:32px;padding:3px 10px}input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,.12)}button{cursor:pointer;transition:transform .12s ease,filter .12s ease}.win-cycle{height:32px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text);font-size:17px;font-weight:1000;padding:0 8px}body.dark .win-cycle{background:#111827}
@@ -243,10 +281,38 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
   display:none;
 }
 
-@media(max-width:1100px)
-{.wrap{margin-left:0;padding:16px 12px 40px}.top-tabs{display:none}.mobile-nav{display:block;margin-bottom:14px}.layout{grid-template-columns:1fr}.panel{width:100%;max-width:none}.board-shell,.score-board,.board-table{width:100%}}
+@media(max-width:768px)
+{
+  .wrap{margin-left:0;padding:16px 12px 40px}
+.top-tabs{display:none}
+.mobile-nav{display:block;margin-bottom:14px}
+.mobile-nav .tool-btn{
+  width:100%;
+  height:52px;
+
+  border-radius:20px;
+
+  background:linear-gradient(90deg,#3152d9 0%, #7c3aed 100%);
+  color:#ffffff;
+
+  border:0;
+
+  font-size:18px;
+  font-weight:900;
+
+  box-shadow:none;
+}
+.layout{grid-template-columns:1fr}
+.panel{width:100%;max-width:none}
+.board-shell,.score-board,.board-table{width:100%}
+}
 
 @media(max-width:768px){
+
+  /* 모바일에서는 드래그 버튼 숨김 */
+  .drag-handle{
+    display:none;
+  }
 
   html,
   body{
@@ -254,12 +320,14 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
     max-width:100%;
   }
 
-  .wrap{
-    width:100%;
-    max-width:100%;
-    margin:0;
-    padding:8px 4px 30px;
-  }
+.wrap{
+  width:100%;
+  max-width:100%;
+
+  margin:0;
+
+  padding:14px 12px 30px;
+}
 
   .layout{
     display:flex;
@@ -267,13 +335,15 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
     gap:14px;
   }
 
-  .panel,
-  .control-panel{
-    width:97%;
-    max-width:97%;
-    margin:0 auto;
-    overflow:hidden;
-  }
+.panel,
+.control-panel{
+  width:100%;
+  max-width:100%;
+
+  margin:0 auto;
+
+  overflow:hidden;
+}
 
   .panel-title{
     height:58px;
@@ -283,11 +353,17 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
 
   /* HERO */
 
-  .hero{
-    min-height:120px;
-    padding:16px 14px;
-    border-radius:18px;
-  }
+.hero{
+  width:100%;
+
+  min-height:140px;
+
+  padding:18px 18px;
+
+  border-radius:24px;
+
+  margin-bottom:18px;
+}
 
   .hero-content{
     max-width:68%;
@@ -300,27 +376,31 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
     margin-bottom:8px;
   }
 
-  .hero-logo{
-    width:26px;
-    height:26px;
-  }
+.hero-logo{
+  width:38px;
+  height:38px;
+}
 
-  .hero h1{
-    font-size:18px;
-    line-height:1.1;
-  }
+.hero h1{
+  font-size:18px;
+  line-height:1.2;
+  font-weight:900;
 
-  .hero p{
-    font-size:11px;
-    line-height:1.45;
-  }
+  letter-spacing:-0.03em;
+}
+
+.hero p{
+  font-size:14px;
+  line-height:1.6;
+}
 
   .hero-side-image{
-    right:10px;
-    top:50%;
-    transform:translateY(-50%);
-    height:82px;
-  }
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+
+  height:108px;
+}
 
   /* 경기 보드 */
 
@@ -440,6 +520,7 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
     padding:0 3px;
   }
 
+    /* 햄버거 버튼 제거된 만큼 다시 5칸 구조로 변경 */
   .round-line{
     width:100%;
     min-width:0;
@@ -454,9 +535,9 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
     column-gap:1%;
     padding:0 1px;
 
-    height:42px;
-    min-height:42px;
-    max-height:42px;
+    height:54px;
+    min-height:54px;
+    max-height:54px;
   }
 
   .round-no{
@@ -523,6 +604,21 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
   .footer-icon img{
     height:20px;
   }
+}
+
+.mobile-menu{
+  display:none;
+  margin-top:10px;
+  gap:8px;
+  flex-direction:column;
+}
+
+.mobile-menu.show{
+  display:flex;
+}
+
+.mobile-menu .tab-btn{
+  width:100%;
 }
 
 </style>
@@ -657,7 +753,62 @@ function boardTemplate(b){
     </aside>
   </div>`;
 }
-function renderBoard(b){const id=b.id;const home=document.getElementById(`homeName-${id}`),away=document.getElementById(`awayName-${id}`),hs=document.getElementById(`homeScore-${id}`),as=document.getElementById(`awayScore-${id}`),table=document.getElementById(`boardTable-${id}`),editors=document.getElementById(`roundEditors-${id}`);if(!home)return;home.textContent=b.home||'홈팀';away.textContent=b.away||'어웨이팀';applyTeamStyle(home,b.home);applyTeamStyle(away,b.away);hs.textContent=b.rounds.filter(r=>r.winner==='home').length;as.textContent=b.rounds.filter(r=>r.winner==='away').length;table.innerHTML=b.rounds.map((r,i)=>{const hc=playerStyles[r.homePlayer]||'',ac=playerStyles[r.awayPlayer]||'';return `<div class="board-row"><div class="round-cell">${i+1}</div><div class="map-cell">${shortMap(r.map)}</div><div>${resultText('home',r)}</div><div class="player-cell ${r.winner==='away'?'loser':''} ${r.winner==='home'?'winner':''}" ${hc?`style="--player-color:${escAttr(hc)}"`:''}>${esc(r.homePlayer||'-')}</div><div class="vs-cell">vs</div><div class="player-cell ${r.winner==='home'?'loser':''} ${r.winner==='away'?'winner':''}" ${ac?`style="--player-color:${escAttr(ac)}"`:''}>${esc(r.awayPlayer||'-')}</div><div>${resultText('away',r)}</div></div>`}).join('');editors.innerHTML=b.rounds.map((r,i)=>`<div class="round-line"><div class="round-no">${i+1}</div><div class="auto-wrap"><input value="${esc(r.map)}" placeholder="맵" autocomplete="off" oninput="updateRound(${id},${i},'map',this.value);showAuto(this,'maps',${id},${i},'map')" onkeydown="handleAutoKey(event,this,'maps',${id},${i},'map')"><div class="auto-list"></div></div><div class="auto-wrap"><input value="${esc(r.homePlayer)}" placeholder="홈 선수" autocomplete="off" oninput="updateRound(${id},${i},'homePlayer',this.value);showAuto(this,'players',${id},${i},'homePlayer')" onkeydown="handleAutoKey(event,this,'players',${id},${i},'homePlayer')"><div class="auto-list"></div></div><div class="auto-wrap"><input value="${esc(r.awayPlayer)}" placeholder="어웨이 선수" autocomplete="off" oninput="updateRound(${id},${i},'awayPlayer',this.value);showAuto(this,'players',${id},${i},'awayPlayer')" onkeydown="handleAutoKey(event,this,'players',${id},${i},'awayPlayer')"><div class="auto-list"></div></div><button class="win-cycle" onclick="cycleWinner(${id},${i})">${winnerLabel(r.winner)}</button></div>`).join('');}
+function renderBoard(b){const id=b.id;const home=document.getElementById(`homeName-${id}`),away=document.getElementById(`awayName-${id}`),hs=document.getElementById(`homeScore-${id}`),as=document.getElementById(`awayScore-${id}`),table=document.getElementById(`boardTable-${id}`),editors=document.getElementById(`roundEditors-${id}`);if(!home)return;home.textContent=b.home||'홈팀';away.textContent=b.away||'어웨이팀';applyTeamStyle(home,b.home);applyTeamStyle(away,b.away);hs.textContent=b.rounds.filter(r=>r.winner==='home').length;as.textContent=b.rounds.filter(r=>r.winner==='away').length;table.innerHTML=b.rounds.map((r,i)=>{const hc=playerStyles[r.homePlayer]||'',ac=playerStyles[r.awayPlayer]||'';return `<div class="board-row"><div class="round-cell">${i+1}</div><div class="map-cell">${shortMap(r.map)}</div><div>${resultText('home',r)}</div><div class="player-cell ${r.winner==='away'?'loser':''} ${r.winner==='home'?'winner':''}" ${hc?`style="--player-color:${escAttr(hc)}"`:''}>${esc(r.homePlayer||'-')}</div><div class="vs-cell">vs</div><div class="player-cell ${r.winner==='home'?'loser':''} ${r.winner==='away'?'winner':''}" ${ac?`style="--player-color:${escAttr(ac)}"`:''}>${esc(r.awayPlayer||'-')}</div><div>${resultText('away',r)}</div></div>`}).join('');
+
+editors.innerHTML=b.rounds.map((r,i)=>`
+  <div
+    class="round-line"
+    draggable="true"
+    data-index="${i}"
+    ondragstart="dragStart(event,${id},${i})"
+    ondragover="dragOver(event)"
+    ondrop="dropRound(event,${id},${i})"
+    ondragend="dragEnd(event)"
+  >
+    <div class="round-no">${i+1}</div>
+
+    <div class="auto-wrap">
+      <input
+        value="${esc(r.map)}"
+        placeholder="맵"
+        autocomplete="off"
+        oninput="updateRound(${id},${i},'map',this.value);showAuto(this,'maps',${id},${i},'map')"
+        onkeydown="handleAutoKey(event,this,'maps',${id},${i},'map')"
+      >
+      <div class="auto-list"></div>
+    </div>
+
+    <div class="auto-wrap">
+      <input
+        value="${esc(r.homePlayer)}"
+        placeholder="홈 선수"
+        autocomplete="off"
+        oninput="updateRound(${id},${i},'homePlayer',this.value);showAuto(this,'players',${id},${i},'homePlayer')"
+        onkeydown="handleAutoKey(event,this,'players',${id},${i},'homePlayer')"
+      >
+      <div class="auto-list"></div>
+    </div>
+
+    <div class="auto-wrap">
+      <input
+        value="${esc(r.awayPlayer)}"
+        placeholder="어웨이 선수"
+        autocomplete="off"
+        oninput="updateRound(${id},${i},'awayPlayer',this.value);showAuto(this,'players',${id},${i},'awayPlayer')"
+        onkeydown="handleAutoKey(event,this,'players',${id},${i},'awayPlayer')"
+      >
+      <div class="auto-list"></div>
+    </div>
+
+    <button class="win-cycle" onclick="cycleWinner(${id},${i})">
+      ${winnerLabel(r.winner)}
+    </button>
+
+    <div class="drag-handle">☰</div>
+  </div>
+`).join('');
+}
+
 function addBoard(){boards.push(createBoard());renderAll();saveState();}
 function deleteBoard(id){if(boards.length<=1)return;if(!confirm('이 보드를 삭제할까요?'))return;boards=boards.filter(b=>b.id!==Number(id));renderAll();saveState();}
 function changeRoundCount(id,val){const b=boardById(id);b.count=Number(val||9);b.rounds=Array.from({length:b.count},(_,i)=>b.rounds[i]||{map:'',homePlayer:'',awayPlayer:'',winner:null});renderBoard(b);saveState();}
@@ -729,6 +880,52 @@ function updateRound(id,i,key,value){
   saveState();
 }
 function cycleWinner(id,i){const b=boardById(id);b.rounds[i].winner=b.rounds[i].winner===null?'home':b.rounds[i].winner==='home'?'away':null;renderBoard(b);saveState();}
+
+let dragInfo = null;
+
+function dragStart(e, boardId, index){
+
+  /* 모바일에서는 드래그 비활성화 */
+  if(window.innerWidth <= 768){
+    e.preventDefault();
+    return;
+  }
+
+  dragInfo = { boardId, index };
+  e.currentTarget.classList.add('dragging');
+}
+
+function dragOver(e){
+  e.preventDefault();
+}
+
+function dropRound(e, boardId, targetIndex){
+  e.preventDefault();
+
+  if(!dragInfo) return;
+  if(dragInfo.boardId !== boardId) return;
+
+  const b = boardById(boardId);
+  if(!b) return;
+
+  const fromIndex = dragInfo.index;
+  if(fromIndex === targetIndex) return;
+
+  const moved = b.rounds.splice(fromIndex, 1)[0];
+  b.rounds.splice(targetIndex, 0, moved);
+
+  dragInfo = null;
+
+  renderBoard(b);
+  saveState();
+}
+
+function dragEnd(e){
+  e.currentTarget.classList.remove('dragging');
+  dragInfo = null;
+}
+
+
 function clearResults(id){const b=boardById(id);b.rounds.forEach(r=>r.winner=null);renderBoard(b);saveState();}
 function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
 function showAuto(input,type,id,i,key){const q=input.value.trim(),box=input.parentElement.querySelector('.auto-list');if(q.length<1){hideList(box);return}const source=type==='maps'?store.maps:store.players;const list=source.filter(v=>String(v).startsWith(q)).slice(0,10);if(!list.length){hideList(box);return}box.innerHTML=list.map((v,idx)=>`<div data-value="${esc(v)}" class="${idx===0?'active':''}" onclick="selectAuto(${id},${i},'${key}','${escAttr(v)}',this)">${esc(v)}</div>`).join('');box.dataset.activeIndex='0';box.classList.add('show')}
@@ -826,7 +1023,16 @@ function handleTeamKey(e,input){
 function setActive(box,items,idx){items.forEach(v=>v.classList.remove('active'));items[idx].classList.add('active');box.dataset.activeIndex=String(idx);items[idx].scrollIntoView({block:'nearest'})}
 function hideList(box){if(!box)return;box.classList.remove('show');box.dataset.activeIndex='-1';box.innerHTML=''}
 function toggleDarkMode(){document.body.classList.toggle('dark');document.querySelectorAll('.dark-toggle').forEach(b=>b.textContent=document.body.classList.contains('dark')?'☀️':'🌙');saveState();}
-function toggleMobileMenu(){const m=document.getElementById('mobileMenu');if(m)m.classList.toggle('show')}
+function toggleMobileMenu(){
+  const m=document.getElementById('mobileMenu');
+  if(!m) return;
+
+  if(!m.innerHTML.trim()){
+    m.innerHTML=document.querySelector('.top-tabs').innerHTML;
+  }
+
+  m.classList.toggle('show');
+}
 document.addEventListener('click',e=>{
   if(!e.target.closest('.auto-wrap'))document.querySelectorAll('.auto-list').forEach(hideList);
   if(!e.target.closest('.team-auto'))document.querySelectorAll('.team-suggest').forEach(hideList);
