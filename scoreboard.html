@@ -725,12 +725,12 @@ function boardTemplate(b){
       <div class="team-row">
         <strong>홈팀</strong>
         <div class="team-auto">
-          <input value="${esc(b.home)}" placeholder="홈팀" autocomplete="off" oninput="updateTeam(${b.id},'home',this.value);showTeamSuggest(this)" onkeydown="handleTeamKey(event,this)">
+          <input value="${esc(b.home)}" placeholder="팀명을 입력하세요" autocomplete="off" oninput="updateTeam(${b.id},'home',this.value);showTeamSuggest(this)" onkeydown="handleTeamKey(event,this)">
           <div class="team-suggest"></div>
         </div>
         <strong>어웨이팀</strong>
         <div class="team-auto">
-          <input value="${esc(b.away)}" placeholder="어웨이팀" autocomplete="off" oninput="updateTeam(${b.id},'away',this.value);showTeamSuggest(this)" onkeydown="handleTeamKey(event,this)">
+          <input value="${esc(b.away)}" placeholder="팀명을 입력하세요" autocomplete="off" oninput="updateTeam(${b.id},'away',this.value);showTeamSuggest(this)" onkeydown="handleTeamKey(event,this)">
           <div class="team-suggest"></div>
         </div>
       </div>
@@ -770,7 +770,7 @@ editors.innerHTML=b.rounds.map((r,i)=>`
     <div class="auto-wrap">
       <input
         value="${esc(r.map)}"
-        placeholder="맵"
+        placeholder="맵을 입력하세요"
         autocomplete="off"
         oninput="updateRound(${id},${i},'map',this.value);showAuto(this,'maps',${id},${i},'map')"
         onkeydown="handleAutoKey(event,this,'maps',${id},${i},'map')"
@@ -781,7 +781,7 @@ editors.innerHTML=b.rounds.map((r,i)=>`
     <div class="auto-wrap">
       <input
         value="${esc(r.homePlayer)}"
-        placeholder="홈 선수"
+        placeholder="이름을 입력하세요"
         autocomplete="off"
         oninput="updateRound(${id},${i},'homePlayer',this.value);showAuto(this,'players',${id},${i},'homePlayer')"
         onkeydown="handleAutoKey(event,this,'players',${id},${i},'homePlayer')"
@@ -792,7 +792,7 @@ editors.innerHTML=b.rounds.map((r,i)=>`
     <div class="auto-wrap">
       <input
         value="${esc(r.awayPlayer)}"
-        placeholder="어웨이 선수"
+        placeholder="이름을 입력하세요"
         autocomplete="off"
         oninput="updateRound(${id},${i},'awayPlayer',this.value);showAuto(this,'players',${id},${i},'awayPlayer')"
         onkeydown="handleAutoKey(event,this,'players',${id},${i},'awayPlayer')"
