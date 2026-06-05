@@ -614,7 +614,88 @@ html, body{
 
 
 
-  </style>
+  
+/* ===== Lazygyu Roulette iframe Modal ===== */
+.roulette-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:18px;
+}
+.roulette-modal-backdrop.show{
+  display:flex;
+}
+.roulette-modal{
+  width:min(1120px,100%);
+  height:min(760px,92vh);
+  background:white;
+  border-radius:24px;
+  border:1px solid var(--line);
+  box-shadow:0 30px 90px rgba(15,23,42,.4);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.roulette-modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  background:#f8fafc;
+}
+.roulette-modal-title{
+  margin:0;
+  font-size:18px;
+  font-weight:1000;
+}
+.roulette-modal-sub{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+  line-height:1.4;
+}
+.roulette-frame-wrap{
+  flex:1;
+  background:#0f172a;
+}
+.roulette-frame{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.roulette-modal-foot{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  padding:12px 16px;
+  border-top:1px solid var(--line);
+  background:white;
+}
+.roulette-status{
+  grid-column:1 / -1;
+  color:#334155;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.5;
+}
+.auto-flow-btn{
+  background:linear-gradient(135deg,#16a34a,#2563eb);
+  color:white;
+}
+
+</style>
 </head>
 
 <body>
@@ -631,6 +712,7 @@ html, body{
     <a href="./bingo_realtime_game/bingo.html">래더 빙고</a>
     <a href="./calm2048.html">캄몬 2048</a>
     <a href="./scoreboard.html">엔트리 보드</a>
+    <a href="./calmcard.html">캄드게임배틀</a>
   </div>
 </div>
 
@@ -654,6 +736,9 @@ html, body{
 </a>
 <a href="./scoreboard.html" class="tab-btn">
   엔트리 보드
+</a>
+<a href="./calmcard.html" class="tab-btn">
+  캄드게임배틀
 </a>
 </div>
 
@@ -745,9 +830,9 @@ html, body{
   <button
     class="btn-light"
     type="button"
-    onclick="window.open('https://bluedell.com/%ED%95%80%EB%B3%BC-%EB%9E%9C%EB%8D%A4-%EC%88%AB%EC%9E%90-%EB%BD%91%EA%B8%B0-%EA%B3%B5%EB%BD%91%EA%B8%B0/', '_blank')"
+    onclick="startLazyRouletteAutoFlow()"
   >
-    핀볼 게임 열기
+    핀볼 자동 진행
   </button>
 </div>
 
@@ -785,7 +870,7 @@ html, body{
       ></textarea>
 
       <p class="help">
-        최종 1등과 최종 꼴등을 제외한 참가자 이름만 입력해주세요.
+        수동 계산 시에는 최종 1등과 최종 꼴등을 제외한 참가자 이름을 입력해주세요. 자동 진행 시 lazygyu 핀볼 결과가 자동 입력됩니다.
       </p>
 
       <button
@@ -802,6 +887,39 @@ html, body{
 
   </div>
 </div>
+
+
+<div id="rouletteModal" class="roulette-modal-backdrop">
+  <div class="roulette-modal">
+    <div class="roulette-modal-head">
+      <div>
+        <h2 id="rouletteModalTitle" class="roulette-modal-title">lazygyu 핀볼 진행</h2>
+        <p id="rouletteModalSub" class="roulette-modal-sub">핀볼이 끝나면 결과를 적용하세요.</p>
+      </div>
+      <button class="btn-danger" type="button" onclick="closeLazyRouletteModal(true)">닫기</button>
+    </div>
+
+    <div class="roulette-frame-wrap">
+      <iframe
+        id="rouletteFrame"
+        class="roulette-frame"
+        title="lazygyu roulette"
+        allow="autoplay; fullscreen"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+
+    <div class="roulette-modal-foot">
+      <div id="rouletteStatus" class="roulette-status">
+        준비 중입니다.
+      </div>
+      <button class="btn-light" type="button" onclick="copyCurrentRouletteNames()">대상자 복사</button>
+      <button class="btn-primary" type="button" onclick="openCurrentRouletteNewWindow()">새 창으로 열기</button>
+      <button class="btn-success" type="button" onclick="applyLazyRouletteManualResult()">결과 직접 적용</button>
+    </div>
+  </div>
+</div>
+
 
 <script>
 const STORAGE_KEY = "duckmong-us-v1";
@@ -1414,7 +1532,6 @@ function resetAll() {
   document.getElementById("specialArea").innerHTML = "";
   document.getElementById("tieSelectArea").innerHTML = "";
   document.getElementById("calcMessage").textContent = "";
-  document.getElementById("resultPill").textContent = "계산 전";
 
   renderPeople();
   renderSpecial();
@@ -1461,6 +1578,368 @@ function shuffleNames(array){
   }
 
   return arr;
+}
+
+/* ===== Lazygyu Roulette Integration ===== */
+let lazyAutoFlow = null;
+let currentRoulette = null;
+
+function getReadyRankingOrError(){
+  const message = document.getElementById("calcMessage");
+  message.className = "error";
+  message.textContent = "";
+
+  if (people.length < 4) {
+    message.textContent = "최소 4명 이상 필요합니다.";
+    return null;
+  }
+
+  if (people.length % 2 !== 0) {
+    message.textContent = "참가자 수는 짝수여야 합니다.";
+    return null;
+  }
+
+  const ranking = getRanking();
+
+  if (ranking.length !== people.length) {
+    message.textContent = "모든 참가자의 점수를 입력해주세요.";
+    return null;
+  }
+
+  const topScore = ranking[0].score;
+  const bottomScore = ranking[ranking.length - 1].score;
+
+  if (topScore === bottomScore) {
+    message.textContent = "모든 점수가 같으면 1등과 꼴등을 구분할 수 없습니다.";
+    return null;
+  }
+
+  return { ranking, topScore, bottomScore };
+}
+
+function lazyRouletteUrl(names){
+  const encoded = encodeURIComponent(names.join(","));
+  return `https://lazygyu.github.io/roulette/?names=${encoded}`;
+}
+
+function openLazyRouletteModal({purpose,title,sub,peopleList}){
+  currentRoulette = {
+    purpose,
+    title,
+    sub,
+    peopleList,
+    names: peopleList.map(p=>p.name),
+    url: lazyRouletteUrl(peopleList.map(p=>p.name))
+  };
+
+  window.open(currentRoulette.url, "_blank");
+
+  const guide =
+    `[${title}]\n\n` +
+    `1. 새 창에서 lazygyu 핀볼을 진행하세요.\n` +
+    `2. 골인 순서를 복사하세요.\n` +
+    `3. 다시 덕몽어스 계산기로 돌아오면 자동 진행이 이어집니다.`;
+
+  setTimeout(() => {
+    const raw = prompt(
+      guide + "\n\n골인 순서를 입력하세요.\n첫 번째 이름이 최종 결과로 처리됩니다.\n(예: 마토, 치리, 윤환)",
+      ""
+    );
+
+    if(raw === null){
+      if(confirm("자동 진행을 취소할까요?")){
+        lazyAutoFlow = null;
+      }
+      return;
+    }
+
+    const orderNames = parseOrderFlexible(raw);
+    const resolved = resolveRouletteOrder(orderNames, currentRoulette.peopleList);
+
+    if(!resolved.ok){
+      alert(resolved.message);
+      return;
+    }
+
+    if(currentRoulette.purpose === "first"){
+      lazyAutoFlow.first = resolved.order[0];
+    }
+
+    if(currentRoulette.purpose === "last"){
+      lazyAutoFlow.last = resolved.order[0];
+    }
+
+    if(currentRoulette.purpose === "team"){
+      lazyAutoFlow.teamOrder = resolved.order;
+    }
+
+    setTimeout(() => {
+    continueLazyRouletteAutoFlow();
+  }, 100);
+  }, 300);
+}
+
+function closeLazyRouletteModal(cancel=false){
+  if(cancel && lazyAutoFlow){
+    if(!confirm("진행 중인 자동 흐름을 취소할까요?")) return;
+    lazyAutoFlow = null;
+    document.getElementById("calcMessage").className = "error";
+    document.getElementById("calcMessage").textContent = "lazygyu 핀볼 자동 진행이 취소되었습니다.";
+  }
+
+  document.getElementById("rouletteFrame").src = "about:blank";
+  document.getElementById("rouletteModal").classList.remove("show");
+  currentRoulette = null;
+}
+
+async function copyCurrentRouletteNames(){
+  if(!currentRoulette) return;
+  const text = currentRoulette.names.join(", ");
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("대상자 이름을 복사했습니다.");
+  }catch(e){
+    prompt("대상자 이름을 복사하세요.", text);
+  }
+}
+
+function openCurrentRouletteNewWindow(){
+  if(!currentRoulette) return;
+  window.open(currentRoulette.url, "_blank");
+}
+
+function applyLazyRouletteManualResult(){
+  if(!currentRoulette) return;
+
+  const raw = prompt(
+    "lazygyu 핀볼 골인 순서를 입력하세요. 쉼표 또는 줄바꿈으로 구분합니다.",
+    currentRoulette.names.join(", ")
+  );
+
+  if(raw === null) return;
+
+  const orderNames = parseOrderFlexible(raw);
+  const resolved = resolveRouletteOrder(orderNames, currentRoulette.peopleList);
+
+  if(!resolved.ok){
+    alert(resolved.message);
+    return;
+  }
+
+  if(currentRoulette.purpose === "manual"){
+    document.getElementById("pinballOrder").value =
+      resolved.order.map(p=>p.name).join(", ");
+    closeLazyRouletteModal(false);
+    return;
+  }
+
+  if(!lazyAutoFlow){
+    alert("자동 진행 상태가 없습니다.");
+    closeLazyRouletteModal(false);
+    return;
+  }
+
+  if(currentRoulette.purpose === "first"){
+    lazyAutoFlow.first = resolved.order[0];
+  }
+
+  if(currentRoulette.purpose === "last"){
+    lazyAutoFlow.last = resolved.order[0];
+  }
+
+  if(currentRoulette.purpose === "team"){
+    lazyAutoFlow.teamOrder = resolved.order;
+  }
+
+  closeLazyRouletteModal(false);
+  setTimeout(()=>continueLazyRouletteAutoFlow(), 250);
+}
+
+function parseOrderFlexible(text){
+  return String(text || "")
+    .split(/[,\n\r>→]+/g)
+    .map(v => v.trim())
+    .filter(Boolean)
+    .map(v => v.replace(/^\d+[\.\)]\s*/, "").trim())
+    .filter(Boolean);
+}
+
+function resolveRouletteOrder(orderNames, peopleList){
+  if(orderNames.length !== peopleList.length){
+    return {
+      ok:false,
+      message:`결과는 ${peopleList.length}명이어야 합니다. 현재 ${orderNames.length}명입니다.`
+    };
+  }
+
+  const map = new Map(peopleList.map(p => [p.name, p]));
+  const used = new Set();
+  const order = [];
+
+  for(const name of orderNames){
+    if(!map.has(name)){
+      return {ok:false, message:`"${name}"은 현재 핀볼 대상자가 아닙니다.`};
+    }
+
+    if(used.has(name)){
+      return {ok:false, message:`"${name}"이 중복 입력되었습니다.`};
+    }
+
+    used.add(name);
+    order.push(map.get(name));
+  }
+
+  return {ok:true, order};
+}
+
+function openManualLazyRoulette(){
+  const ready = getReadyRankingOrError();
+  if(!ready) return;
+
+  openLazyRouletteModal({
+    purpose:"manual",
+    title:"lazygyu 핀볼 테스트",
+    sub:"현재 점수 입력이 완료된 참가자 전체를 lazygyu 핀볼로 보냅니다.",
+    peopleList:ready.ranking
+  });
+}
+
+function startLazyRouletteAutoFlow(){
+  const ready = getReadyRankingOrError();
+  if(!ready) return;
+
+  const { ranking, topScore, bottomScore } = ready;
+
+  lazyAutoFlow = {
+    ranking,
+    topScore,
+    bottomScore,
+    firstCandidates: ranking.filter(p => p.score === topScore),
+    lastCandidates: ranking.filter(p => p.score === bottomScore),
+    first:null,
+    last:null,
+    teamOrder:[]
+  };
+
+  document.getElementById("resultArea").innerHTML = "";
+  document.getElementById("pinballOrder").value = "";
+  document.getElementById("calcMessage").className = "ok";
+  document.getElementById("calcMessage").textContent =
+    "공동 1등 → 공동 꼴찌 → 팀선정 순서로 lazygyu 핀볼을 진행합니다.";
+
+  setTimeout(() => {
+    continueLazyRouletteAutoFlow();
+  }, 100);
+}
+
+function continueLazyRouletteAutoFlow(){
+  if(!lazyAutoFlow) return;
+
+  const message = document.getElementById("calcMessage");
+  message.className = "ok";
+
+  // 1단계: 공동 1등이 있을 때만 공동 1등 인원만 lazygyu 핀볼로 보냄
+  if(!lazyAutoFlow.first){
+    if(lazyAutoFlow.firstCandidates.length === 1){
+      lazyAutoFlow.first = lazyAutoFlow.firstCandidates[0];
+      message.textContent = `최종 1등은 ${lazyAutoFlow.first.name}님입니다. 공동 1등이 없어 핀볼을 생략합니다.`;
+      setTimeout(() => {
+    continueLazyRouletteAutoFlow();
+  }, 100);
+      return;
+    }
+
+    message.textContent = `공동 1등 ${lazyAutoFlow.firstCandidates.length}명만 lazygyu 핀볼로 보냅니다.`;
+    openLazyRouletteModal({
+      purpose:"first",
+      title:"1단계: 공동 1등 핀볼",
+      sub:"공동 1등 인원만 핀볼에 들어갑니다. 핀볼 결과의 첫 번째 골인자가 최종 1등으로 자동 처리됩니다.",
+      peopleList:lazyAutoFlow.firstCandidates
+    });
+    return;
+  }
+
+  // 2단계: 공동 꼴찌가 있을 때만 공동 꼴찌 인원만 lazygyu 핀볼로 보냄
+  if(!lazyAutoFlow.last){
+    const lastOnly = lazyAutoFlow.lastCandidates.filter(p => p.id !== lazyAutoFlow.first.id);
+
+    if(lastOnly.length === 1){
+      lazyAutoFlow.last = lastOnly[0];
+      message.textContent = `최종 꼴찌는 ${lazyAutoFlow.last.name}님입니다. 공동 꼴찌가 없어 핀볼을 생략합니다.`;
+      setTimeout(() => {
+    continueLazyRouletteAutoFlow();
+  }, 100);
+      return;
+    }
+
+    message.textContent = `공동 꼴찌 ${lastOnly.length}명만 lazygyu 핀볼로 보냅니다.`;
+    openLazyRouletteModal({
+      purpose:"last",
+      title:"2단계: 공동 꼴찌 핀볼",
+      sub:"공동 꼴찌 인원만 핀볼에 들어갑니다. 핀볼 결과의 첫 번째 골인자가 최종 꼴찌로 자동 처리됩니다.",
+      peopleList:lastOnly
+    });
+    return;
+  }
+
+  // 3단계: 최종 1등/꼴찌를 제외한 나머지 인원만 팀선정 핀볼로 보냄
+  const remaining = lazyAutoFlow.ranking.filter(p =>
+    p.id !== lazyAutoFlow.first.id &&
+    p.id !== lazyAutoFlow.last.id
+  );
+
+  if(!lazyAutoFlow.teamOrder.length){
+    message.textContent = `최종 1등 ${lazyAutoFlow.first.name}, 최종 꼴찌 ${lazyAutoFlow.last.name} 제외 후 ${remaining.length}명만 팀선정 핀볼로 보냅니다.`;
+    openLazyRouletteModal({
+      purpose:"team",
+      title:"3단계: 팀선정 핀볼",
+      sub:"최종 1등과 최종 꼴찌를 제외한 인원만 핀볼에 들어갑니다. 골인 순서대로 홀팀/짝팀이 자동 선정됩니다.",
+      peopleList:remaining
+    });
+    return;
+  }
+
+  applyLazyRouletteAutoResult();
+}
+
+function applyLazyRouletteAutoResult(){
+  if(!lazyAutoFlow || !lazyAutoFlow.first || !lazyAutoFlow.last || !lazyAutoFlow.teamOrder.length){
+    return;
+  }
+
+  const orderNames = lazyAutoFlow.teamOrder.map(p=>p.name);
+  document.getElementById("pinballOrder").value = orderNames.join(", ");
+
+  const oddTeam = [];
+  const evenTeam = [];
+
+  lazyAutoFlow.teamOrder.forEach((person, index) => {
+    if (index % 2 === 0) oddTeam.push(person);
+    else evenTeam.push(person);
+  });
+
+  const oddTotal = oddTeam.reduce((sum,p) => sum + p.score, 0);
+  const evenTotal = evenTeam.reduce((sum,p) => sum + p.score, 0);
+
+  let winner = "무승부";
+  if (oddTotal > evenTotal) winner = "홀팀";
+  if (evenTotal > oddTotal) winner = "짝팀";
+
+  document.getElementById("calcMessage").className = "ok";
+  document.getElementById("calcMessage").textContent =
+    "lazygyu 핀볼 결과 기준으로 팀 선정 완료!";
+
+  renderResult({
+    first:lazyAutoFlow.first,
+    last:lazyAutoFlow.last,
+    oddTeam,
+    evenTeam,
+    oddTotal,
+    evenTotal,
+    winner
+  });
+
+  lazyAutoFlow = null;
 }
 
 </script>
