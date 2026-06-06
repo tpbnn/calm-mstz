@@ -2070,254 +2070,14 @@ body.is-placement .battle-slot.current{
   display:none;
 }
 
-@media(max-width:920px){
-  .top-tabs{
-    display:none !important;
-  }
-
-  .mobile-nav{
-    display:block !important;
-    margin-bottom:18px;
-  }
-
-  .hamburger-btn{
-    width:100%;
-    height:64px;
-    border-radius:22px;
-    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-    color:#fff;
-    font-size:22px;
-    font-weight:1000;
-    box-shadow:0 12px 28px rgba(37,99,235,.22);
-  }
-
-  .mobile-menu{
-    display:none;
-    margin-top:14px;
-    background:#fff;
-    border:1px solid #e2e8f0;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(15,23,42,.08);
-  }
-
-  .mobile-menu.show{
-    display:block;
-  }
-
-  .mobile-menu a{
-    display:block;
-    padding:22px 26px;
-    border-bottom:1px solid #e2e8f0;
-    color:#111827;
-    text-decoration:none;
-    font-size:22px;
-    font-weight:1000;
-  }
-
-  .mobile-menu a:last-child{
-    border-bottom:0;
-  }
-}
-
-
-.rotate-guide{
-  display:none;
-}
-
-@media(max-width:920px) and (orientation:portrait){
-  .rotate-guide{
-    position:fixed;
-    inset:0;
-    z-index:999999;
-    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-    text-align:center;
-  }
-
-  .rotate-guide-box{
-    max-width:360px;
-  }
-
-  .rotate-icon{
-    font-size:80px;
-    margin-bottom:24px;
-  }
-
-.rotate-guide h2{
-  font-size:32px;
-  font-weight:900;
-  margin-bottom:16px;
-}
-
-.rotate-guide p{
-  font-size:18px;
-  line-height:1.6;
-}
-}
 
 
 
-.rotate-icon{
-  font-size:90px;
-  animation: rotatePhone 2s infinite ease-in-out;
-}
-
-@keyframes rotatePhone{
-  0%{
-    transform:rotate(0deg);
-  }
-  30%{
-    transform:rotate(90deg);
-  }
-  70%{
-    transform:rotate(90deg);
-  }
-  100%{
-    transform:rotate(0deg);
-  }
-}
 
 
-.mobile-start-guide{
-  display:none;
-}
 
-@media(max-width:920px){
-  body:not(.mobile-ready) .mobile-start-guide{
-    position:fixed;
-    inset:0;
-    z-index:999999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-    color:#fff;
-    text-align:center;
-  }
 
-  body:not(.mobile-ready) .wrap{
-    display:none;
-  }
 
-  .mobile-start-box{
-    padding:32px;
-  }
-
-  .mobile-start-icon{
-    font-size:72px;
-    margin-bottom:24px;
-  }
-
-  .mobile-start-box h2{
-    font-size:34px;
-    margin:0 0 16px;
-  }
-
-  .mobile-start-box p{
-    font-size:18px;
-    line-height:1.6;
-    margin-bottom:28px;
-  }
-
-  .mobile-start-box button{
-    width:220px;
-    height:64px;
-    border-radius:18px;
-    background:#fff;
-    color:#2563eb;
-    font-size:22px;
-    font-weight:1000;
-  }
-
-  body.mobile-ready .mobile-start-guide{
-    display:none !important;
-  }
-
-  body.mobile-ready{
-    overflow-x:auto;
-  }
-
-  body.mobile-ready .wrap{
-    display:block;
-    width:1280px;
-    max-width:none;
-    margin:0;
-    padding:16px;
-  }
-
-  body.mobile-ready .top-tabs,
-  body.mobile-ready .mobile-nav{
-    display:none !important;
-  }
-
-  body.mobile-ready .hero{
-    height:86px;
-    min-height:86px;
-    padding:16px 24px;
-    border-radius:0;
-    margin-bottom:14px;
-  }
-
-  body.mobile-ready .hero p{
-    display:none;
-  }
-
-  body.mobile-ready .hero-side-image{
-    max-height:80px;
-  }
-
-  body.mobile-ready .cardgame-layout{
-    display:grid !important;
-    grid-template-columns:minmax(860px, 1fr) 260px !important;
-    gap:10px !important;
-  }
-
-  body.mobile-ready .battle-board{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-    gap:10px !important;
-  }
-
-  body.mobile-ready .versus-area{
-    grid-column:1 / -1 !important;
-    min-height:120px !important;
-  }
-
-  body.mobile-ready .enemy-field{
-    grid-column:1 / 2 !important;
-  }
-
-  body.mobile-ready .my-field{
-    grid-column:2 / 3 !important;
-  }
-
-  body.mobile-ready .hand-area{
-    grid-column:1 / -1 !important;
-    min-height:150px !important;
-  }
-
-  body.mobile-ready .cardgame-side.right{
-    display:block !important;
-  }
-
-  body.mobile-ready .detail-card-img{
-    max-width:210px !important;
-  }
-
-  body.mobile-ready .effect-box{
-    min-height:120px !important;
-  }
-
-  body.mobile-ready .action-panel .btn-primary{
-    width:210px !important;
-    height:92px !important;
-  }
-}
 
 .detail-title-row{
   display:flex;
@@ -2357,7 +2117,7 @@ body.is-placement .battle-slot.current{
 .pc-help-btn{
   width:100px;
   height:30px;
-  border-radius:35%;
+  border-radius:15;
   background:#eef2ff;
   color:#1d4ed8;
   border:1px solid #bfdbfe;
@@ -2447,10 +2207,1595 @@ body.is-placement .battle-slot.current{
   padding:0;
 }
 
-/* PC에서만 표시 */
+
 @media(max-width:920px){
-  .pc-help-btn{
+
+.top-tabs,
+.mobile-nav,
+.hero,
+.cardgame-side.left,
+.enemy-field,
+.global-buff-field{
+  display:none !important;
+}
+
+.cardgame-side.right{
+  display:block !important;
+}
+
+.detail-panel,
+.battle-log-panel{
+  display:none !important;
+}
+
+  html,
+  body{
+    width:100%;
+    height:100%;
+    overflow:hidden !important;
+  }
+
+  .wrap{
+    width:100vw !important;
+    height:100vh !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+
+  .cardgame-layout{
+    display:block !important;
+    width:100%;
+    height:100%;
+  }
+
+.battle-board{
+  display:grid !important;
+  grid-template-rows:92px 250px 150px !important;
+  gap:0 !important;
+  width:100%;
+  height:auto !important;
+  min-height:0 !important;
+}
+
+  .versus-area{
+    grid-row:1 !important;
+    order:1 !important;
+    min-height: 100px !important;
+    height:78px !important;
+    padding:6px 8px !important;
+    border-radius:0 !important;
+  }
+
+  .battle-status-bar{
+    display:grid !important;
+    grid-template-columns:1fr auto 1fr !important;
+    align-items:center !important;
+    gap:6px !important;
+    margin:0 !important;
+    height:52px !important;
+  }
+
+  .status-hp{
+    min-width:0 !important;
+    min-height:44px !important;
+    height:44px !important;
+    padding:5px 8px !important;
+    font-size:12px !important;
+    line-height:1.2 !important;
+  }
+
+  .turn-ribbon{
+    display:block !important;
+    position:static !important;
+    transform:none !important;
+    padding:6px 14px !important;
+    border-radius:0 0 10px 10px !important;
+    font-size:13px !important;
+  }
+
+  .turn-ribbon span{
+    font-size:11px !important;
+  }
+
+  .stage-note{
+    margin-top:7px !important;
+    font-size:12px !important;
+    line-height:1.2 !important;
+  }
+
+.my-field{
+  grid-row:2 !important;
+  grid-column:1 / -1 !important;
+  order:2 !important;
+  display:block !important;
+  width:100% !important;
+  border-radius:0 !important;
+  padding:8px !important;
+  min-height:0 !important;
+  overflow:hidden !important;
+}
+
+  .my-field .field-head{
+    margin-bottom:4px !important;
+  }
+
+  .my-field .field-head h2{
+    font-size:16px !important;
+    padding-bottom:4px !important;
+  }
+
+  .field-reset-btn{
+    top:8px !important;
+    right:8px !important;
+    padding:6px 8px !important;
+    font-size:10px !important;
+  }
+
+  .my-field .slot-row{
+    grid-template-columns:repeat(5, 1fr) !important;
+    gap:5px !important;
+    height:calc(100% - 32px);
+  }
+
+  .my-field .battle-slot{
+    min-height:0 !important;
+    height:100% !important;
+    padding:28px 3px 5px !important;
+    gap:4px !important;
+    border-radius:12px !important;
+  }
+
+  .slot-num{
+    top:5px !important;
+    width:22px !important;
+    height:22px !important;
+    font-size:11px !important;
+  }
+
+  .my-field .card-back,
+  .my-field .placed-card,
+  .my-field .empty-buff,
+  .my-field .slot-placeholder{
+    width:52px !important;
+    height:72px !important;
+    border-radius:7px !important;
+  }
+
+  .my-field .card-back.attack.blue::before,
+  .my-field .card-back.buff::before,
+  .my-field .empty-buff::before{
+    top:17px !important;
+    font-size:22px !important;
+  }
+
+  .my-field .card-back.attack.blue::after,
+  .my-field .card-back.buff::after,
+  .my-field .empty-buff::after{
+    bottom:10px !important;
+    font-size:10px !important;
+  }
+
+    .hand-head{
     display:none !important;
+  }
+
+
+.hand-area{
+  grid-row:3 !important;
+  order:3 !important;
+  display:block !important;
+  height:190px !important;
+  min-height:190px !important;
+  padding:46px 16px 8px 5px !important;
+  border-radius:0 !important;
+  overflow:visible !important;
+  background:#fff !important;
+}
+
+.hand-row{
+  height:100% !important;
+  min-height:0 !important;
+  padding:0 !important;
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:flex-start !important;
+  overflow-x:visible !important;
+  overflow-y:visible !important;
+  gap:0 !important;
+}
+
+.hand-card{
+  width:85px !important;
+  height:124px !important;
+  margin-right:-52px !important;
+  flex:0 0 auto !important;
+  object-fit:cover !important;
+}
+
+.hand-card:last-child{
+  margin-right:0 !important;
+}
+
+.hand-card.selected{
+  transform:translateY(-20px) scale(1.08) !important;
+  z-index:50 !important;
+}
+
+.action-panel{
+  display:block !important;
+  position:fixed !important;
+  right:8px !important;
+  top:545px !important;
+  bottom:auto !important;
+  z-index:1000 !important;
+  width:116px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+  .action-panel .btn-primary{
+    width:128px !important;
+    height:88px !important;
+    font-size:15px !important;
+    border-radius:16px !important;
+    position:fixed;
+    left:65%;
+  }
+}
+
+.mobile-card-detail-btn{
+  display:none;
+}
+
+@media(max-width:920px){
+.mobile-card-detail-btn.show{
+    display:block;
+    position:fixed;
+
+    left:auto;
+    right:170px;
+
+    top:560px;
+
+    transform:none;
+
+    z-index:2000;
+    width:140px;
+    height:88px;
+    border-radius:16px;
+    background: linear-gradient(180deg,#facc15,#ffc2af);
+    border:3px solid #fd8b7b;
+    color:#111827;
+    font-size:15px;
+    font-weight:1000;
+    box-shadow:0 8px 18px rgba(15,23,42,.25);
+}
+}
+
+@media(max-width:920px){
+  /* 카드 상세 정보 팝업 전용: 다른 알림 팝업에는 적용되지 않음 */
+  .custom-alert.mobile-alert-card-detail{
+    width:340px !important;
+    padding:14px !important;
+    border-width:5px !important;
+  }
+
+  .custom-alert.mobile-alert-card-detail .custom-alert-title{
+    font-size:22px !important;
+    line-height:1.1 !important;
+    margin:0 0 12px 0 !important;
+  }
+
+  .custom-alert.mobile-alert-card-detail .custom-alert-message{
+    white-space:normal !important;
+    display:block !important;
+    margin:0 !important;
+    line-height:1 !important;
+  }
+
+  .custom-alert.mobile-alert-card-detail .mobile-card-detail-content{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    line-height:1 !important;
+    text-align:center !important;
+  }
+
+  /* ① 카드 이미지 크기 / 이미지 아래 간격 */
+  .custom-alert.mobile-alert-card-detail .mobile-card-detail-img{
+    width:210px !important;
+    max-width:100% !important;
+    display:block !important;
+    border-radius:8px !important;
+    margin:0 0 12px 0 !important;
+  }
+
+  /* ② 카드명 아래 간격 */
+  .custom-alert.mobile-alert-card-detail .mobile-card-detail-name{
+    font-size:20px !important;
+    font-weight:1000 !important;
+    line-height:1.05 !important;
+    margin:0 0 12px 0 !important;
+  }
+
+  /* ③ 속성/공격력 아래 간격 */
+  .custom-alert.mobile-alert-card-detail .mobile-card-detail-stat{
+    font-size:15px !important;
+    font-weight:1000 !important;
+    color:#2563eb !important;
+    line-height:1.05 !important;
+    margin:0 0 12px 0 !important;
+  }
+
+  /* ④ 효과 설명 아래 간격 */
+  .custom-alert.mobile-alert-card-detail .mobile-card-detail-effect{
+    font-size:15px !important;
+    font-weight:900 !important;
+    line-height:1.15 !important;
+    margin:0 0 12px 0 !important;
+  }
+
+  .custom-alert.mobile-alert-card-detail button{
+    height:44px !important;
+    margin-top:6px !important;
+  }
+}
+
+@media(max-width:920px){
+
+  .turn-modal{
+    width:340px !important;
+    min-width:0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:16px 12px 14px !important;
+    border-width:6px !important;
+    border-radius:12px !important;
+  }
+
+  .turn-modal-title{
+    flex:0 0 auto !important;
+    margin:0 0 10px !important;
+  }
+
+  .modal-hp-row{
+    grid-template-columns:72px 1fr 72px !important;
+    gap:8px !important;
+    align-items:center !important;
+  }
+
+  .modal-title-text{
+    font-size:18px !important;
+    padding-top:0 !important;
+    text-align:center !important;
+  }
+
+  .modal-hp-box{
+    min-height:58px !important;
+    padding:6px 4px !important;
+    font-size:10px !important;
+    line-height:1.1 !important;
+    border-radius:12px !important;
+  }
+
+  .modal-hp-box strong{
+    font-size:9px !important;
+    margin-bottom:3px !important;
+  }
+
+  .modal-hp-box span{
+    font-size:8px !important;
+    line-height:1.1 !important;
+  }
+
+  .turn-modal-body{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    grid-template-rows:auto auto !important;
+    gap:8px 10px !important;
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin-top:6px !important;
+    align-items:start !important;
+  }
+
+  .turn-modal-vs{
+    display:none !important;
+  }
+
+  .turn-modal-side{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    padding-top:0 !important;
+    gap:6px !important;
+    display:contents !important;
+  }
+
+  .battle-card-unit{
+    min-width:0 !important;
+    gap:3px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+  }
+
+  .turn-modal .battle-card-img,
+  .turn-modal .card-back,
+  .turn-modal .battle-card{
+    width:96px !important;
+    height:134px !important;
+  }
+
+  .battle-card-meta{
+    font-size:10px !important;
+    min-height:18px !important;
+    padding:2px 5px !important;
+  }
+
+  .turn-modal-message{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:10px 0 10px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    display:block !important;
+    overflow:visible !important;
+  }
+
+  .mobile-turn-next-btn{
+    display:flex !important;
+    width:100% !important;
+    height:52px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:14px !important;
+    background:#174be6 !important;
+    color:#fff !important;
+    font-size:18px !important;
+    font-weight:1000 !important;
+    margin-top:8px !important;
+  }
+}
+
+
+/* @media(max-width:920px){
+
+  .turn-modal{
+    width:340px !important;
+    min-width:0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:18px 12px 16px !important;
+    border-width:6px !important;
+    border-radius:12px !important;
+  }
+
+  .turn-modal-title{
+    flex:0 0 auto !important;
+    margin:0 0 12px !important;
+  }
+
+  .modal-hp-row{
+    grid-template-columns:74px 1fr 74px !important;
+    gap:8px !important;
+    align-items:center !important;
+  }
+
+  .modal-title-text{
+    font-size:18px !important;
+    padding-top:0 !important;
+    text-align:center !important;
+  }
+
+  .modal-hp-box{
+    min-height:66px !important;
+    padding:8px 4px !important;
+    font-size:11px !important;
+    line-height:1.15 !important;
+    border-radius:14px !important;
+  }
+
+  .modal-hp-box strong{
+    font-size:10px !important;
+    margin-bottom:5px !important;
+  }
+
+  .modal-hp-box span{
+    font-size:8px !important;
+    line-height:1.15 !important;
+  }
+
+  .turn-modal-body{
+    display:grid !important;
+    grid-template-columns:1fr 1fr !important;
+    gap:14px !important;
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin-top:8px !important;
+  }
+
+  .turn-modal-vs{
+    display:none !important;
+  }
+
+  .turn-modal-side{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    padding-top:0 !important;
+    gap:6px !important;
+  }
+
+  .turn-modal .battle-card-img,
+  .turn-modal .card-back,
+  .turn-modal .battle-card{
+    width:116px !important;
+    height:162px !important;
+  }
+
+  .battle-card-unit{
+    min-width:0 !important;
+    gap:4px !important;
+  }
+
+  .battle-card-meta{
+    font-size:11px !important;
+    min-height:22px !important;
+    padding:3px 6px !important;
+  }
+
+  .turn-modal-message{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:14px 0 0 !important;
+    font-size:14px !important;
+    line-height:1.4 !important;
+    display:block !important;
+    overflow:visible !important;
+  }
+} */
+
+
+
+
+.mobile-turn-next-btn{
+  display:none;
+}
+
+
+/* ==== MOBILE TURN MODAL 3x2 CELL POSITION FIX ==== */
+@media(max-width:920px){
+  .turn-modal{
+    width:340px !important;
+    min-width:0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:16px 12px 14px !important;
+    border-width:6px !important;
+    border-radius:12px !important;
+  }
+
+  .turn-modal-title{
+    flex:0 0 auto !important;
+    margin:0 0 10px !important;
+  }
+
+  .modal-hp-row{
+    grid-template-columns:72px 1fr 72px !important;
+    gap:8px !important;
+    align-items:center !important;
+  }
+
+  .modal-title-text{
+    font-size:18px !important;
+    padding-top:0 !important;
+    text-align:center !important;
+  }
+
+  .modal-hp-box{
+    min-height:58px !important;
+    padding:6px 4px !important;
+    font-size:10px !important;
+    line-height:1.1 !important;
+    border-radius:12px !important;
+  }
+
+  .modal-hp-box strong{
+    font-size:9px !important;
+    margin-bottom:3px !important;
+  }
+
+  .modal-hp-box span{
+    font-size:8px !important;
+    line-height:1.1 !important;
+  }
+
+  /* 3 columns x 2 rows:
+     1 enemy buff / 2 enemy attack / 3 empty
+     4 VS / 5 my attack / 6 my buff */
+  .turn-modal-body{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:repeat(3, 1fr) !important;
+    grid-template-rows:repeat(2, auto) !important;
+    gap:10px 10px !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    margin:6px 0 0 !important;
+    padding:0 4px !important;
+    align-items:start !important;
+    justify-items:center !important;
+  }
+
+  #turnModalEnemy,
+  #turnModalMy{
+    display:contents !important;
+  }
+
+  #turnModalEnemy > .battle-card-unit:nth-child(1){
+    grid-column:1 !important;
+    grid-row:1 !important;
+  }
+
+  #turnModalEnemy > .battle-card-unit:nth-child(2){
+    grid-column:2 !important;
+    grid-row:1 !important;
+  }
+
+  .turn-modal-vs{
+    display:flex !important;
+    grid-column:1 !important;
+    grid-row:2 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:118px !important;
+    font-size:44px !important;
+    font-weight:1000 !important;
+    color:#94a3b8 !important;
+    line-height:1 !important;
+    text-align:center !important;
+  }
+
+  #turnModalMy > .battle-card-unit:nth-child(1){
+    grid-column:2 !important;
+    grid-row:2 !important;
+  }
+
+  #turnModalMy > .battle-card-unit:nth-child(2){
+    grid-column:3 !important;
+    grid-row:2 !important;
+  }
+
+  .battle-card-unit{
+    min-width:0 !important;
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:3px !important;
+  }
+
+  .turn-modal .battle-card-img,
+  .turn-modal .card-back,
+  .turn-modal .battle-card{
+    width:86px !important;
+    height:120px !important;
+    flex:0 0 auto !important;
+  }
+
+  .battle-card-meta{
+    font-size:10px !important;
+    min-height:18px !important;
+    padding:2px 5px !important;
+    line-height:1.15 !important;
+    white-space:nowrap !important;
+  }
+
+  .turn-modal-message{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:10px 0 8px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    display:block !important;
+    overflow:visible !important;
+    text-align:center !important;
+  }
+
+  .mobile-turn-next-btn{
+    display:flex !important;
+    width:100% !important;
+    height:52px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:14px !important;
+    background:#174be6 !important;
+    color:#fff !important;
+    font-size:18px !important;
+    font-weight:1000 !important;
+    margin-top:8px !important;
+  }
+}
+
+
+
+/* ==== FINAL MOBILE TURN MODAL 3x2 GRID + BUTTON FIX ==== */
+@media(max-width:920px){
+  .turn-modal{
+    width:340px !important;
+    min-width:0 !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    padding:16px 12px 14px !important;
+    border-width:6px !important;
+    border-radius:12px !important;
+  }
+
+  .turn-modal-title{
+    flex:0 0 auto !important;
+    margin:0 0 10px !important;
+  }
+
+  .turn-modal-body{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:repeat(3, 1fr) !important;
+    grid-template-rows:repeat(2, auto) !important;
+    gap:10px 10px !important;
+    width:100% !important;
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:6px 0 0 !important;
+    padding:0 4px !important;
+    align-items:start !important;
+    justify-items:center !important;
+  }
+
+  #turnModalEnemy,
+  #turnModalMy{
+    display:contents !important;
+  }
+
+  /* 1번칸: 상대 버프 카드 */
+  #turnModalEnemy > .battle-card-unit:nth-child(1){
+    grid-column:1 !important;
+    grid-row:1 !important;
+  }
+
+  /* 2번칸: 상대 공격 카드 */
+  #turnModalEnemy > .battle-card-unit:nth-child(2){
+    grid-column:2 !important;
+    grid-row:1 !important;
+  }
+
+  /* 3번칸은 의도적으로 비워둠 */
+
+  /* 4번칸: VS */
+  .turn-modal-vs{
+    display:flex !important;
+    grid-column:1 !important;
+    grid-row:2 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:120px !important;
+    font-size:44px !important;
+    font-weight:1000 !important;
+    line-height:1 !important;
+    color:#94a3b8 !important;
+    text-align:center !important;
+  }
+
+  /* 5번칸: 내 공격 카드 */
+  #turnModalMy > .battle-card-unit:nth-child(1){
+    grid-column:2 !important;
+    grid-row:2 !important;
+  }
+
+  /* 6번칸: 내 버프 카드 */
+  #turnModalMy > .battle-card-unit:nth-child(2){
+    grid-column:3 !important;
+    grid-row:2 !important;
+  }
+
+  .turn-modal .battle-card-unit{
+    min-width:0 !important;
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:3px !important;
+  }
+
+  .turn-modal .battle-card-img,
+  .turn-modal .card-back,
+  .turn-modal .battle-card{
+    width:86px !important;
+    height:120px !important;
+    flex:0 0 auto !important;
+  }
+
+  .turn-modal .battle-card-meta{
+    font-size:10px !important;
+    min-height:18px !important;
+    padding:2px 5px !important;
+    line-height:1.15 !important;
+    white-space:nowrap !important;
+  }
+
+  .turn-modal-message{
+    min-height:0 !important;
+    max-height:none !important;
+    height:auto !important;
+    margin:24px 0 8px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    display:block !important;
+    overflow:visible !important;
+    text-align:center !important;
+  }
+
+  .mobile-turn-next-btn{
+    display:flex !important;
+    width:100% !important;
+    height:52px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:14px !important;
+    background:#174be6 !important;
+    color:#fff !important;
+    font-size:18px !important;
+    font-weight:1000 !important;
+    margin-top:8px !important;
+  }
+}
+
+@media(max-width:920px){
+  .mobile-nav{
+    display:block !important;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:44px;
+    background:#fff;
+    z-index:50000;
+    border-bottom:1px solid #dbeafe;
+    padding:6px 10px;
+  }
+
+  .hamburger-btn{
+    height:32px;
+    padding:0 12px;
+    border-radius:10px;
+    background:#174be6;
+    color:#fff;
+    font-size:14px;
+    font-weight:1000;
+  }
+
+  .mobile-menu{
+    display:none;
+    position:absolute;
+    top:44px;
+    left:10px;
+    width:210px;
+    padding:10px;
+    border-radius:14px;
+    background:#fff;
+    box-shadow:0 14px 35px rgba(15,23,42,.25);
+    border:1px solid #dbeafe;
+  }
+
+  .mobile-menu.show{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  .mobile-menu a{
+    padding:10px 12px;
+    border-radius:10px;
+    background:#f8fafc;
+    color:#111827;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:1000;
+  }
+
+  .mobile-menu a:last-child{
+    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+    color:#fff;
+  }
+
+  .wrap{
+    padding-top:44px !important;
+  }
+}
+
+@media(max-width:920px){
+
+  .mobile-nav{
+    display:block !important;
+    margin-bottom:14px !important;
+    position:relative !important;
+    z-index:60000 !important;
+  }
+
+  .hamburger-btn{
+    width:100% !important;
+    height:48px !important;
+    border-radius:14px !important;
+    background:linear-gradient(135deg,#1d4ed8,#7c3aed) !important;
+    color:white !important;
+    font-size:16px !important;
+    font-weight:1000 !important;
+  }
+
+  .mobile-menu{
+    display:none;
+    margin-top:8px;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(15,23,42,.12);
+  }
+
+  .mobile-menu.show{
+    display:block !important;
+  }
+
+  .mobile-menu a{
+    display:block;
+    padding:14px 16px;
+    color:var(--text);
+    text-decoration:none;
+    font-weight:900;
+    border-bottom:1px solid var(--line);
+  }
+
+  .mobile-menu a:last-child{
+    border-bottom:0;
+  }
+
+  .hero{
+    display:flex !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-height:120px !important;
+    padding:20px !important;
+    margin-bottom:14px !important;
+    border-radius:20px !important;
+    overflow:hidden !important;
+  }
+
+  .hero-title{
+    flex-wrap:wrap !important;
+  }
+
+  .hero h1{
+    font-size:22px !important;
+  }
+
+  .hero p{
+    font-size:14px !important;
+  }
+
+  .hero-side-image{
+    right:14px !important;
+    max-height:105px !important;
+    opacity:.9 !important;
+  }
+}
+
+
+
+
+
+/* ==== FINAL MOBILE HEADER/HERO MATCH INDEX STYLE ==== */
+@media(max-width:920px){
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:100% !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    background:var(--bg) !important;
+  }
+
+  .wrap{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:100vh !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding:16px 12px 40px !important;
+    overflow:visible !important;
+  }
+
+  .top-tabs{
+    display:none !important;
+  }
+
+  .mobile-nav{
+    display:block !important;
+    position:relative !important;
+    top:auto !important;
+    left:auto !important;
+    right:auto !important;
+    height:auto !important;
+    padding:0 !important;
+    margin:0 0 14px !important;
+    background:transparent !important;
+    border-bottom:0 !important;
+    z-index:60000 !important;
+  }
+
+  .hamburger-btn{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    height:48px !important;
+    padding:0 12px !important;
+    border:0 !important;
+    border-radius:14px !important;
+    background:linear-gradient(135deg,#1d4ed8,#7c3aed) !important;
+    color:#fff !important;
+    font-size:16px !important;
+    font-weight:1000 !important;
+    box-shadow:none !important;
+  }
+
+  .mobile-menu{
+    display:none !important;
+    position:static !important;
+    width:100% !important;
+    margin-top:8px !important;
+    padding:0 !important;
+    background:#fff !important;
+    border:1px solid var(--line) !important;
+    border-radius:16px !important;
+    overflow:hidden !important;
+    box-shadow:0 10px 30px rgba(15,23,42,.12) !important;
+  }
+
+  .mobile-menu.show{
+    display:block !important;
+  }
+
+  .mobile-menu a{
+    display:block !important;
+    padding:14px 16px !important;
+    color:var(--text) !important;
+    text-decoration:none !important;
+    font-size:14px !important;
+    font-weight:900 !important;
+    border-bottom:1px solid var(--line) !important;
+    border-radius:0 !important;
+    background:#fff !important;
+  }
+
+  .mobile-menu a:last-child{
+    border-bottom:0 !important;
+  }
+
+  .mobile-menu a.active,
+  .mobile-menu a[href="./calmcard.html"]{
+    background:#f8fafc !important;
+    color:#1d4ed8 !important;
+  }
+
+  .hero{
+    display:flex !important;
+    position:relative !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-height:150px !important;
+    margin:0 0 20px !important;
+    padding:20px !important;
+    border-radius:24px !important;
+    overflow:hidden !important;
+    background:linear-gradient(135deg,#1d4ed8,#7c3aed) !important;
+    color:#fff !important;
+    box-shadow:0 18px 40px rgba(37,99,235,.22) !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+
+  .hero-content{
+    position:relative !important;
+    z-index:2 !important;
+    max-width:72% !important;
+  }
+
+  .hero-title{
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+    margin-bottom:8px !important;
+    flex-wrap:nowrap !important;
+  }
+
+  .hero-logo{
+    width:48px !important;
+    height:48px !important;
+    object-fit:contain !important;
+    border-radius:14px !important;
+    flex:0 0 auto !important;
+  }
+
+  .hero h1{
+    margin:0 !important;
+    font-size:22px !important;
+    line-height:1.22 !important;
+    font-weight:1000 !important;
+    word-break:keep-all !important;
+  }
+
+  .hero p{
+    margin:0 !important;
+    font-size:14px !important;
+    line-height:1.65 !important;
+    opacity:.92 !important;
+    word-break:keep-all !important;
+  }
+
+  .hero-side-image{
+    display:block !important;
+    position:absolute !important;
+    right:14px !important;
+    bottom:5px !important;
+    height:100% !important;
+    max-height:130px !important;
+    max-width:34% !important;
+    object-fit:contain !important;
+    z-index:1 !important;
+    opacity:.95 !important;
+    pointer-events:none !important;
+  }
+
+  .cardgame-layout{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+  }
+}
+
+
+
+/* ==== FINAL MOBILE SCROLL / ACTION BUTTON / FOOTER FIX ==== */
+@media(max-width:920px){
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:100% !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+  }
+
+  body{
+    background:var(--bg) !important;
+  }
+
+  .wrap{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    margin:0 !important;
+    padding:16px 12px 0 !important;
+    overflow:visible !important;
+  }
+
+  .cardgame-layout{
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    min-height:0 !important;
+    overflow:visible !important;
+  }
+
+  .battle-board{
+    height:auto !important;
+    min-height:0 !important;
+    overflow:visible !important;
+  }
+
+  .hand-area{
+    height:190px !important;
+    min-height:190px !important;
+    margin-bottom:0 !important;
+    overflow:visible !important;
+  }
+
+  .cardgame-side.right{
+    display:block !important;
+    width:100% !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:visible !important;
+  }
+
+  .action-panel{
+    display:flex !important;
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    left:auto !important;
+    z-index:10 !important;
+    width:166% !important;
+    height:auto !important;
+    margin:68px auto 0 !important;
+    padding:0 !important;
+    justify-content:center !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+
+  .action-panel .btn-primary{
+    position:relative !important;
+    top:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    left:auto !important;
+    width:128px !important;
+    height:88px !important;
+    margin:-156px auto !important;
+    font-size:15px !important;
+    line-height:1.25 !important;
+    border-radius:16px !important;
+  }
+
+  .footer{
+    display:block !important;
+    position:relative !important;
+    width:100% !important;
+    margin-top:47px !important;
+    padding:0 20px 72px !important;
+    text-align:center !important;
+    color:#94a3b8 !important;
+  }
+
+  .footer-copy{
+    font-size:13px !important;
+    margin-bottom:10px !important;
+  }
+
+  .footer-links{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:18px !important;
+  }
+
+  .footer-icon img{
+    height:32px !important;
+    width:auto !important;
+    object-fit:contain !important;
+    display:block !important;
+  }
+
+  body::after{
+    content:"";
+    display:block;
+    height:120px;
+  }
+}
+
+/* ==== FINAL MOBILE DETAIL BUTTON BEHAVIOR FIX ==== */
+/* 노란색 카드 상세 버튼은 처음부터 보이게 하고, 스크롤/푸터와 분리된 고정 버튼 방식은 사용하지 않음 */
+@media(max-width:920px){
+  .mobile-card-detail-btn.show{
+    display:flex !important;
+    position:relative !important;
+
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+
+    z-index:20 !important;
+    width:140px !important;
+    height:88px !important;
+    margin:56px 0 0 124px !important;
+
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+
+    border-radius:16px !important;
+    background:linear-gradient(180deg,#facc15,#ffc2af) !important;
+    border:3px solid #fd8b7b !important;
+    color:#111827 !important;
+    font-size:15px !important;
+    font-weight:1000 !important;
+    line-height:1.25 !important;
+    box-shadow:0 8px 18px rgba(15,23,42,.25) !important;
+  }
+}
+
+
+
+
+
+
+
+
+/* ==== MOBILE HELP BUTTON CONTROL ROW FINAL FIX ==== */
+.mobile-control-row,
+.mobile-help-btn{
+  display:none;
+}
+
+@media(max-width:920px){
+  .mobile-control-row{
+    display:grid !important;
+    grid-template-columns:140px 140px 140px !important;
+    gap:14px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:100% !important;
+    margin:54px auto 120px !important;
+    padding:0 16px !important;
+    position:relative !important;
+    z-index:30 !important;
+  }
+
+  .mobile-help-btn{
+    display:flex !important;
+    width:140px !important;
+    height:88px !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    border-radius:16px !important;
+    background:linear-gradient(180deg,#eef2ff,#dbeafe) !important;
+    border:3px solid #93c5fd !important;
+    color:#1d4ed8 !important;
+    font-size:15px !important;
+    font-weight:1000 !important;
+    line-height:1.25 !important;
+    box-shadow:0 8px 18px rgba(15,23,42,.18) !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  body .mobile-control-row .mobile-card-detail-btn.show{
+    display:flex !important;
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    transform:none !important;
+    width:140px !important;
+    height:88px !important;
+    margin:0 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    z-index:31 !important;
+  }
+
+  body .mobile-control-row .action-panel{
+    display:flex !important;
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    width:140px !important;
+    height:88px !important;
+    margin:0 !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    z-index:31 !important;
+  }
+
+  body .mobile-control-row .action-panel .btn-primary{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    bottom:auto !important;
+    width:140px !important;
+    height:88px !important;
+    margin:0 !important;
+    border-radius:16px !important;
+    font-size:15px !important;
+    line-height:1.25 !important;
+  }
+
+  .footer{
+    margin-top:0 !important;
+  }
+}
+
+@media(max-width:460px){
+  .mobile-control-row{
+    grid-template-columns:110px 140px 128px !important;
+    gap:8px !important;
+    padding:0 8px !important;
+  }
+
+  .mobile-help-btn{
+    width:110px !important;
+    font-size:14px !important;
+  }
+
+  body .mobile-control-row .mobile-card-detail-btn.show{
+    width:140px !important;
+  }
+
+  body .mobile-control-row .action-panel,
+  body .mobile-control-row .action-panel .btn-primary{
+    width:128px !important;
+  }
+}
+
+
+/* ==== MOBILE HELP MODAL FINAL FIX ==== */
+@media(max-width:920px){
+
+  /* 도움말 팝업 배경: 모바일에서 스크롤 가능한 레이어로 분리 */
+  .game-help-backdrop{
+    position:fixed !important;
+    inset:0 !important;
+    display:none !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    padding:18px 10px !important;
+    background:rgba(15,23,42,.55) !important;
+    z-index:100001 !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+    touch-action:pan-y !important;
+  }
+
+  .game-help-backdrop.show{
+    display:flex !important;
+  }
+
+  /* 모바일 도움말 팝업 크기 */
+  .game-help-modal{
+    width:calc(100vw - 24px) !important;
+    max-width:390px !important;
+    max-height:calc(100dvh - 36px) !important;
+    min-height:0 !important;
+
+    padding:16px 14px 18px !important;
+    border-width:5px !important;
+    border-radius:18px !important;
+
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    overscroll-behavior:contain !important;
+    touch-action:pan-y !important;
+
+    box-shadow:0 18px 45px rgba(15,23,42,.35) !important;
+  }
+
+  .game-help-modal h2{
+    position:sticky !important;
+    top:0 !important;
+    z-index:2 !important;
+
+    margin:0 0 10px !important;
+    padding:4px 44px 10px 0 !important;
+    background:#fff !important;
+
+    font-size:22px !important;
+    line-height:1.15 !important;
+    color:#1e3a8a !important;
+    font-weight:1000 !important;
+  }
+
+  .game-help-content{
+    gap:10px !important;
+  }
+
+  .game-help-content section{
+    padding:12px !important;
+    border-radius:14px !important;
+  }
+
+  .game-help-content h3{
+    margin:0 0 7px !important;
+    font-size:17px !important;
+    line-height:1.25 !important;
+  }
+
+  .game-help-content p{
+    margin:0 0 6px !important;
+    font-size:13px !important;
+    line-height:1.45 !important;
+    font-weight:850 !important;
+    word-break:keep-all !important;
+  }
+
+  .game-help-content p:last-child{
+    margin-bottom:0 !important;
+  }
+
+  .game-help-close{
+    position:sticky !important;
+    top:4px !important;
+    float:right !important;
+    z-index:5 !important;
+
+    width:34px !important;
+    height:34px !important;
+    min-width:34px !important;
+    min-height:34px !important;
+
+    margin:-2px 0 0 8px !important;
+    padding:0 !important;
+
+    font-size:22px !important;
+    line-height:1 !important;
+    border-radius:50% !important;
+  }
+}
+
+/* 작은 모바일에서 한 번 더 축소 */
+@media(max-width:380px){
+  .game-help-modal{
+    width:calc(100vw - 18px) !important;
+    padding:14px 12px 16px !important;
+  }
+
+  .game-help-modal h2{
+    font-size:20px !important;
+  }
+
+  .game-help-content h3{
+    font-size:16px !important;
+  }
+
+  .game-help-content p{
+    font-size:12.5px !important;
+    line-height:1.42 !important;
   }
 }
 
@@ -2458,16 +3803,6 @@ body.is-placement .battle-slot.current{
 </head>
 
 <body>
-
-<!-- 주석 : 모바일 대응 -->
-<div id="mobileStartGuide" class="mobile-start-guide">
-  <div class="mobile-start-box">
-    <div class="mobile-start-icon">📱↔️</div>
-    <h2>가로모드로 플레이해주세요</h2>
-    <p>캄드게임배틀은 모바일 가로 화면에 최적화되어 있습니다.</p>
-    <button onclick="startMobileLandscapeUI()">준비 완료</button>
-  </div>
-</div>
 
 
 
@@ -2842,8 +4177,126 @@ selectedCard = {
 };
 
   showCardDetail(selectedCard);
+
+const detailBtn = document.getElementById("mobileCardDetailBtn");
+if(detailBtn){
+  detailBtn.classList.add("show");
 }
 
+}
+
+function openSelectedCardDetail(){
+  if(!selectedCard){
+    document
+      .querySelector(".custom-alert")
+      ?.classList.remove("mobile-alert-card-detail");
+
+    showCustomAlert("카드를 먼저 선택해주세요.", null, "알림");
+    return;
+  }
+
+  const isMobile = window.matchMedia("(max-width:920px)").matches;
+
+  const name = selectedCard.name || "카드";
+  const effect = selectedCard.effect || selectedCard.description || "카드 효과 정보가 없습니다.";
+  const image = selectedCard.image || "";
+
+  const rps = selectedCard.rps || selectedCard.cardRps || "";
+  const atk = selectedCard.atk ?? selectedCard.attack ?? "";
+
+  if(isMobile){
+    showCustomAlert(`
+      <div class="mobile-card-detail-content">
+        <img class="mobile-card-detail-img" src="${image}">
+
+        <div class="mobile-card-detail-name">
+          ${name}
+        </div>
+
+        ${rps || atk ? `
+          <div class="mobile-card-detail-stat">
+            ${rpsToKor(rps)} ${atk ? ` / 공격력 ${atk}` : ""}
+          </div>
+        ` : ""}
+
+        <div class="mobile-card-detail-effect">
+          ${effect}
+        </div>
+      </div>
+    `, null, "카드 상세 정보");
+
+    document
+      .querySelector(".custom-alert")
+      ?.classList.add("mobile-alert-card-detail");
+
+    return;
+  }
+
+  showCustomAlert(`
+    <div style="text-align:center;">
+      <img src="${image}" style="width:180px;max-width:100%;border-radius:8px;margin:0 auto 16px;display:block;">
+      <div style="font-size:22px;font-weight:1000;margin:12px 0;">${name}</div>
+      <div style="font-size:16px;line-height:1.5;">${effect}</div>
+    </div>
+  `, null, "카드 상세 정보");
+}
+
+
+// function openSelectedCardDetail(){
+
+//   if(!selectedCard){
+//     showCustomAlert("카드를 먼저 선택해주세요.");
+//     return;
+//   }
+
+//   const cardName =
+//     selectedCard.name ||
+//     selectedCard.cardName ||
+//     "카드";
+
+//   const cardEffect =
+//     selectedCard.effectText ||
+//     selectedCard.effect ||
+//     "효과 정보가 없습니다.";
+
+//   const cardImage =
+//     selectedCard.image ||
+//     selectedCard.imageUrl ||
+//     selectedCard.img ||
+//     "";
+
+//   showCustomAlert(`
+//     <div style="text-align:center;">
+//       <img
+//         src="${cardImage}"
+//         style="
+//           width:180px;
+//           max-width:100%;
+//           border-radius:8px;
+//           margin-bottom:0px;
+//         "
+//       >
+
+//       <div style="
+//         font-size:16px;
+//         font-weight:900;
+//         margin:4px 0 0px;
+//       ">
+//         ${cardName}
+//       </div>
+
+//       <div style="
+//         font-size:16px;
+//   line-height:1.35;
+//   margin:0 0 0px;
+//       ">
+//         ${cardEffect}
+//       </div>
+//     </div>
+//   `, null, "카드 상세 정보");
+// }
+
+window.openSelectedCardDetail = openSelectedCardDetail;
 
 let enemyField = [
   { attack: null, buff: null },
@@ -2852,6 +4305,28 @@ let enemyField = [
   { attack: null, buff: null },
   { attack: null, buff: null }
 ];
+
+// 모바일 턴 팝업 안의 [진행] 버튼은 DOM 생성 순서와 관계없이 동작하도록 이벤트 위임으로 연결합니다.
+document.addEventListener("click", function(e){
+  const mobileTurnNextBtn = e.target.closest("#mobileTurnNextBtn");
+  if(!mobileTurnNextBtn) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  if(typeof handleMainAction === "function"){
+    handleMainAction();
+    return;
+  }
+
+  const mainBtn =
+    document.getElementById("mainActionBtn") ||
+    document.querySelector(".action-panel .btn-primary");
+
+  if(mainBtn){
+    mainBtn.click();
+  }
+});
 
 
 
@@ -2997,38 +4472,59 @@ function renderEnemyFieldBacks(){
 }
 
 function showCardDetail(card){
+  const detailImg = document.querySelector(".detail-card-img");
+  const title = document.querySelector(".effect-box h3");
+  const effectText = document.querySelector(".effect-box p");
 
-  const detailImg =
-    document.querySelector(".detail-card-img");
+  if(!card) return;
 
-  const effectText =
-    document.querySelector(".effect-box p");
+  const name = card.name || card.cardName || "카드";
+  const type = card.type || card.cardType || "";
+  const rps = card.rps || card.cardRps || "";
+  const atk = card.atk ?? card.attack ?? "";
+  const effect = card.description || card.effect || card.cardEffect || "";
+  const image = card.image || card.cardImage || "";
 
-  const title =
-    document.querySelector(".effect-box h3");
-
-  if(detailImg){
-    detailImg.src = card.image;
+  if(detailImg && image){
+    detailImg.src = image;
   }
 
   if(title){
-    title.textContent =
-      `${card.name}`;
+    title.textContent = name;
   }
 
-if(effectText){
-  if(card.type === "ATTACK"){
-    effectText.textContent =
-`속성 : ${card.rps}
-공격력 : ${card.atk}
+  if(effectText){
 
-${card.effect}`;
+  if(type === "ATTACK" || rps){
+
+    effectText.innerHTML = `
+      <div style="font-size:18px;font-weight:1000;color:#2563eb;">
+        ${rpsToKor(rps)}
+      </div>
+
+      <div style="font-size:18px;font-weight:1000;color:#dc2626;margin-top:4px;">
+        공격력 ${atk}
+      </div>
+
+      <div style="margin-top:10px;">
+        ${effect}
+      </div>
+    `;
+
   }else{
-    effectText.textContent = card.effect;
+
+    effectText.textContent = effect;
+
+  }
+
+
+    // if(type === "ATTACK" || rps){
+    //   effectText.textContent = `[${rpsToKor(rps)}] 공격력 : ${atk}\n${effect}`;
+    // }else{
+    //   effectText.textContent = effect;
+    // }
   }
 }
-
-} // showCardDetail 함수 닫기
 
 
 
@@ -3253,7 +4749,8 @@ function completePlacement(){
   const buffCount = myField.filter(slot => slot.buff).length;
 
   if(attackCount < 5){
-    showCustomAlert(`공격카드 5장을 모두 배치해주세요. 현재 ${attackCount}장 배치되었습니다.`);
+    showCustomAlert(`공격카드 5장을 모두 배치해주세요. 
+    현재 ${attackCount}장 배치되었습니다.`);
     return;
   }
 
@@ -3385,7 +4882,7 @@ function resetVersusArea(){
 
 function nextTurnStep(){
 if(gameOver){
-  showCustomAlert("이미 게임이 종료되었습니다.\n확인 버튼을 누르면 새 게임을 시작합니다.", startCardGame);
+  showCustomAlert("게임이 종료되었습니다.\n확인 버튼을 누르면 새 게임을 시작합니다.", startCardGame);
   return;
 }
 
@@ -3546,36 +5043,55 @@ if(hasMyBuff && hasEnemyBuff){
     return;
   }
 
+
+  
   if(gamePhase === "TURN_RESOLVE"){
-    applyBattleResult(
-  currentMySlot,
-  currentEnemySlot,
-  currentBattleResult
-);
+  applyBattleResult(
+    currentMySlot,
+    currentEnemySlot,
+    currentBattleResult
+  );
 
-if(
-  getEffectCode(currentMySlot.buff) === "RPS_REVERSE" ||
-  getEffectCode(currentEnemySlot.buff) === "RPS_REVERSE"
-){
-  rpsReverseActive = true;
-  console.log("마엘스트롬 활성화됨:", rpsReverseActive);
-}
+  updateHpDisplay();
 
-revealFieldSlot(".my-field", currentTurn, currentMySlot, "blue");
-currentTurn += 1;
-    updateTurnDisplay();
-
-    if(currentTurn >= 5){
-      gamePhase = "ROUND_END";
-      setStageNote("라운드가 종료되었습니다. 다음 클릭 시 라운드 결과를 확인합니다.");
-    }else{
-      gamePhase = "TURN_SHOW_BACKS";
-      setStageNote("다음 턴을 진행합니다.");
-    }
-
+  if(checkImmediateGameOver()){
+    hideTurnModal?.();
     updateMainActionButton();
     return;
   }
+
+  if(
+    getEffectCode(currentMySlot.buff) === "RPS_REVERSE" ||
+    getEffectCode(currentEnemySlot.buff) === "RPS_REVERSE"
+  ){
+    rpsReverseActive = true;
+    console.log("마엘스트롬 활성화됨:", rpsReverseActive);
+  }
+
+  revealFieldSlot(".my-field", currentTurn, currentMySlot, "blue");
+
+  currentTurn += 1;
+  updateTurnDisplay();
+
+  if(currentTurn >= 5){
+    gamePhase = "ROUND_END";
+    setStageNote("라운드가 종료되었습니다. 다음 클릭 시 라운드 결과를 확인합니다.");
+  }else{
+    gamePhase = "TURN_SHOW_BACKS";
+    setStageNote("다음 턴을 진행합니다.");
+  }
+
+  updateMainActionButton();
+  return;
+}
+
+
+
+
+
+
+
+
 
   if(gamePhase === "ROUND_END"){
     endRound();
@@ -3707,7 +5223,7 @@ function getResultText(result){
 function nextTurn(){
 
   if(gameOver){
-    showCustomAlert("이미 게임이 종료되었습니다.");
+    showCustomAlert("게임이 종료되었습니다.");
     return;
   }
 
@@ -3773,8 +5289,10 @@ function createBattleCardHTML(card, className){
 
 function createEmptyBattleCardHTML(text){
   return `
-    <div class="battle-card empty-battle-card">
-      ${text}
+    <div class="battle-card-unit empty-card-unit">
+      <div class="battle-card empty-battle-card">
+        ${text}
+      </div>
     </div>
   `;
 }
@@ -4311,6 +5829,49 @@ function updateHpDisplay(){
   renderActiveBuffs();
 }
 
+function checkImmediateGameOver(){
+  if(myHp <= 0 && enemyHp <= 0){
+    gameOver = true;
+    gamePhase = "GAME_OVER";
+    updateMainActionButton?.();
+
+    showCustomAlert(
+      "양쪽 HP가 모두 0이 되었습니다.\n최종 결과: 무승부!",
+      startCardGame,
+      "게임 종료"
+    );
+    return true;
+  }
+
+  if(myHp <= 0){
+    gameOver = true;
+    gamePhase = "GAME_OVER";
+    updateMainActionButton?.();
+
+    showCustomAlert(
+      "내 HP가 0이 되었습니다.\n최종 결과: 패배!",
+      startCardGame,
+      "게임 종료"
+    );
+    return true;
+  }
+
+  if(enemyHp <= 0){
+    gameOver = true;
+    gamePhase = "GAME_OVER";
+    updateMainActionButton?.();
+
+    showCustomAlert(
+      "상대 HP가 0이 되었습니다.\n최종 결과: 승리!",
+      startCardGame,
+      "게임 종료"
+    );
+    return true;
+  }
+
+  return false;
+}
+
 function endRound(){
   showCustomAlert(`${currentRound}라운드 종료!`);
 
@@ -4328,14 +5889,14 @@ if(myHp <= 0){
 
   if(enemyHp <= 0){
   gameOver = true;
-  showCustomAlert("최종 결과: 우ㅡㅡㅡ승!");
+  showCustomAlert("최종 결과: ⭐🎈우ㅡㅡㅡ승!");
   return;
 }
 
   if(currentRound >= maxRound){
     gameOver = true;
     if(myHp > enemyHp){
-      showCustomAlert(`최종 결과: 우ㅡㅡㅡ승!\n내 HP: ${myHp}\n상대 HP: ${enemyHp}`);
+      showCustomAlert(`최종 결과: ⭐🎈우ㅡㅡㅡ승!\n내 HP: ${myHp}\n상대 HP: ${enemyHp}`);
     }else if(myHp < enemyHp){
       showCustomAlert(`최종 결과: GG를 선언합니다...\n내 HP: ${myHp}\n상대 HP: ${enemyHp}`);
     }else{
@@ -4532,18 +6093,50 @@ handArea.appendChild(img);
 
 /* ==== TURN MODAL OVERRIDE ==== */
 function cardBackHTML(type){
-  if(type === "buff") return `<div class="card-back buff"></div>`;
-  return `<div class="card-back attack"></div>`;
+  const backClass = type === "buff" ? "buff" : "attack";
+  return `
+    <div class="battle-card-unit back-card-unit ${backClass}-back-unit">
+      <div class="card-back ${backClass}"></div>
+    </div>
+  `;
 }
 
 function battleImgHTML(card, className, revealKey){
-  if(!card) return createEmptyBattleCardHTML("카드 없음");
+  if(!card){
+    return createEmptyBattleCardHTML("카드 없음");
+  }
 
-  const backSrc = className === "buff-card"
-    ? "./gamecards/mstz-gamecard-b.png"
-    : "./gamecards/mstz-gamecard-a.png";
+  const safeCard = JSON.stringify(card)
+    .replace(/'/g, "&apos;")
+    .replace(/"/g, "&quot;");
 
-  return createFlipCardHTML(backSrc, card.image, card, className, revealKey);
+  const metaText = card.type === "ATTACK"
+    ? `[${rpsToKor(card.rps)}] 공격력 : ${card.atk}`
+    : "버프 카드";
+
+  return `
+    <div class="battle-card-unit">
+      <img
+        src="${card.image}"
+        class="battle-card-img ${className}"
+        data-card='${safeCard}'
+        data-card-no="${card.cardNo || ""}"
+        data-card-type="${card.type || ""}"
+        data-card-name="${card.name || ""}"
+        data-card-rps="${card.rps || ""}"
+        data-card-atk="${card.atk ?? ""}"
+        data-card-effect-code="${card.effectCode || ""}"
+        data-card-effect="${card.effect || card.description || ""}"
+        data-card-description="${card.description || card.effect || ""}"
+        data-card-image="${card.image || ""}"
+        data-value1="${card.value1 ?? ""}"
+        data-value2="${card.value2 ?? ""}"
+      >
+      <div class="battle-card-meta ${card.type === "ATTACK" ? "attack-meta" : "buff-meta"}">
+        ${metaText}
+      </div>
+    </div>
+  `;
 }
 
 function getActiveBuffText(owner){
@@ -5382,10 +6975,14 @@ if(isPersistentBuff(finalEnemyCode, enemyBuff)){
   addActiveBuff("ENEMY", enemyBuff);
 }
 
-  addBattleLog(finalType, finalMessage);
-  updateHpDisplay();
+addBattleLog(finalType, finalMessage);
+updateHpDisplay();
 
-  const enemyGroup = document.querySelector(".enemy-open-group");
+if(checkImmediateGameOver()){
+  return;
+}
+
+const enemyGroup = document.querySelector(".enemy-open-group");
   const myGroup = document.querySelector(".my-open-group");
 
 revealedModalCards.add(`T${currentTurn}-ENEMY-ATTACK`);
@@ -5826,18 +7423,37 @@ document.addEventListener("click", function(event){
   const img = event.target.closest(".battle-card-img");
   if(!img) return;
 
-  showCardDetail({
-    cardNo: img.dataset.cardNo,
-    type: img.dataset.cardType,
-    name: img.dataset.cardName,
-    rps: img.dataset.cardRps,
-    atk: Number(img.dataset.cardAtk || 0),
-    effectCode: img.dataset.cardEffectCode,
-    effect: img.dataset.cardEffect,
-    image: img.dataset.cardImage || img.src,
-    value1: Number(img.dataset.value1 || 0),
-    value2: Number(img.dataset.value2 || 0)
-  });
+  let card = null;
+
+  if(img.dataset.card){
+    try{
+      card = JSON.parse(
+        img.dataset.card
+          .replace(/&quot;/g, '"')
+          .replace(/&apos;/g, "'")
+      );
+    }catch(e){
+      card = null;
+    }
+  }
+
+  if(!card){
+    card = {
+      cardNo: img.dataset.cardNo,
+      type: img.dataset.cardType,
+      name: img.dataset.cardName,
+      rps: img.dataset.cardRps,
+      atk: Number(img.dataset.cardAtk || 0),
+      effectCode: img.dataset.cardEffectCode,
+      effect: img.dataset.cardEffect,
+      description: img.dataset.cardDescription,
+      image: img.dataset.cardImage || img.src,
+      value1: Number(img.dataset.value1 || 0),
+      value2: Number(img.dataset.value2 || 0)
+    };
+  }
+
+  showCardDetail(card);
 });
 
 /* 배치된 카드도 상세 표시용 데이터를 유지 */
@@ -5866,7 +7482,8 @@ function attachCardDataset(img, card){
   img.dataset.cardRps = card.rps || "";
   img.dataset.cardAtk = card.atk ?? "";
   img.dataset.cardEffectCode = card.effectCode || "";
-  img.dataset.cardEffect = card.effect || "";
+  img.dataset.cardEffect = card.effect || card.description || "";
+  img.dataset.cardDescription = card.description || card.effect || "";
   img.dataset.cardImage = card.image || img.src;
   img.dataset.value1 = card.value1 ?? card.Value1 ?? "";
   img.dataset.value2 = card.value2 ?? card.Value2 ?? "";
@@ -5878,12 +7495,25 @@ function showCustomAlert(message, callback = null, title = "알림"){
   customAlertCallback = callback;
 
   document.querySelector(".custom-alert-title").textContent = title;
-  document.getElementById("customAlertMessage").textContent = message;
+  document.getElementById("customAlertMessage").innerHTML = message;
   document.getElementById("customAlertBackdrop").classList.add("show");
 }
 
+// function closeCustomAlert(){
+//   document.getElementById("customAlertBackdrop").classList.remove("show");
+
+//   if(typeof customAlertCallback === "function"){
+//     const callback = customAlertCallback;
+//     customAlertCallback = null;
+//     callback();
+//   }
+// }
 function closeCustomAlert(){
   document.getElementById("customAlertBackdrop").classList.remove("show");
+
+  document
+    .querySelector(".custom-alert")
+    ?.classList.remove("mobile-alert-card-detail");
 
   if(typeof customAlertCallback === "function"){
     const callback = customAlertCallback;
@@ -5942,10 +7572,6 @@ async function startMobileLandscapeUI(){
   document.body.classList.add("mobile-ready");
 
   try{
-    if(document.documentElement.requestFullscreen){
-      await document.documentElement.requestFullscreen();
-    }
-
     if(screen.orientation && screen.orientation.lock){
       await screen.orientation.lock("landscape");
     }
@@ -5968,9 +7594,82 @@ window.openGameHelpModal = openGameHelpModal;
 window.closeGameHelpModal = closeGameHelpModal;
 
 
+document.addEventListener("DOMContentLoaded", function(){
+  const mobileStartBtn = document.getElementById("mobileStartBtn");
+
+  if(mobileStartBtn){
+    mobileStartBtn.addEventListener("click", function(){
+      document.body.classList.add("mobile-ready");
+      startMobileLandscapeUI();
+    });
+  }
+});
+
+function toggleMobileMenu(){
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+window.toggleMobileMenu = toggleMobileMenu;
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const detailBtn = document.getElementById("mobileCardDetailBtn");
+  const actionPanel = document.querySelector(".action-panel");
+
+  if(detailBtn){
+    detailBtn.classList.add("show");
+
+    if(actionPanel && detailBtn.parentElement !== actionPanel.parentElement){
+      actionPanel.parentElement.insertBefore(detailBtn, actionPanel);
+    }
+  }
+});
 
 
 
+
+
+
+// ==== MOBILE HELP BUTTON CONTROL ROW FINAL FIX ====
+function setupMobileControlRow(){
+  if(!window.matchMedia || !window.matchMedia("(max-width:920px)").matches) return;
+
+  const layout = document.querySelector(".cardgame-layout");
+  const detailBtn = document.getElementById("mobileCardDetailBtn");
+  const actionPanel = document.querySelector(".action-panel");
+
+  if(!layout || !detailBtn || !actionPanel) return;
+
+  let row = document.getElementById("mobileControlRow");
+  if(!row){
+    row = document.createElement("div");
+    row.id = "mobileControlRow";
+    row.className = "mobile-control-row";
+    layout.insertAdjacentElement("afterend", row);
+  }
+
+  let helpBtn = document.getElementById("mobileGameHelpBtn");
+  if(!helpBtn){
+    helpBtn = document.createElement("button");
+    helpBtn.id = "mobileGameHelpBtn";
+    helpBtn.className = "mobile-help-btn";
+    helpBtn.type = "button";
+    helpBtn.innerHTML = "도움말";
+    helpBtn.addEventListener("click", function(){
+      if(typeof openGameHelpModal === "function"){
+        openGameHelpModal();
+      }
+    });
+  }
+
+  detailBtn.classList.add("show");
+
+  if(helpBtn.parentElement !== row) row.appendChild(helpBtn);
+  if(detailBtn.parentElement !== row) row.appendChild(detailBtn);
+  if(actionPanel.parentElement !== row) row.appendChild(actionPanel);
+}
+
+window.addEventListener("DOMContentLoaded", setupMobileControlRow);
+window.addEventListener("resize", setupMobileControlRow);
 </script>
 
 
@@ -5994,6 +7693,19 @@ window.closeGameHelpModal = closeGameHelpModal;
       <div id="turnModalMy" class="turn-modal-side"></div>
     </div>
     <div id="turnModalMessage" class="turn-modal-message"></div>
+
+<button
+  id="mobileTurnNextBtn"
+  class="mobile-turn-next-btn"
+  type="button"
+>
+  진행
+</button>
+
+
+
+
+    
   </div>
 </div>
 
@@ -6043,7 +7755,7 @@ window.closeGameHelpModal = closeGameHelpModal;
 <div id="gameHelpBackdrop" class="game-help-backdrop">
   <div class="game-help-modal">
     <button class="game-help-close" onclick="closeGameHelpModal()">×</button>
-
+<!-- 도움말 -->
     <h2>게임 방법</h2>
 
     <div class="game-help-content">
@@ -6051,7 +7763,8 @@ window.closeGameHelpModal = closeGameHelpModal;
         <h3>1. 카드 배치</h3>
         <p>1️⃣각 플레이어는 7장의 공격 카드와 3장의 버프 카드를 받습니다.</p>
           <p>2️⃣자신의 필드에 공격 카드 5장을 필수로 배치하고, 버프 카드는 원하는 슬롯에 배치할 수 있습니다.</p>
-<p>3️⃣버프 카드는 숨겨진 상태로 전투가 진행되므로, 어느 턴에 어떤 버프를 사용할지 예측하는 전략이 중요합니다.</p>
+<p>3️⃣공격 카드의 공격력은 랜덤으로 책정됩니다.</p>
+<p>4️⃣카드의 자세한 정보는 해당 카드를 클릭하면 볼 수 있습니다.</p>
       </section>
 
       <section>
@@ -6086,7 +7799,13 @@ window.closeGameHelpModal = closeGameHelpModal;
   </div>
 </div>
 
-
+<button
+  id="mobileCardDetailBtn"
+  class="mobile-card-detail-btn show"
+  onclick="openSelectedCardDetail()"
+>
+  선택한 카드<br> 상세 정보 보기
+</button>
 
 </body>
 </html>
