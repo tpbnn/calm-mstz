@@ -955,7 +955,7 @@ width:82px;
 .battle-card{
   width:150px;
   height:210px;
-  font-size:20px;
+  font-size:10px;
 }
 .opened-card-group{
   gap:18px;
@@ -3543,7 +3543,7 @@ body.is-placement .battle-slot.current{
     background:linear-gradient(180deg,#facc15,#ffc2af) !important;
     border:3px solid #fd8b7b !important;
     color:#111827 !important;
-    font-size:15px !important;
+    font-size:11px !important;
     font-weight:1000 !important;
     line-height:1.25 !important;
     box-shadow:0 8px 18px rgba(15,23,42,.25) !important;
@@ -3566,20 +3566,20 @@ body.is-placement .battle-slot.current{
 @media(max-width:920px){
   .mobile-control-row{
     display:grid !important;
-    grid-template-columns:140px 140px 140px !important;
-    gap:14px !important;
+    grid-template-columns:24% 32% 24% !important;
+    gap:3% !important;
     align-items:center !important;
     justify-content:center !important;
     width:100% !important;
     margin:54px auto 120px !important;
-    padding:0 16px !important;
+    padding:0 4% !important;
     position:relative !important;
     z-index:30 !important;
   }
 
   .mobile-help-btn{
     display:flex !important;
-    width:140px !important;
+    width:100% !important;
     height:88px !important;
     align-items:center !important;
     justify-content:center !important;
@@ -3604,7 +3604,7 @@ body.is-placement .battle-slot.current{
     top:auto !important;
     bottom:auto !important;
     transform:none !important;
-    width:140px !important;
+    width:100% !important;
     height:88px !important;
     margin:0 !important;
     align-items:center !important;
@@ -3636,7 +3636,7 @@ body.is-placement .battle-slot.current{
     right:auto !important;
     top:auto !important;
     bottom:auto !important;
-    width:140px !important;
+    width:100% !important;
     height:88px !important;
     margin:0 !important;
     border-radius:16px !important;
@@ -3651,24 +3651,25 @@ body.is-placement .battle-slot.current{
 
 @media(max-width:460px){
   .mobile-control-row{
-    grid-template-columns:110px 140px 128px !important;
-    gap:8px !important;
+    display:grid !important;
+    grid-template-columns:1fr 1fr 1fr !important;
+    gap:12px !important;
     padding:0 8px !important;
   }
 
-  .mobile-help-btn{
-    width:110px !important;
-    font-size:14px !important;
-  }
+.mobile-help-btn{
+  width:100% !important;
+  font-size:14px !important;
+}
 
-  body .mobile-control-row .mobile-card-detail-btn.show{
-    width:140px !important;
-  }
+body .mobile-control-row .mobile-card-detail-btn.show{
+  width:100% !important;
+}
 
-  body .mobile-control-row .action-panel,
-  body .mobile-control-row .action-panel .btn-primary{
-    width:128px !important;
-  }
+body .mobile-control-row .action-panel,
+body .mobile-control-row .action-panel .btn-primary{
+  width:100% !important;
+}
 }
 
 
@@ -4049,7 +4050,7 @@ body.is-placement .battle-slot.current{
     <section class="game-panel detail-panel">
       <div class="detail-title-row">
   <h2>카드상세정보</h2>
-  <button class="pc-help-btn" onclick="openGameHelpModal()">🔔도움말🔔</button> <br>
+  <button class="pc-help-btn" onclick="openGameHelpModal()">🔔게임방법🔔</button> <br>
 </div>
 
      <img src="./gamecards/000.png"
@@ -6366,9 +6367,9 @@ function getBuffResultText(owner, buff){
 }
 
 function getHpChangeText(result, damage){
-  if(result === "WIN") return damage > 0 ? `🤖상대 HP -${damage}` : "상대 HP 변동 없음";
-  if(result === "LOSE") return damage > 0 ? `🤖내 HP -${damage}` : "내 HP 변동 없음";
-  return "🤖HP 변동 없음";
+  if(result === "WIN") return damage > 0 ? `🪫 상대 HP -${damage}` : "상대 HP 변동 없음";
+  if(result === "LOSE") return damage > 0 ? `🪫 내 HP -${damage}` : "내 HP 변동 없음";
+  return "🪫 HP 변동 없음";
 }
 
 function getFinalBuffLine(owner, buff, code, result){
@@ -6963,7 +6964,7 @@ finalMessage = [
   getFinalBuffLine("MY", myBuff, finalMyCode, result),
   myMessage.trim(),
   enemyMessage.trim(),
-  "🤖HP 변동 없음"
+  "🪫 HP 변동 없음"
 ].filter(Boolean).join("\n");
   }
 
@@ -7653,7 +7654,7 @@ function setupMobileControlRow(){
     helpBtn.id = "mobileGameHelpBtn";
     helpBtn.className = "mobile-help-btn";
     helpBtn.type = "button";
-    helpBtn.innerHTML = "도움말";
+    helpBtn.innerHTML = "🔔게임방법";
     helpBtn.addEventListener("click", function(){
       if(typeof openGameHelpModal === "function"){
         openGameHelpModal();
