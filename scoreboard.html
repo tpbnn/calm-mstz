@@ -666,6 +666,8 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
 </div>
 <script>
 const STORAGE_KEY='teamBattleBoardMultiV1';
+const TIER_SHEET_URL =
+'https://docs.google.com/spreadsheets/d/1jjguKLQE4dI76DBIbEw4ppxG26Ld8Eq7_cvbqFYU7Yo/gviz/tq?tqx=out:csv&sheet=tier';
 let store={teams:[],players:[],maps:[]};
 const teamStyles={};
 const playerStyles={};
@@ -678,8 +680,47 @@ function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify({boards,seq
 function loadStore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved){boards=saved.boards||[];boardSeq=saved.seq||1;if(saved.dark)document.body.classList.add('dark');}}catch(e){}}
 
 async function loadBattleData(btn){
-  try{if(btn)btn.textContent='데이터 로딩 중';const res=await fetch('./battle_data.txt',{cache:'no-store'});if(!res.ok)throw new Error('battle_data.txt not found');parseBattleData(await res.text());if(btn)btn.textContent='데이터 불러오기 성공';renderAll();saveState();setTimeout(()=>{if(btn)btn.textContent='리스트 업데이트'},1500);}catch(e){console.error(e);if(btn){btn.textContent='불러오기 실패';setTimeout(()=>{btn.textContent='리스트 업데이트'},1500)}}
+
+  try{
+
+    if(btn) btn.textContent='데이터 로딩 중';
+
+    const res = await fetch(TIER_SHEET_URL);
+
+    if(!res.ok){
+      throw new Error('sheet load fail');
+    }
+
+    const csv = await res.text();
+
+    parseTierSheet(csv);
+
+    renderAll();
+    saveState();
+
+    if(btn){
+      btn.textContent='업데이트 완료';
+
+      setTimeout(()=>{
+        btn.textContent='선수 목록 업데이트';
+      },1500);
+    }
+
+  }catch(err){
+
+    console.error(err);
+
+    if(btn){
+      btn.textContent='불러오기 실패';
+
+      setTimeout(()=>{
+        btn.textContent='선수 목록 업데이트';
+      },1500);
+    }
+  }
 }
+
+
 function parseBattleData(text){let section='',sectionColor='';store={teams:[],players:[],maps:[]};Object.keys(teamStyles).forEach(k=>delete teamStyles[k]);Object.keys(playerStyles).forEach(k=>delete playerStyles[k]);String(text||'').split(/\r?\n/).forEach(raw=>{const line=raw.trim();if(!line||line.startsWith('#'))return;if(line.startsWith('[')){const m=line.match(/^\[([^\]]+)\]\s*(?::\s*(#[0-9a-fA-F]{3,8}))?/);if(m){section=m[1].trim().toUpperCase();sectionColor=m[2]||'';}return;}if(section==='TEAM'){const [name,bg,color]=line.split('|').map(v=>String(v||'').trim());if(!name)return;store.teams.push(name);if(bg||color)teamStyles[name]={bg:bg||'',color:color||''};return;}if(section==='PLAYER-Z'||section==='PLAYER-T'||section==='PLAYER-P'){const name=line.split('|')[0].trim();if(!name)return;store.players.push(name);playerStyles[name]=sectionColor||defaultRaceColors[section];return;}if(section==='PLAYER'){const [name,color]=line.split('|').map(v=>String(v||'').trim());if(!name)return;store.players.push(name);if(color)playerStyles[name]=color;return;}if(section==='MAP'){const name=line.split('|')[0].trim();if(name)store.maps.push(name);}});store.teams=[...new Set(store.teams)];store.players=[...new Set(store.players)];store.maps=[...new Set(store.maps)];}
 function esc(s){return String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
 function escAttr(s){return String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('\\','\\\\').replaceAll("'","\\'").replaceAll('"','&quot;')}
@@ -1026,6 +1067,85 @@ function handleTeamKey(e,input){
 function setActive(box,items,idx){items.forEach(v=>v.classList.remove('active'));items[idx].classList.add('active');box.dataset.activeIndex=String(idx);items[idx].scrollIntoView({block:'nearest'})}
 function hideList(box){if(!box)return;box.classList.remove('show');box.dataset.activeIndex='-1';box.innerHTML=''}
 function toggleDarkMode(){document.body.classList.toggle('dark');document.querySelectorAll('.dark-toggle').forEach(b=>b.textContent=document.body.classList.contains('dark')?'☀️':'🌙');saveState();}
+
+function parseTierSheet(csv){
+
+  store = {
+    teams:[],
+    players:[],
+    maps:[]
+  };
+
+  Object.keys(teamStyles).forEach(k=>delete teamStyles[k]);
+  Object.keys(playerStyles).forEach(k=>delete playerStyles[k]);
+
+  const rows = csv
+    .trim()
+    .split('\n')
+    .map(r => r.split(','));
+
+  const header = rows[0];
+
+  const idxTeam = header.indexOf('소속');
+  const idxPlayer = header.indexOf('이름');
+  const idxRace = header.indexOf('종족');
+  const idxMap = header.indexOf('맵이름');
+
+  const raceColor = {
+    T:'#4DA3FF',
+    Z:'#E35D5D',
+    P:'#D4A017'
+  };
+
+  rows.slice(1).forEach(row=>{
+
+    const team =
+      (row[idxTeam] || '').trim();
+
+    const player =
+      (row[idxPlayer] || '').trim();
+
+    const race =
+      (row[idxRace] || '').trim();
+
+    const map =
+      (row[idxMap] || '').trim();
+
+    if(team){
+      store.teams.push(team);
+    }
+
+    if(player){
+      store.players.push(player);
+
+      if(raceColor[race]){
+        playerStyles[player] = raceColor[race];
+      }
+    }
+
+    if(map){
+      store.maps.push(map);
+    }
+
+  });
+
+  store.teams =
+    [...new Set(store.teams)];
+
+  store.players =
+    [...new Set(store.players)];
+
+  store.maps =
+    [...new Set(store.maps)];
+}
+
+
+
+
+
+
+
+
 function toggleMobileMenu(){
   const m=document.getElementById('mobileMenu');
   if(!m) return;
