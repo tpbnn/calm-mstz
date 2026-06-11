@@ -972,7 +972,40 @@ function dragEnd(e){
 
 function clearResults(id){const b=boardById(id);b.rounds.forEach(r=>r.winner=null);renderBoard(b);saveState();}
 function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
-function showAuto(input,type,id,i,key){const q=input.value.trim(),box=input.parentElement.querySelector('.auto-list');if(q.length<1){hideList(box);return}const source=type==='maps'?store.maps:store.players;const list=source.filter(v=>String(v).startsWith(q)).slice(0,10);if(!list.length){hideList(box);return}box.innerHTML=list.map((v,idx)=>`<div data-value="${esc(v)}" class="${idx===0?'active':''}" onclick="selectAuto(${id},${i},'${key}','${escAttr(v)}',this)">${esc(v)}</div>`).join('');box.dataset.activeIndex='0';box.classList.add('show')}
+function showAuto(input,type,id,i,key){
+  const q = normalizeText(input.value);
+  const box = input.parentElement.querySelector(".auto-list");
+
+  if(q.length < 1){
+    hideList(box);
+    return;
+  }
+
+  const source = type === "maps" ? store.maps : store.players;
+  const keyword = q.toLowerCase();
+
+  const list = source
+    .filter(v => normalizeText(v).toLowerCase().includes(keyword))
+    .slice(0, 10);
+
+  if(!list.length){
+    hideList(box);
+    return;
+  }
+
+  box.innerHTML = list.map((v,idx)=>`
+    <div
+      data-value="${esc(v)}"
+      class="${idx === 0 ? "active" : ""}"
+      onclick="selectAuto(${id},${i},'${key}','${escAttr(v)}',this)"
+    >
+      ${esc(v)}
+    </div>
+  `).join("");
+
+  box.dataset.activeIndex = "0";
+  box.classList.add("show");
+}
 function selectAuto(id,i,key,value,el){
   const b=boardById(id);
   if(!b) return;
@@ -1024,7 +1057,39 @@ function handleAutoKey(e,input,type,id,i,key){
     hideList(box);
   }
 }
-function showTeamSuggest(input){const q=input.value.trim(),box=input.parentElement.querySelector('.team-suggest');if(q.length<1){hideList(box);return}const list=store.teams.filter(v=>String(v).startsWith(q)).slice(0,10);if(!list.length){hideList(box);return}box.innerHTML=list.map((v,idx)=>`<div data-value="${esc(v)}" class="${idx===0?'active':''}" onclick="selectTeam('${escAttr(v)}',this)">${esc(v)}</div>`).join('');box.dataset.activeIndex='0';box.classList.add('show')}
+function showTeamSuggest(input){
+  const q = normalizeText(input.value);
+  const box = input.parentElement.querySelector(".team-suggest");
+
+  if(q.length < 1){
+    hideList(box);
+    return;
+  }
+
+  const keyword = q.toLowerCase();
+
+  const list = store.teams
+    .filter(v => normalizeText(v).toLowerCase().includes(keyword))
+    .slice(0, 10);
+
+  if(!list.length){
+    hideList(box);
+    return;
+  }
+
+  box.innerHTML = list.map((v,idx)=>`
+    <div
+      data-value="${esc(v)}"
+      class="${idx === 0 ? "active" : ""}"
+      onclick="selectTeam('${escAttr(v)}',this)"
+    >
+      ${esc(v)}
+    </div>
+  `).join("");
+
+  box.dataset.activeIndex = "0";
+  box.classList.add("show");
+}
 function selectTeam(value,el){
   const wrap=el.closest('.team-auto');
   const input=wrap.querySelector('input');
@@ -1068,6 +1133,51 @@ function setActive(box,items,idx){items.forEach(v=>v.classList.remove('active'))
 function hideList(box){if(!box)return;box.classList.remove('show');box.dataset.activeIndex='-1';box.innerHTML=''}
 function toggleDarkMode(){document.body.classList.toggle('dark');document.querySelectorAll('.dark-toggle').forEach(b=>b.textContent=document.body.classList.contains('dark')?'☀️':'🌙');saveState();}
 
+function parseCSV(text){
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let inQuotes = false;
+
+  for(let i = 0; i < text.length; i++){
+    const char = text[i];
+    const next = text[i + 1];
+
+    if(char === '"' && inQuotes && next === '"'){
+      cell += '"';
+      i++;
+    }else if(char === '"'){
+      inQuotes = !inQuotes;
+    }else if(char === "," && !inQuotes){
+      row.push(cell);
+      cell = "";
+    }else if((char === "\n" || char === "\r") && !inQuotes){
+      if(cell || row.length){
+        row.push(cell);
+        rows.push(row);
+        row = [];
+        cell = "";
+      }
+      if(char === "\r" && next === "\n") i++;
+    }else{
+      cell += char;
+    }
+  }
+
+  if(cell || row.length){
+    row.push(cell);
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+function normalizeText(value){
+  return String(value || "")
+    .replace(/^\uFEFF/, "")
+    .trim();
+}
+
 function parseTierSheet(csv){
 
   store = {
@@ -1076,40 +1186,32 @@ function parseTierSheet(csv){
     maps:[]
   };
 
-  Object.keys(teamStyles).forEach(k=>delete teamStyles[k]);
-  Object.keys(playerStyles).forEach(k=>delete playerStyles[k]);
+  Object.keys(teamStyles).forEach(k => delete teamStyles[k]);
+  Object.keys(playerStyles).forEach(k => delete playerStyles[k]);
 
-  const rows = csv
-    .trim()
-    .split('\n')
-    .map(r => r.split(','));
+  const rows = parseCSV(csv);
+  const header = rows[0].map(normalizeText);
 
-  const header = rows[0];
+  const idxTeam = header.indexOf("소속");
+  const idxPlayer = header.indexOf("이름");
+  const idxRace = header.indexOf("종족");
+  const idxMap = header.indexOf("맵이름");
 
-  const idxTeam = header.indexOf('소속');
-  const idxPlayer = header.indexOf('이름');
-  const idxRace = header.indexOf('종족');
-  const idxMap = header.indexOf('맵이름');
+  console.log("시트 헤더:", header);
+  console.log("컬럼 위치:", { idxTeam, idxPlayer, idxRace, idxMap });
 
   const raceColor = {
-    T:'#4DA3FF',
-    Z:'#E35D5D',
-    P:'#D4A017'
+    T: "#4DA3FF",
+    Z: "#E35D5D",
+    P: "#D4A017"
   };
 
-  rows.slice(1).forEach(row=>{
+  rows.slice(1).forEach(row => {
 
-    const team =
-      (row[idxTeam] || '').trim();
-
-    const player =
-      (row[idxPlayer] || '').trim();
-
-    const race =
-      (row[idxRace] || '').trim();
-
-    const map =
-      (row[idxMap] || '').trim();
+    const team = normalizeText(row[idxTeam]);
+    const player = normalizeText(row[idxPlayer]);
+    const race = normalizeText(row[idxRace]).toUpperCase();
+    const map = normalizeText(row[idxMap]);
 
     if(team){
       store.teams.push(team);
@@ -1126,17 +1228,16 @@ function parseTierSheet(csv){
     if(map){
       store.maps.push(map);
     }
-
   });
 
-  store.teams =
-    [...new Set(store.teams)];
+  store.teams = [...new Set(store.teams)].sort((a,b)=>a.localeCompare(b,"ko"));
+  store.players = [...new Set(store.players)].sort((a,b)=>a.localeCompare(b,"ko"));
+  store.maps = [...new Set(store.maps)];
 
-  store.players =
-    [...new Set(store.players)];
-
-  store.maps =
-    [...new Set(store.maps)];
+  console.log("팀 목록:", store.teams.length, store.teams.slice(0,10));
+  console.log("선수 목록:", store.players.length, store.players.slice(0,10));
+  console.log("맵 목록:", store.maps.length, store.maps);
+  console.log("색상 목록:", playerStyles);
 }
 
 
