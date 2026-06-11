@@ -743,6 +743,7 @@ function applyTeamStyle(el, teamName){
     name.includes(normalizeText(key))
   );
 
+  // 키워드가 없으면 아무것도 하지 않기
   if(!matchedKey){
     el.style.background = "";
     el.style.color = "";
@@ -751,14 +752,19 @@ function applyTeamStyle(el, teamName){
 
   const s = teamStyles[matchedKey];
 
-  if(!s?.bg || !s?.color){
+  // 배경색 값이 있으면 배경색만 적용
+  if(s?.bg){
+    el.style.background = s.bg;
+  }else{
     el.style.background = "";
-    el.style.color = "";
-    return;
   }
 
-  el.style.background = s.bg;
-  el.style.color = s.color;
+  // 글자색 값이 있으면 글자색만 적용
+  if(s?.color){
+    el.style.color = s.color;
+  }else{
+    el.style.color = "";
+  }
 }
 
 
@@ -1263,12 +1269,12 @@ const idxTeamText = header.indexOf("팀글자색");
   const teamBg = normalizeText(row[idxTeamBg]);
   const teamText = normalizeText(row[idxTeamText]);
 
-  if(teamKeyword && teamBg && teamText){
-    teamStyles[teamKeyword] = {
-      bg: teamBg,
-      color: teamText
-    };
-  }
+  if(teamKeyword && (teamBg || teamText)){
+  teamStyles[teamKeyword] = {
+    bg: teamBg,
+    color: teamText
+  };
+}
 
   if(team){
     store.teams.push(team);
