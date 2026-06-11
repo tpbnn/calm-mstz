@@ -1236,7 +1236,15 @@ const idxTeamBg = header.indexOf("팀배경색");
 const idxTeamText = header.indexOf("팀글자색");
 
   console.log("시트 헤더:", header);
-  console.log("컬럼 위치:", { idxTeam, idxPlayer, idxRace, idxMap });
+  console.log("컬럼 위치:", {
+  idxTeam,
+  idxPlayer,
+  idxRace,
+  idxMap,
+  idxTeamKeyword,
+  idxTeamBg,
+  idxTeamText
+});
 
   const raceColor = {
     T: "#4DA3FF",
@@ -1246,33 +1254,38 @@ const idxTeamText = header.indexOf("팀글자색");
 
   rows.slice(1).forEach(row => {
 
-const teamKeyword = normalizeText(row[idxTeamKeyword]);
-const teamBg = normalizeText(row[idxTeamBg]);
-const teamText = normalizeText(row[idxTeamText]);
+  const team = normalizeText(row[idxTeam]);
+  const player = normalizeText(row[idxPlayer]);
+  const race = normalizeText(row[idxRace]).toUpperCase();
+  const map = normalizeText(row[idxMap]);
 
-if(teamKeyword && teamBg && teamText){
-  teamStyles[teamKeyword] = {
-    bg: teamBg,
-    color: teamText
-  };
-}
+  const teamKeyword = normalizeText(row[idxTeamKeyword]);
+  const teamBg = normalizeText(row[idxTeamBg]);
+  const teamText = normalizeText(row[idxTeamText]);
 
-    if(team){
-      store.teams.push(team);
+  if(teamKeyword && teamBg && teamText){
+    teamStyles[teamKeyword] = {
+      bg: teamBg,
+      color: teamText
+    };
+  }
+
+  if(team){
+    store.teams.push(team);
+  }
+
+  if(player){
+    store.players.push(player);
+
+    if(raceColor[race]){
+      playerStyles[player] = raceColor[race];
     }
+  }
 
-    if(player){
-      store.players.push(player);
-
-      if(raceColor[race]){
-        playerStyles[player] = raceColor[race];
-      }
-    }
-
-    if(map){
-      store.maps.push(map);
-    }
-  });
+  if(map){
+    store.maps.push(map);
+  }
+});
 
   store.teams = [...new Set(store.teams)].sort((a,b)=>a.localeCompare(b,"ko"));
   store.players = [...new Set(store.players)].sort((a,b)=>a.localeCompare(b,"ko"));
