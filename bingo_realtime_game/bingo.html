@@ -3,1365 +3,1352 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>캄몬 도구 모음</title>
+<title>캄몬 도구 모음 - 래더 빙고</title>
 <link rel="icon" href="./favicon.png" type="image/png" />
-
 <style>
 :root{
-  --bg:#f6f7fb;
-  --card:#fff;
-  --text:#171923;
-  --muted:#718096;
-  --line:#e2e8f0;
-  --primary:#2563eb;
-  --primary-dark:#1d4ed8;
-  --danger:#dc2626;
-  --success:#16a34a;
-  --gold:#f59e0b;
+  --bg:#f6f7fb;--card:#fff;--text:#171923;--muted:#718096;--line:#e2e8f0;
+  --primary:#2563eb;--primary-dark:#1d4ed8;--danger:#dc2626;--success:#16a34a;
+  --gold:#f59e0b;--purple:#7c3aed;--shadow:0 10px 30px rgba(15,23,42,.06);
 }
-*{box-sizing:border-box;}
-html{overflow-y:scroll;}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-.wrap {
-  max-width: 1500px;
-  margin-left: 24px;
-  margin-right: auto;
-  padding: 28px 24px 60px;
-}
-.hero{
-  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  color:white;
-  padding:28px;
-  border-radius:24px;
-  margin-bottom:20px;
-  box-shadow:0 18px 40px rgba(37,99,235,.22);
-  min-height:150px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  overflow:hidden;
-}
-.hero-text{
-  min-width:0;
-}
-.hero-title{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:8px;
-}
-.hero-logo{
-  width:48px;
-  height:48px;
-  object-fit:contain;
-  flex:0 0 auto;
-}
-.hero h1{margin:0;font-size:26px;}
-.hero p{margin:0;font-size:16px;line-height:1.6;opacity:.92;}
-.hero-image{
-  width:140px;
-  height:100px;
-  object-fit:contain;
-  flex:0 0 auto;
-}
-@media(max-width:900px){
-  .hero{
-    align-items:flex-start;
-  }
-  .hero-image{
-    display:none;
-  }
-}
-.mode-bar{
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:12px;
-  margin-bottom:20px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:340px 1fr 340px;
-  gap:20px;
-  align-items:start;
-}
-.box{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(15,23,42,.05);
-}
-h2{
-  margin:0 0 16px;
-  font-size:20px;
-  line-height:1;
-}
-label{
-  display:block;
-  margin:12px 0 8px;
-  font-size:13px;
-  color:#475569;
-  font-weight:900;
-}
-input, select{
-  width:100%;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:13px 14px;
-  font-size:15px;
-  outline:none;
-  font-family:inherit;
-  background:white;
-}
-button{
-  border:0;
-  border-radius:14px;
-  padding:12px 14px;
-  font-weight:900;
-  cursor:pointer;
-  font-size:14px;
-  font-family:inherit;
-}
-.btn-primary{background:var(--primary);color:white;}
-.btn-primary:hover{background:var(--primary-dark);}
-.btn-success{background:var(--success);color:white;}
-.btn-danger{background:#fee2e2;color:#991b1b;}
-.btn-light{background:#eef2ff;color:#3730a3;}
-.btn-gold{background:#fef3c7;color:#92400e;}
-.btn-full{width:100%;margin-top:12px;}
-.help{color:var(--muted);font-size:13px;line-height:1.6;}
-.error{color:var(--danger);font-size:13px;margin-top:8px;line-height:1.5;}
-.ok{color:var(--success);font-size:13px;margin-top:8px;line-height:1.5;}
-.hidden{display:none!important;}
+*{box-sizing:border-box}html{overflow-y:scroll}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}.hidden{display:none!important}
+.wrap{max-width:1500px;margin:0 auto;padding:28px 24px 60px}
+.top-tabs{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}.tab-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:16px;background:#fff;border:1px solid var(--line);color:var(--text);font-size:16px;font-weight:900;text-decoration:none;box-shadow:0 6px 18px rgba(15,23,42,.05)}.tab-btn.active{background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:#fff;border-color:transparent}
+.mobile-nav{display:none}.hamburger-btn{width:100%;height:48px;border:0;border-radius:14px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:#fff;font-size:16px;font-weight:1000}.mobile-menu{display:none;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}.mobile-menu.show{display:block}.mobile-menu a{display:block;padding:14px 16px;color:var(--text);text-decoration:none;font-weight:900;border-bottom:1px solid var(--line)}
+.hero{background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:#fff;padding:28px;border-radius:24px;margin-bottom:20px;box-shadow:0 18px 40px rgba(37,99,235,.22);min-height:150px;display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:hidden}.hero-title{display:flex;align-items:center;gap:14px;margin-bottom:8px}.hero-logo{width:48px;height:48px;object-fit:contain}.hero h1{margin:0;font-size:26px}.hero p{margin:0;font-size:16px;line-height:1.6;opacity:.92}.hero-image{width:140px;height:100px;object-fit:contain}
+.room-bar{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding:10px 14px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow-x:auto}.room-bar-title{flex:0 0 auto;padding:0 8px;font-size:14px;font-weight:1000;white-space:nowrap}.room-code-input{flex:0 1 180px;min-width:130px;border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#fff;outline:none;font-weight:900}.room-action{flex:0 0 auto;min-height:42px;border-radius:12px;padding:10px 15px}.presence-badge{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:9px 11px;border-radius:999px;background:#f8fafc;color:#475569;font-size:13px;font-weight:900;white-space:nowrap}.presence-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#dbeafe,#dcfce7);border:1px solid #dbeafe}.room-status{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:9px 11px;border-radius:999px;background:#f8fafc;color:#64748b;font-size:12px;font-weight:900;white-space:nowrap}.status-dot{width:10px;height:10px;border-radius:50%;background:#94a3b8;box-shadow:0 0 0 3px rgba(148,163,184,.16)}.room-status.connected{color:#0f766e;background:#ecfdf5}.room-status.connected .status-dot{background:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.16)}.room-status.missing{color:#b45309;background:#fffbeb}.room-status.missing .status-dot{background:#f59e0b}.room-bar-spacer{flex:1 1 auto;min-width:4px}
+.workspace{display:grid;grid-template-columns:minmax(500px,1.35fr) minmax(360px,.65fr);gap:20px;align-items:start}.box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+.broadcast-box{position:sticky;top:18px}.broadcast-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.broadcast-head h2,.panel-title{margin:0;font-size:20px}.broadcast-stage{padding:22px;border-radius:20px;background:linear-gradient(135deg,#eef4ff,#f3e8ff);border:1px solid #dbeafe}.stage-title{text-align:center;font-size:clamp(24px,3vw,42px);font-weight:1000;margin:0 0 16px;color:#312e81}.timer-display{display:flex;align-items:center;justify-content:center;gap:12px;font-variant-numeric:tabular-nums}.bingo-grid{display:grid;gap:8px;aspect-ratio:1}.cell{position:relative;min-width:0;min-height:0;border:1px solid var(--line);border-radius:12px;background:#fff;display:grid;place-items:center;padding:8%;text-align:center;font-weight:1000;font-size:clamp(18px,3.3vw,44px);overflow:hidden;word-break:keep-all;box-shadow:0 6px 14px rgba(15,23,42,.06);user-select:none}.cell.clickable{cursor:pointer}.cell.clickable:hover{transform:translateY(-2px)}.cell.marked{background:#006dff;color:#fff;border-color:#001328}.cell.bingo-line{border:7px solid #22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.22)}.cell.territory{color:var(--claim-ink,#fff);background:var(--claim-color);border-color:var(--claim-color)}.cell.team-bingo{box-shadow:0 0 0 4px #fff,0 0 0 9px var(--claim-color),0 14px 28px rgba(15,23,42,.18)}
+.bingo-message{text-align:center;margin-top:16px;font-size:18px;font-weight:1000;color:#92400e;min-height:28px}.score-strip,.streak-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.score-pill,.streak-pill{padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:900}.streak-pill strong{color:#dc2626}
+.editor{display:flex;flex-direction:column;gap:14px}.section{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}.section h3{margin:0 0 14px;font-size:16px}.label{display:block;margin:11px 0 7px;color:#475569;font-size:13px;font-weight:900}.help{color:var(--muted);font-size:13px;line-height:1.55}.error{color:var(--danger);font-size:13px;margin-top:8px}.ok{color:var(--success);font-size:13px;margin-top:8px}
+input,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:#fff;outline:none}input:focus,select:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(37,99,235,.12)}button{border:0;border-radius:14px;padding:11px 14px;font-weight:900;cursor:pointer}.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}.btn-success{background:var(--success);color:#fff}.btn-danger{background:#fee2e2;color:#991b1b}.btn-light{background:#eef2ff;color:#3730a3}.btn-gold{background:#fef3c7;color:#92400e}.btn-full{width:100%}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1 1 120px}.button-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:4px;background:#eef2ff;border-radius:14px}.segmented button{background:transparent;color:#64748b}.segmented button.active{background:#fff;color:#1e3a8a;box-shadow:0 3px 10px rgba(15,23,42,.08)}.segmented button.mode-active{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}
+.team-picker{display:grid;grid-template-columns:1fr 1fr;gap:8px}.team-btn{min-height:46px;color:#fff;border:3px solid transparent}.team-btn.active{border-color:#fff;outline:4px solid #facc15;outline-offset:1px;transform:translateY(-1px)}.team-setting{display:grid;grid-template-columns:1fr 150px;gap:8px;margin-top:8px}.current-team{margin-top:10px;padding:12px;border-radius:14px;text-align:center;font-weight:1000;color:var(--team-ink,#fff);background:var(--team-color,#ef4444)}
+.timer-box{padding:12px;border:1px solid #dbeafe;border-radius:14px;background:#f8fbff}.timer-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.timer-inputs label{font-size:12px;font-weight:900;color:#64748b}.timer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.title-chicken{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}.chicken-control{display:grid;grid-template-columns:44px 64px 44px;gap:5px}.chicken-output{display:grid;place-items:center;border:1px solid #f59e0b;border-radius:12px;background:#fffbeb;font-weight:1000}
+.edit-grid{display:grid;gap:6px;aspect-ratio:1}.edit-cell{border:1px solid var(--line);border-radius:10px;background:#f8fafc;overflow:hidden}.edit-cell input{height:100%;border:0;border-radius:0;background:transparent;text-align:center;font-size:18px;font-weight:900;padding:4px}.edit-cell.marked{background:#dbeafe}.edit-cell.territory{background:var(--claim-color);border-color:var(--claim-color)}.edit-cell.territory input{color:var(--claim-ink,#fff)}
+.history-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow:auto}.history-item{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;font-size:13px}.history-item strong{display:block;margin-bottom:3px}.footer{padding:28px 20px 40px;text-align:center;color:#94a3b8}.footer-links{display:flex;justify-content:center;gap:18px;margin-top:6px}.footer-icon img{height:32px;width:auto}
 
-.board-wrap{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:16px;
-}
-.bingo-board{
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:14px;
-  background:#fff;
-}
-.board-title-row{
-  margin-bottom:10px;
-}
-.board-title{
-  font-weight:1000;
-  font-size:18px;
-  line-height:1.25;
-}
-.board-info-row,
-.board-action-row{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  flex-wrap:wrap;
-  margin-bottom:10px;
-}
-.pill-blue{
-  padding:7px 11px;
-  border-radius:999px;
-  background:#eff6ff;
-  color:#1e40af;
-  font-size:12px;
-  font-weight:900;
-  white-space:nowrap;
-}
-.small-btn{
-  padding:7px 10px;
-  font-size:12px;
-  border-radius:10px;
-  white-space:nowrap;
-}
-.bingo-grid{
-  display:grid;
-  gap:6px;
-}
-.cell{
-  aspect-ratio:1/1;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:#f8fafc;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:1000;
-  font-size:30px;
-  user-select:none;
-}
-.cell.marked{
-  /* background:#dbeafe;
-  color:#1e40af;
-  border-color:#93c5fd; */
-  background: #006dff;
-    color: #ffffff;
-    border-color: #001328;
-}
-.cell.chicken{
-  background:#92400e;
-  color:#fef3c7;
-  border-color:#facc15;
-}
-.cell.bingo-line{
-  box-shadow:0 0 0 3px rgba(34,197,94,.28);
-  border-color:#22c55e;
-  border-width:10px
-}
-.cell.clickable{
-  cursor:pointer;
-}
-.cell.clickable:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(245,158,11,.22);
-}
-.cell.erase-mode:hover{
-  box-shadow:0 8px 18px rgba(220,38,38,.22);
-}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
+.panel-head h3{margin:0}.section-sub{margin:3px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.setting-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.setting-grid .label{margin-top:0}
+.mode-apply{margin-top:10px;background:linear-gradient(135deg,#2563eb,#7c3aed)}
+.timer-target{margin-top:10px;padding-top:10px;border-top:1px solid #dbeafe}.timer-target-title{display:flex;justify-content:space-between;gap:8px;margin-bottom:7px;color:#475569;font-size:12px;font-weight:900}.timer-target-row{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:7px}.timer-target-row input{text-align:center}
+.team-setting label{display:none}.territory-guide{margin:9px 0 0}
+.editor .section{scroll-margin-top:14px}.editor .section h3{font-size:15px}
+.edit-grid{margin-top:10px}.edit-cell{min-height:48px}.edit-cell input{font-size:16px}
+.history-meta{margin-top:4px;color:#94a3b8;font-size:11px}
+@media(max-width:520px){.timer-target-row{grid-template-columns:1fr 1fr}.timer-target-row button{grid-column:1/-1}.setting-grid{grid-template-columns:1fr 1fr}.editor{gap:9px}.section{border-radius:15px;padding:13px}.section h3{font-size:14px;margin-bottom:10px}.label{font-size:11px;margin:8px 0 5px}input,select{padding:10px 11px;border-radius:10px}.segmented{border-radius:10px}.segmented button{padding:9px 5px;font-size:12px}.team-btn{min-height:42px}.current-team{padding:10px;font-size:13px}.edit-cell{min-height:43px}.history-list{max-height:190px}}
 
-.history-toggle{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:12px;
-}
-.history-list{
+@media(max-width:1100px){.workspace{grid-template-columns:1fr}.broadcast-box{position:static}.room-bar{flex-wrap:wrap;overflow:visible}.room-code-input{flex:1 1 220px}.room-bar-spacer{display:none}}
+@media(max-width:768px){.wrap{padding:16px 12px 40px}.top-tabs{display:none}.mobile-nav{display:block;margin-bottom:14px}.hero{padding:20px}.hero-image{display:none}.hero h1{font-size:22px}.room-bar{display:grid;grid-template-columns:1fr 1fr;padding:10px}.room-bar-title{grid-column:1/-1;padding:2px 4px}.room-code-input{grid-column:1/-1;width:100%}.room-action{width:100%;padding:10px 8px}.presence-badge,.room-status{justify-content:center}.workspace{gap:14px}.box,.section{padding:15px}.broadcast-stage{padding:12px}.title-chicken{grid-template-columns:1fr}.team-setting{grid-template-columns:1fr}.button-grid{grid-template-columns:1fr}.cell{border-radius:8px}.hero p{font-size:14px}}
+
+/* 화면 높이에 맞춘 빙고판 자동 크기 조절 */
+.broadcast-stage{
   display:flex;
   flex-direction:column;
-  gap:8px;
-}
-.history-item{
-  padding:12px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:#f8fafc;
-}
-.history-title{
-  font-weight:900;
-  margin-bottom:4px;
-}
-.history-meta{
-  color:#64748b;
-  font-size:13px;
-  line-height:1.5;
-}
-.copy-box{
-  padding:12px;
-  border-radius:14px;
-  background:#f8fafc;
-  border:1px dashed #cbd5e1;
-  font-size:13px;
-  line-height:1.6;
-  word-break:break-all;
-}
-.footer{
-  margin-top:2px;
-  padding:28px 20px 40px;
-  text-align:center;
-  color:#94a3b8;
-}
-.footer-copy{font-size:13px;}
-@media(max-width:1100px){
-  .grid,.mode-bar{grid-template-columns:1fr;}
-}
-
-
-.footer-copy{
-  font-size:13px;
-  margin-bottom:2px;
-}
-
-.footer-links{
-  display:flex;
-  justify-content:center;
   align-items:center;
-  gap:18px;
+  justify-content:flex-start;
+}
+.broadcast-stage .stage-title,
+.broadcast-stage .bingo-message,
+.broadcast-stage .score-strip,
+.broadcast-stage .streak-strip{
+  width:100%;
+}
+.broadcast-stage .bingo-grid{
+  width:min(100%, 520px, max(300px, calc(100vh - 500px)));
+  height:auto;
+  flex:0 0 auto;
+  margin-inline:auto;
 }
 
-.footer-icon{
-  text-decoration:none;
+/* 메인 화면에서는 제목과 부가정보까지 포함해 한 화면 안에 들어오도록 제한 */
+.broadcast-box .broadcast-stage{
+  min-height:0;
+}
+.broadcast-box .bingo-grid{
+  max-width:280px;
 }
 
-.footer-icon img{
-  height:32px;
-  width:auto;
-  object-fit:contain;
+/* 송출 새 창: 브라우저 안에 빙고판 전체가 항상 들어오도록 함 */
+body.broadcast-view{
+  overflow:hidden;
+  min-height:100vh;
+}
+body.broadcast-view .wrap{
+  width:100%;
+  max-width:none;
+  height:100vh;
+  padding:0;
+  margin:0;
+}
+body.broadcast-view .workspace{
   display:block;
+  width:100%;
+  height:100vh;
 }
-.top-tabs{
-  display:flex;
-  gap:12px;
-  margin-bottom:18px;
+body.broadcast-view .broadcast-box{
+  position:static;
+  width:100%;
+  height:100vh;
+  padding:10px;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  overflow:hidden;
 }
-
-.tab-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:14px 22px;
-  border-radius:16px;
-  background:white;
-  border:1px solid var(--line);
-  color:var(--text);
-  font-size:16px;
-  font-weight:900;
-  text-decoration:none;
-  transition:all .15s ease;
-  box-shadow:0 6px 18px rgba(15,23,42,.05);
-}
-
-.tab-btn:hover{
-  transform:translateY(-1px);
-}
-
-.tab-btn.active{
-  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  color:white;
-  border-color:transparent;
-}
-
-html, body{
-  max-width:100%;
-  overflow-x:hidden;
-}
-
-.mobile-nav{
+body.broadcast-view .broadcast-head{
   display:none;
+}
+body.broadcast-view .broadcast-stage{
+  width:100%;
+  height:100%;
+  padding:12px;
+  border-radius:0;
+  justify-content:center;
+  overflow:hidden;
+}
+body.broadcast-view .broadcast-stage .stage-title{
+  flex:0 0 auto;
+  margin-bottom:10px;
+  font-size:clamp(22px, 4vh, 42px);
+}
+body.broadcast-view .broadcast-stage .bingo-grid{
+  width:min(calc(100vw - 48px), calc(100vh - 190px), 620px);
+  max-width:none;
+  max-height:none;
+  margin:0 auto;
+}
+body.broadcast-view .broadcast-stage .bingo-message{
+  flex:0 0 auto;
+  min-height:20px;
+  margin-top:8px;
+  font-size:clamp(14px, 2.2vh, 20px);
+}
+body.broadcast-view .score-strip,
+body.broadcast-view .streak-strip{
+  justify-content:center;
+  margin-top:7px;
+}
+body.broadcast-view .footer{
+  display:none!important;
+}
+
+@media(max-width:1100px){
+  .broadcast-stage .bingo-grid{
+    width:min(100%, 520px, max(300px, calc(100vh - 390px)));
+  }
+}
+@media(max-width:768px){
+  .broadcast-stage .bingo-grid{
+    width:min(100%, 480px, max(260px, calc(100vh - 410px)));
+  }
+  body.broadcast-view .broadcast-stage .bingo-grid{
+    width:min(calc(100vw - 32px), calc(100vh - 165px), 560px);
+  }
+}
+
+
+/* 방 연결 후 한 화면 고정 레이아웃 */
+body.room-connected{
+  height:100vh;
+  overflow:hidden;
+}
+body.room-connected .wrap{
+  width:100%;
+  max-width:none;
+  height:100vh;
+  margin:0;
+  padding:0;
+}
+body.room-connected .top-tabs,
+body.room-connected .mobile-nav,
+body.room-connected .hero,
+body.room-connected .footer{
+  display:none!important;
+}
+body.room-connected .room-bar{
+  height:58px;
+  min-height:58px;
+  margin:0;
+  border-radius:0;
+  border-left:0;
+  border-right:0;
+  border-top:0;
+  padding:8px 18px;
+}
+body.room-connected .workspace{
+  height:calc(100vh - 58px);
+  grid-template-columns:minmax(0, 1.25fr) minmax(360px, .75fr);
+  gap:0;
+  overflow:hidden;
+}
+body.room-connected .broadcast-box{
+  position:static;
+  height:100%;
+  min-height:0;
+  border-radius:0;
+  border-top:0;
+  border-bottom:0;
+  border-left:0;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+body.room-connected .broadcast-head{
+  flex:0 0 auto;
+  margin-bottom:8px;
+}
+body.room-connected .broadcast-stage{
+  flex:1 1 auto;
+  min-height:0;
+  padding:12px;
+  justify-content:center;
+  overflow:hidden;
+}
+body.room-connected .broadcast-stage .stage-title{
+  flex:0 0 auto;
+  margin-bottom:8px;
+  font-size:clamp(24px, 3.2vh, 38px);
+}
+body.room-connected .broadcast-stage .bingo-grid{
+  width:min(72vh, 68vw, 560px);
+  max-width:100%;
+  flex:0 1 auto;
+}
+body.room-connected .broadcast-stage .bingo-message{
+  margin-top:6px;
+  min-height:18px;
+  font-size:14px;
+}
+body.room-connected .editor{
+  height:100%;
+  min-height:0;
+  overflow-y:auto;
+  padding:14px;
+  border-left:1px solid var(--line);
+  background:var(--bg);
+  scrollbar-gutter:stable;
+}
+body.room-connected .editor .section{
+  padding:14px;
+  border-radius:14px;
+  box-shadow:none;
+}
+body.room-connected .editor .section h3{
+  margin-bottom:10px;
+}
+
+@media(max-width:1100px){
+  body.room-connected{
+    height:auto;
+    overflow:auto;
+  }
+  body.room-connected .wrap,
+  body.room-connected .workspace{
+    height:auto;
+  }
+  body.room-connected .workspace{
+    grid-template-columns:1fr;
+    overflow:visible;
+  }
+  body.room-connected .broadcast-box,
+  body.room-connected .editor{
+    height:auto;
+    overflow:visible;
+  }
+  body.room-connected .broadcast-stage .bingo-grid{
+    width:min(88vw, 520px);
+  }
+}
+
+/* 연결된 일반 화면의 빙고판 크기 강제 지정 */
+body.room-connected .broadcast-stage .bingo-grid{
+  width:440px !important;
+  height:440px !important;
+  max-width:440px !important;
+  flex:0 0 440px !important;
+}
+
+/* 새 창 빙고판 크기 */
+body.broadcast-view .broadcast-stage .bingo-grid{
+  width:520px !important;
+  height:520px !important;
+  max-width:calc(100vw - 40px) !important;
+  max-height:calc(100vh - 130px) !important;
+}
+
+/* 작은 화면에서는 화면 너비를 넘지 않게 처리 */
+@media(max-width:768px){
+  body.room-connected .broadcast-stage .bingo-grid{
+    width:min(88vw, 420px) !important;
+    height:auto !important;
+    max-width:min(88vw, 420px) !important;
+    flex:0 0 auto !important;
+  }
+}
+
+
+/* =========================================================
+   최종 크기 개선
+   - 기존 색상/카드 디자인 유지
+   - 새 방 생성/참여 후에도 화면 레이아웃 유지
+   - 새 방송용 코드의 크기와 비율을 기준으로 조정
+   ========================================================= */
+
+/* 방 연결 여부와 관계없이 동일한 화면 구조 유지 */
+body.room-connected{
+  height:auto !important;
+  min-height:100vh !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+}
+
+body.room-connected .wrap{
+  width:auto !important;
+  max-width:1500px !important;
+  height:auto !important;
+  margin:0 auto !important;
+  padding:28px 24px 60px !important;
+}
+
+body.room-connected .top-tabs{
+  display:flex !important;
+}
+
+body.room-connected .hero{
+  display:flex !important;
+}
+
+body.room-connected .footer{
+  display:block !important;
+}
+
+body.room-connected .room-bar{
+  height:auto !important;
+  min-height:0 !important;
+  margin-bottom:18px !important;
+  padding:10px 14px !important;
+  border:1px solid var(--line) !important;
+  border-radius:18px !important;
+}
+
+/* 새 코드 기준 좌우 비율 */
+.workspace,
+body.room-connected .workspace{
+  display:grid !important;
+  grid-template-columns:minmax(420px,1.15fr) minmax(360px,.85fr) !important;
+  gap:20px !important;
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+  align-items:start !important;
+}
+
+/* 왼쪽 방송 패널 크기 */
+.broadcast-box,
+body.room-connected .broadcast-box{
+  position:sticky !important;
+  top:18px !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  padding:20px !important;
+  border:1px solid var(--line) !important;
+  border-radius:20px !important;
+  overflow:visible !important;
+}
+
+/* 새 코드의 stage 비율 반영 */
+.broadcast-stage,
+body.room-connected .broadcast-stage{
+  width:100% !important;
+  min-height:clamp(520px,68vh,760px) !important;
+  padding:clamp(18px,2.4vw,32px) !important;
+  border-radius:clamp(20px,2.5vw,30px) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+}
+
+/* 제목 크기 */
+.broadcast-stage .stage-title,
+body.room-connected .broadcast-stage .stage-title{
+  width:fit-content !important;
+  max-width:86% !important;
+  flex:0 0 auto !important;
+  margin:0 auto clamp(14px,1.8vw,24px) !important;
+  font-size:clamp(26px,3.2vw,14px) !important;
+  line-height:1.05 !important;
+}
+
+/* 메인 빙고판: 새 코드처럼 stage 안에서 반응형 정사각형 */
+.broadcast-stage .bingo-grid,
+body.room-connected .broadcast-stage .bingo-grid{
+  width:min(100%,68vh,720px) !important;
+  height:auto !important;
+  max-width:720px !important;
+  max-height:none !important;
+  flex:0 0 auto !important;
+  margin:0 auto !important;
+  gap:clamp(7px,1vw,13px) !important;
+  aspect-ratio:1 !important;
+}
+
+/* 칸 크기와 글자 크기도 새 코드 비율 적용 */
+.broadcast-stage .cell{
+  border-radius:clamp(10px,1.3vw,17px) !important;
+  padding:7% !important;
+  font-size:clamp(20px,3vw,48px) !important;
+  line-height:1.08 !important;
+}
+
+/* 오른쪽 편집 영역 */
+.editor,
+body.room-connected .editor{
+  height:auto !important;
+  min-height:0 !important;
+  overflow:visible !important;
+  padding:0 !important;
+  border-left:0 !important;
+  background:transparent !important;
+  gap:18px !important;
+}
+
+/* 편집 카드: 새 코드의 섹션 간격과 입력 크기 반영 */
+.editor .section,
+body.room-connected .editor .section{
+  padding:20px !important;
+  border-radius:18px !important;
+  box-shadow:var(--shadow) !important;
+}
+
+.editor .section h3,
+body.room-connected .editor .section h3{
+  margin-bottom:12px !important;
+  font-size:17px !important;
+}
+
+.editor .label{
+  margin:10px 0 6px !important;
+  font-size:13px !important;
+}
+
+.editor input,
+.editor select{
+  min-height:42px !important;
+  padding:9px 11px !important;
+  border-radius:9px !important;
+}
+
+.editor button{
+  min-height:40px !important;
+  padding:0 13px !important;
+  border-radius:9px !important;
+}
+
+.editor .segmented{
+  width:min(100%,290px) !important;
+  padding:3px !important;
+  gap:0 !important;
+  border-radius:8px !important;
+}
+
+.editor .segmented button{
+  min-height:36px !important;
+  padding:0 10px !important;
+  border-radius:6px !important;
+}
+
+/* 직접 수정판: 새 코드 기준 최대 520px */
+.edit-grid{
+  width:min(100%,520px) !important;
+  margin:10px auto 0 !important;
+  gap:8px !important;
+}
+
+.edit-cell{
+  min-height:0 !important;
+  border-radius:8px !important;
+}
+
+.edit-cell input{
+  padding:10% !important;
+  font-size:clamp(15px,2.2vw,22px) !important;
+}
+
+/* 기존 room-connected 전용 강제 크기 규칙 무효화 */
+body.room-connected .broadcast-stage .bingo-grid{
+  flex-basis:auto !important;
+}
+
+/* 송출 새 창: 편집 화면 없이 빙고판만 중앙 표시 */
+body.broadcast-view{
+  width:100vw !important;
+  height:100vh !important;
+  min-height:100vh !important;
+  margin:0 !important;
+  overflow:hidden !important;
+  background:var(--bg) !important;
+}
+
+body.broadcast-view .wrap,
+body.broadcast-view .workspace,
+body.broadcast-view .broadcast-box,
+body.broadcast-view .broadcast-stage{
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+
+body.broadcast-view .workspace{
+  display:grid !important;
+  place-items:center !important;
+}
+
+body.broadcast-view .broadcast-box{
+  display:grid !important;
+  place-items:center !important;
+}
+
+body.broadcast-view .broadcast-stage{
+  display:grid !important;
+  place-items:center !important;
+  overflow:hidden !important;
+}
+
+body.broadcast-view .broadcast-head,
+body.broadcast-view .stage-title,
+body.broadcast-view .bingo-message,
+body.broadcast-view .score-strip,
+body.broadcast-view .streak-strip,
+body.broadcast-view .editor,
+body.broadcast-view .room-bar,
+body.broadcast-view .hero,
+body.broadcast-view .top-tabs,
+body.broadcast-view .mobile-nav,
+body.broadcast-view .footer{
+  display:none !important;
+}
+
+body.broadcast-view .broadcast-stage .bingo-grid{
+  display:grid !important;
+  width:min(92vw,92vh) !important;
+  height:min(92vw,92vh) !important;
+  max-width:none !important;
+  max-height:none !important;
+  margin:0 !important;
+  gap:clamp(7px,1.2vmin,14px) !important;
+}
+
+body.broadcast-view .broadcast-stage .cell{
+  font-size:clamp(22px,6vmin,64px) !important;
+  border-radius:clamp(10px,1.8vmin,20px) !important;
+}
+
+/* 태블릿 */
+@media(max-width:1100px){
+  .workspace,
+  body.room-connected .workspace{
+    grid-template-columns:1fr !important;
+  }
+
+  .broadcast-box,
+  body.room-connected .broadcast-box{
+    position:static !important;
+  }
+
+  .broadcast-stage,
+  body.room-connected .broadcast-stage{
+    min-height:auto !important;
+  }
+
+  .broadcast-stage .bingo-grid,
+  body.room-connected .broadcast-stage .bingo-grid{
+    width:min(88vw,680px) !important;
+  }
+}
+
+/* 모바일 */
+@media(max-width:768px){
+  body.room-connected .wrap{
+    padding:16px 12px 40px !important;
+  }
+
+  body.room-connected .top-tabs{
+    display:none !important;
+  }
+
+  body.room-connected .mobile-nav{
+    display:block !important;
+  }
+
+  .broadcast-stage .bingo-grid,
+  body.room-connected .broadcast-stage .bingo-grid{
+    width:min(88vw,560px) !important;
+    height:auto !important;
+    max-width:min(88vw,560px) !important;
+  }
+
+  .editor .section,
+  body.room-connected .editor .section{
+    padding:15px !important;
+  }
+}
+
+
+/* ===== 빙고판 크기 슬라이더 ===== */
+:root{
+  --main-board-size: 520px;
+  --popup-board-size: 760px;
+}
+
+.size-control{
+  display:grid;
+  gap:10px;
+}
+
+.size-control-row{
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr) 58px;
+  align-items:center;
+  gap:10px;
+}
+
+.size-control-row label{
+  color:#475569;
+  font-size:13px;
+  font-weight:900;
+}
+
+.size-control-row input[type="range"]{
+  width:100%;
+  min-height:0 !important;
+  height:6px;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:999px !important;
+  appearance:none;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  box-shadow:none !important;
+  cursor:pointer;
+}
+
+.size-control-row input[type="range"]::-webkit-slider-thumb{
+  width:20px;
+  height:20px;
+  border:3px solid #fff;
+  border-radius:50%;
+  appearance:none;
+  background:#4f46e5;
+  box-shadow:0 2px 8px rgba(37,99,235,.3);
+}
+
+.size-control-row input[type="range"]::-moz-range-thumb{
+  width:16px;
+  height:16px;
+  border:3px solid #fff;
+  border-radius:50%;
+  background:#4f46e5;
+  box-shadow:0 2px 8px rgba(37,99,235,.3);
+}
+
+.size-value{
+  display:grid;
+  place-items:center;
+  min-height:34px;
+  padding:4px 7px;
+  border:1px solid #c7d2fe;
+  border-radius:9px;
+  color:#3730a3;
+  background:#eef2ff;
+  font-size:12px;
+  font-weight:1000;
+  font-variant-numeric:tabular-nums;
+}
+
+/* 메인 빙고판은 슬라이더 값 사용 */
+body:not(.broadcast-view) .broadcast-stage .bingo-grid,
+body.room-connected:not(.broadcast-view) .broadcast-stage .bingo-grid{
+  width:min(100%, var(--main-board-size)) !important;
+  height:var(--main-board-size) !important;
+  max-width:var(--main-board-size) !important;
+  max-height:var(--main-board-size) !important;
+  flex:0 0 var(--main-board-size) !important;
+}
+
+/* 새 창 빙고판은 별도 슬라이더 값 사용 */
+body.broadcast-view .broadcast-stage .bingo-grid,
+body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+  width:min(var(--popup-board-size), 92vw, 92vh) !important;
+  height:min(var(--popup-board-size), 92vw, 92vh) !important;
+  max-width:min(var(--popup-board-size), 92vw, 92vh) !important;
+  max-height:min(var(--popup-board-size), 92vw, 92vh) !important;
+  flex:0 0 auto !important;
+}
+
+/* 새 창에서는 슬라이더 패널 숨김 */
+body.broadcast-view #boardSizeSection{
+  display:none !important;
 }
 
 @media(max-width:768px){
-  .wrap{
-    width:100%;
-    max-width:100%;
-    margin-left:0;
-    margin-right:0;
-    padding:16px 12px 40px;
-    overflow:hidden;
+  .size-control-row{
+    grid-template-columns:90px minmax(0,1fr) 52px;
+    gap:7px;
   }
 
-  .top-tabs{
-    display:none;
-  }
-
-  .mobile-nav{
-    display:block;
-    margin-bottom:14px;
-    position:relative;
-  }
-
-  .hamburger-btn{
-    width:100%;
-    height:48px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-    color:white;
-    font-size:16px;
-    font-weight:1000;
-  }
-
-  .mobile-menu{
-    display:none;
-    margin-top:8px;
-    background:white;
-    border:1px solid var(--line);
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(15,23,42,.12);
-  }
-
-  .mobile-menu.show{
-    display:block;
-  }
-
-  .mobile-menu a{
-    display:block;
-    padding:14px 16px;
-    color:var(--text);
-    text-decoration:none;
-    font-weight:900;
-    border-bottom:1px solid var(--line);
-  }
-
-  .mobile-menu a:last-child{
-    border-bottom:0;
-  }
-
-  .hero{
-    width:100%;
-    max-width:100%;
-    padding:20px;
-    overflow:hidden;
-  }
-
-  .hero-title{
-    flex-wrap:wrap;
-  }
-
-  .hero h1{
-    font-size:22px;
-  }
-
-  .hero p{
-    font-size:14px;
-  }
-
-  .hero-image{
-    max-width:120px;
-    width:35%;
-    height:auto;
-  }
-
-  .layout{
-    grid-template-columns:1fr;
-    width:100%;
-    max-width:100%;
-  }
-
-  .box,
-  .game-box{
-    width:100%;
-    max-width:100%;
-    padding:16px;
-  }
-
-  .board-wrap{
-    width:100%;
-    max-width:100%;
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .side-new-game{
-    width:100%;
-    height:56px;
-    border-radius:16px;
-    font-size:18px;
-  }
-
-  .footer{
-    width:100%;
-    max-width:100%;
+  body:not(.broadcast-view) .broadcast-stage .bingo-grid,
+  body.room-connected:not(.broadcast-view) .broadcast-stage .bingo-grid{
+    width:min(88vw, var(--main-board-size)) !important;
+    height:min(88vw, var(--main-board-size)) !important;
+    max-width:min(88vw, var(--main-board-size)) !important;
+    max-height:min(88vw, var(--main-board-size)) !important;
+    flex-basis:auto !important;
   }
 }
+
+
+/* ===== 크기 슬라이더 UI v2 ===== */
+.size-panel-head{
+  align-items:center;
+}
+.size-panel-head #openBroadcast{
+  flex:0 0 auto;
+  min-width:72px;
+}
+
+/* 왼쪽의 '빙고판' 헤더를 삭제했으므로 상단 여백 정리 */
+.broadcast-box .broadcast-stage{
+  margin-top:0 !important;
+}
+
+/* 기본 빙고판: 판 크기와 글씨 크기 동시 조절 */
+body:not(.broadcast-view) .broadcast-stage .bingo-grid,
+body.room-connected:not(.broadcast-view) .broadcast-stage .bingo-grid{
+  width:min(100%,var(--main-board-size)) !important;
+  height:min(100%,var(--main-board-size)) !important;
+  max-width:var(--main-board-size) !important;
+  max-height:var(--main-board-size) !important;
+  flex:0 0 var(--main-board-size) !important;
+}
+body:not(.broadcast-view) .broadcast-stage .cell,
+body.room-connected:not(.broadcast-view) .broadcast-stage .cell{
+  font-size:clamp(16px,calc(var(--main-board-size) / 10.5),58px) !important;
+}
+
+/* 새 창 전용 슬라이더: 일반 화면에서는 숨김 */
+.popup-size-panel{
+  display:none;
+}
+
+/* 새 창에서는 빙고판 + 하단 크기 슬라이더만 표시 */
+body.broadcast-view .popup-size-panel{
+  position:fixed;
+  left:50%;
+  bottom:14px;
+  z-index:1000;
+  display:grid !important;
+  grid-template-columns:auto minmax(180px,360px) 62px;
+  align-items:center;
+  gap:10px;
+  width:min(92vw,560px);
+  padding:10px 14px;
+  border:1px solid rgba(148,163,184,.35);
+  border-radius:14px;
+  color:#334155;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 12px 34px rgba(15,23,42,.18);
+  backdrop-filter:blur(10px);
+  transform:translateX(-50%);
+}
+body.broadcast-view .popup-size-panel label{
+  font-size:13px;
+  font-weight:900;
+  white-space:nowrap;
+}
+body.broadcast-view .popup-size-panel input[type="range"]{
+  width:100%;
+  height:6px;
+  min-height:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  appearance:none;
+  border-radius:999px !important;
+  background:linear-gradient(90deg,#2563eb,#7c3aed);
+  box-shadow:none !important;
+  cursor:pointer;
+}
+body.broadcast-view .popup-size-panel input[type="range"]::-webkit-slider-thumb{
+  width:20px;
+  height:20px;
+  border:3px solid #fff;
+  border-radius:50%;
+  appearance:none;
+  background:#4f46e5;
+  box-shadow:0 2px 8px rgba(37,99,235,.35);
+}
+
+/* 슬라이더 공간을 제외한 영역 안에서 판 전체가 보이도록 제한 */
+body.broadcast-view .broadcast-stage .bingo-grid,
+body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+  width:min(var(--popup-board-size),92vw,calc(100vh - 92px)) !important;
+  height:min(var(--popup-board-size),92vw,calc(100vh - 92px)) !important;
+  max-width:min(var(--popup-board-size),92vw,calc(100vh - 92px)) !important;
+  max-height:min(var(--popup-board-size),92vw,calc(100vh - 92px)) !important;
+  flex:0 0 auto !important;
+}
+body.broadcast-view .broadcast-stage .cell,
+body.broadcast-view.room-connected .broadcast-stage .cell{
+  font-size:clamp(18px,calc(var(--popup-board-size) / 10.5),76px) !important;
+}
+
+/* 새 창에서는 기존 숨김 선택자에 popup panel이 포함되지 않게 유지 */
+body.broadcast-view #boardSizeSection{
+  display:none !important;
+}
+
+@media(max-width:600px){
+  body.broadcast-view .popup-size-panel{
+    grid-template-columns:1fr 56px;
+    gap:7px;
+  }
+  body.broadcast-view .popup-size-panel label{
+    grid-column:1/-1;
+  }
+}
+
+
+/* ===== 최종: 최초 디자인 기준 왼쪽 정렬 ===== */
+.wrap{
+  width:calc(100% - 24px) !important;
+  max-width:1500px !important;
+  margin-left:24px !important;
+  margin-right:auto !important;
+}
+
+body.room-connected .wrap{
+  width:calc(100% - 24px) !important;
+  max-width:1500px !important;
+  margin-left:24px !important;
+  margin-right:auto !important;
+}
+
+@media(max-width:768px){
+  .wrap,
+  body.room-connected .wrap{
+    width:100% !important;
+    max-width:100% !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+
+
+/* =========================================================
+   최종: 빙고판 크기 변경 기준을 상단으로 고정
+   - 기본 화면: 제목 아래의 상단 위치 고정
+   - 새 창: 팝업 상단 위치 고정
+   ========================================================= */
+
+/* 기본 화면의 방송 영역은 위에서부터 배치 */
+body:not(.broadcast-view) .broadcast-stage,
+body.room-connected:not(.broadcast-view) .broadcast-stage{
+  justify-content:flex-start !important;
+  align-items:center !important;
+}
+
+/* 기본 빙고판은 위쪽 중앙을 기준으로 크기 변경 */
+body:not(.broadcast-view) .broadcast-stage .bingo-grid,
+body.room-connected:not(.broadcast-view) .broadcast-stage .bingo-grid{
+  margin-top:0 !important;
+  margin-right:auto !important;
+  margin-bottom:0 !important;
+  margin-left:auto !important;
+  transform-origin:top center !important;
+  align-self:center !important;
+}
+
+/* 제목 아래의 간격은 항상 고정 */
+body:not(.broadcast-view) .broadcast-stage .stage-title,
+body.room-connected:not(.broadcast-view) .broadcast-stage .stage-title{
+  flex:0 0 auto !important;
+  margin-bottom:16px !important;
+}
+
+/* 새 창은 화면 상단을 기준으로 빙고판 배치 */
+body.broadcast-view .broadcast-stage,
+body.broadcast-view.room-connected .broadcast-stage{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  align-items:center !important;
+  padding-top:14px !important;
+  padding-right:0 !important;
+  padding-bottom:82px !important;
+  padding-left:0 !important;
+}
+
+/* 새 창 빙고판도 위쪽 중앙 기준 */
+body.broadcast-view .broadcast-stage .bingo-grid,
+body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+  margin:0 auto !important;
+  transform-origin:top center !important;
+  align-self:center !important;
+}
+
+/* 작은 화면에서도 상단 기준 유지 */
+@media(max-width:768px){
+  body:not(.broadcast-view) .broadcast-stage,
+  body.room-connected:not(.broadcast-view) .broadcast-stage{
+    justify-content:flex-start !important;
+  }
+
+  body.broadcast-view .broadcast-stage,
+  body.broadcast-view.room-connected .broadcast-stage{
+    justify-content:flex-start !important;
+    padding-top:10px !important;
+    padding-bottom:94px !important;
+  }
+}
+
+
+/* =========================================================
+   최종: 새 창에 빙고 이름 + 치킨 표시
+   ========================================================= */
+
+/* 기존 broadcast-view 숨김 규칙보다 우선하여 제목을 다시 표시 */
+body.broadcast-view .broadcast-stage .stage-title,
+body.broadcast-view.room-connected .broadcast-stage .stage-title{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:fit-content !important;
+  max-width:min(92vw,900px) !important;
+  min-height:52px !important;
+  flex:0 0 auto !important;
+  margin:0 auto 14px !important;
+  padding:8px 22px !important;
+  border:1px solid rgba(199,210,254,.8) !important;
+  border-radius:999px !important;
+  color:#312e81 !important;
+  background:rgba(255,255,255,.92) !important;
+  box-shadow:0 10px 26px rgba(15,23,42,.12) !important;
+  font-size:clamp(24px,4.2vmin,48px) !important;
+  line-height:1.1 !important;
+  font-weight:1000 !important;
+  text-align:center !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+/* 제목과 하단 슬라이더를 제외한 공간에 빙고판 전체 표시 */
+body.broadcast-view .broadcast-stage .bingo-grid,
+body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+  width:min(
+    var(--popup-board-size),
+    92vw,
+    calc(100vh - 178px)
+  ) !important;
+  height:min(
+    var(--popup-board-size),
+    92vw,
+    calc(100vh - 178px)
+  ) !important;
+  max-width:min(
+    var(--popup-board-size),
+    92vw,
+    calc(100vh - 178px)
+  ) !important;
+  max-height:min(
+    var(--popup-board-size),
+    92vw,
+    calc(100vh - 178px)
+  ) !important;
+}
+
+/* 새 창 상단 기준 배치 */
+body.broadcast-view .broadcast-stage,
+body.broadcast-view.room-connected .broadcast-stage{
+  justify-content:flex-start !important;
+  align-items:center !important;
+  padding-top:14px !important;
+  padding-bottom:82px !important;
+}
+
+/* 작은 팝업 대응 */
+@media(max-width:600px), (max-height:620px){
+  body.broadcast-view .broadcast-stage .stage-title,
+  body.broadcast-view.room-connected .broadcast-stage .stage-title{
+    min-height:42px !important;
+    margin-bottom:10px !important;
+    padding:6px 16px !important;
+    font-size:clamp(20px,4vmin,34px) !important;
+  }
+
+  body.broadcast-view .broadcast-stage .bingo-grid,
+  body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+    width:min(var(--popup-board-size),92vw,calc(100vh - 154px)) !important;
+    height:min(var(--popup-board-size),92vw,calc(100vh - 154px)) !important;
+    max-width:min(var(--popup-board-size),92vw,calc(100vh - 154px)) !important;
+    max-height:min(var(--popup-board-size),92vw,calc(100vh - 154px)) !important;
+  }
+}
+
+
+/* =========================================================
+   최종 메뉴 재배치 및 높이 최적화
+   1. 제목 및 치킨
+   2. 빙고 설정
+   3. 숫자 범위
+   4. 직접 수정
+   ========================================================= */
+.compact-size-control{
+  margin-top:14px;
+  padding-top:13px;
+  border-top:1px solid var(--line);
+}
+
+.territory-inline{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+
+.territory-inline-title{
+  margin-bottom:10px;
+  color:#334155;
+  font-size:13px;
+  font-weight:1000;
+}
+
+.range-random-button{
+  margin-top:12px;
+}
+
+.direct-edit-actions{
+  margin-top:10px;
+}
+
+#directEditSection .edit-grid{
+  margin-top:0 !important;
+}
+
+#titleChickenSection .panel-head{
+  margin-bottom:10px;
+}
+
+#titleChickenSection .title-chicken{
+  align-items:end;
+}
+
+/* 새 창에서는 편집 카드 전체 숨김 */
+body.broadcast-view #titleChickenSection,
+body.broadcast-view #hostCreateSection,
+body.broadcast-view #numberRangeSection,
+body.broadcast-view #directEditSection{
+  display:none !important;
+}
+
 </style>
 </head>
-
 <body>
 <div class="wrap">
+  <div class="mobile-nav"><button class="hamburger-btn" onclick="toggleMobileMenu()">☰ 메뉴</button><div id="mobileMenu" class="mobile-menu"><a href="../index.html">덕몽어스</a><a href="../rating.html">캄푸평점</a><a href="./bingo.html">래더 빙고</a><a href="../scoreboard.html">엔트리 보드</a></div></div>
+  <div class="top-tabs"><a href="../index.html" class="tab-btn">덕몽어스</a><a href="../rating.html" class="tab-btn">캄푸평점</a><a href="./bingo.html" class="tab-btn active">래더 빙고</a><a href="../scoreboard.html" class="tab-btn">엔트리 보드</a></div>
+  <section class="hero"><div><div class="hero-title"><img class="hero-logo" src="./icons/calm_logo.png" alt="로고"><h1>래더 빙고</h1></div><p>① 방장은 <strong>'새 방 만들기'</strong>를 눌러 방을 생성한 후 빙고판을 설정합니다.<br>② 참가자는 같은 <strong>방 ID</strong>로 접속하여 숫자를 입력하면 모든 화면에 실시간으로 반영됩니다.</p></div><img class="hero-image" src="./icons/bingo-hero.png" alt="빙고 이미지"></section>
 
-    <div class="mobile-nav">
-  <button class="hamburger-btn" onclick="toggleMobileMenu()">☰ 메뉴</button>
-
-  <div id="mobileMenu" class="mobile-menu">
-    <a href="../index.html">덕몽어스</a>
-    <a href="../rating.html">캄푸평점</a>
-    <!-- <a href="../suttda.html">스타 게이머 섯다</a> -->
-    <a href="./bingo.html">래더 빙고</a>
-    <!-- <a href="../calm2048.html">캄몬 2048</a> -->
-    <a href="../scoreboard.html">엔트리 보드</a>
-    <!-- <a href="../calmcard.html">캄드게임배틀</a>
-    <a href="../calmquiz.html">스타퀴즈쇼</a> -->
+  <div class="room-bar" aria-label="함께 편집 연결">
+    <div class="room-bar-title">함께 편집</div>
+    <input id="roomId" class="room-code-input" placeholder="방 코드" autocomplete="off" maxlength="24">
+    <button id="newRoomBtn" class="btn-primary room-action">새 방 만들기</button>
+    <button id="joinRoomBtn" class="btn-primary room-action">참여</button>
+    <div class="presence-badge" title="현재 접속 인원"><span class="presence-avatar" aria-hidden="true"></span><span>접속 <b id="participantCount">0</b>명</span></div>
+    <button id="copyLinkBtn" class="btn-light room-action">링크 복사</button>
+    <button id="resetRoomTop" class="btn-light room-action">방 초기화</button>
+    <div class="room-bar-spacer"></div>
+    <div id="roomStatus" class="room-status"><span class="status-dot"></span><span id="roomStatusText">방을 만들거나 참여해 주세요.</span></div>
   </div>
+
+  <main class="workspace">
+    <section class="box broadcast-box">
+
+      <div class="broadcast-stage" id="broadcastStage">
+        <div id="bingoHeading" class="stage-title"><span id="titleText">빙고</span> <span>🍗 <b id="chickenText">0</b></span></div>
+        <div id="previewBoard" class="bingo-grid"></div>
+        <div id="bingoMessage" class="bingo-message"></div>
+        <div id="scoreStrip" class="score-strip"></div>
+      </div>
+    </section>
+
+    <aside class="editor">
+      <!-- 1. 제목 / 치킨 / 새 창 -->
+      <section class="section" id="titleChickenSection">
+        <div class="panel-head size-panel-head">
+          <div>
+            <h3>제목 및 치킨</h3>
+            <p class="section-sub">방송에 표시할 제목과 치킨 수를 설정합니다.</p>
+          </div>
+          <button id="openBroadcast" class="btn-light" type="button">새 창</button>
+        </div>
+
+        <div class="title-chicken">
+          <div>
+            <label class="label">제목</label>
+            <input id="titleInput" maxlength="20" value="빙고">
+          </div>
+          <div>
+            <label class="label">치킨</label>
+            <div class="chicken-control">
+              <button id="chickenMinus" class="btn-gold">-1</button>
+              <div id="chickenOutput" class="chicken-output">0</div>
+              <button id="chickenPlus" class="btn-gold">+1</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 판 크기 / 모드 -->
+      <section class="section" id="hostCreateSection">
+        <div class="panel-head">
+          <div>
+            <h3>빙고 설정</h3>
+            <p class="section-sub">판 크기와 진행 모드, 기본 화면 크기를 설정합니다.</p>
+          </div>
+        </div>
+
+        <label class="label">판 크기 / 모드</label>
+        <div class="segmented">
+          <button data-size="4" class="active">4 × 4</button>
+          <button data-size="5">5 × 5</button>
+          <button data-mode="territory">땅따먹기</button>
+        </div>
+
+        <div class="size-control compact-size-control">
+          <div class="size-control-row">
+            <label for="mainBoardSize">기본 빙고판</label>
+            <input id="mainBoardSize" type="range" min="240" max="720" step="10" value="520">
+            <output id="mainBoardSizeValue" class="size-value">520px</output>
+          </div>
+        </div>
+
+        <div id="territorySection" class="territory-inline hidden">
+          <div class="territory-inline-title">땅따먹기 설정</div>
+          <div class="team-picker">
+            <button class="team-btn active" data-team="1">1팀</button>
+            <button class="team-btn" data-team="2">2팀</button>
+          </div>
+          <div id="currentTeam" class="current-team">현재 선택: 1팀</div>
+          <div class="team-setting">
+            <input id="team1Name" value="1팀" maxlength="16">
+            <select id="team1Color"></select>
+          </div>
+          <div class="team-setting">
+            <input id="team2Name" value="2팀" maxlength="16">
+            <select id="team2Color"></select>
+          </div>
+          <p class="help territory-guide">선택한 팀이 숫자를 입력하면 해당 칸을 점령합니다. 상대 팀이 같은 숫자를 입력하면 팀 색상이 덮어써집니다.</p>
+        </div>
+
+        <button id="createRoomBtn" class="btn-primary btn-full mode-apply">설정 적용 / 새 판 만들기</button>
+        <div id="createMessage" class="error"></div>
+      </section>
+
+      <!-- 3. 숫자 범위 / 랜덤 채우기 -->
+      <section class="section" id="numberRangeSection">
+        <div class="panel-head">
+          <div>
+            <h3>숫자 범위</h3>
+            <p class="section-sub">사용할 숫자 범위를 지정한 뒤 무작위로 채웁니다.</p>
+          </div>
+        </div>
+
+        <div class="setting-grid">
+          <div>
+            <label class="label">시작</label>
+            <input id="rangeStart" type="number" value="1" min="1" max="999">
+          </div>
+          <div>
+            <label class="label">끝</label>
+            <input id="rangeEnd" type="number" value="30" min="1" max="999">
+          </div>
+        </div>
+
+        <button id="randomFill" class="btn-primary btn-full range-random-button">설정 범위로 랜덤 채우기</button>
+      </section>
+
+      <!-- 4. 직접 수정 -->
+      <section class="section" id="directEditSection">
+        <div class="panel-head">
+          <div>
+            <h3>직접 수정</h3>
+            <p class="section-sub">각 칸의 숫자를 직접 입력하거나 초기화합니다.</p>
+          </div>
+        </div>
+
+        <div id="editBoard" class="edit-grid"></div>
+        <div class="button-grid direct-edit-actions">
+          <button id="clearMarks" class="btn-light">체크만 지우기</button>
+          <button id="clearAll" class="btn-danger">전체 비우기</button>
+        </div>
+      </section>
+    </aside>
+  </main>
 </div>
 
-  <div class="top-tabs">
-  <a href="../index.html" class="tab-btn">
-    덕몽어스
-  </a>
-
-  <a href="../rating.html" class="tab-btn">
-    캄푸평점
-  </a>
-
-  <!-- <a href="../suttda.html" class="tab-btn">
-    스타 게이머 섯다
-  </a> -->
-
-  <a href="./bingo.html" class="tab-btn active">
-    래더 빙고
-  </a>
-  <!-- <a href="../calm2048.html" class="tab-btn">
-  캄몬 2048
-</a> -->
-<a href="../scoreboard.html" class="tab-btn">엔트리 보드</a>
-<!-- <a href="../calmcard.html" class="tab-btn">캄드게임배틀</a>
-<a href="../calmquiz.html" class="tab-btn">스타퀴즈쇼</a> -->
-
+<div id="popupSizePanel" class="popup-size-panel" aria-label="새 창 빙고판 크기 조절">
+  <label for="popupBoardSize">빙고판 크기</label>
+  <input id="popupBoardSize" type="range" min="300" max="1000" step="10" value="760">
+  <output id="popupBoardSizeValue" class="size-value">760px</output>
 </div>
 
-  <section class="hero">
-    <div class="hero-text">
-      <div class="hero-title">
-     <img
-        class="hero-logo"
-        src="./icons/calm_logo.png"
-        alt="로고"
-      />
-        <h1>래더 빙고</h1>
-      </div>
-      <p>
-        방장은 방장 모드에서 빙고판을 생성하고, 참가자는 참가자 모드에서 숫자를 입력합니다.<br>
-        입력한 숫자는 선택한 빙고판에 실시간으로 반영됩니다.
-      </p>
-    </div>
-
-    <img class="hero-image" src="./icons/bingo-hero.png" alt="빙고 이미지" />
-  </section>
-
-  <div class="mode-bar">
-    <select id="modeSelect" onchange="changeMode()">
-      <option value="host">방장 모드</option>
-      <option value="player">참가자 모드</option>
-    </select>
-
-    <input id="globalRoomId" placeholder="방 ID 입력 예) 아리송이" autocomplete="off" />
-  </div>
-
-  <div id="hostView" class="grid">
-
-    <section class="box">
-      <h2>방장 설정</h2>
-
-      <label>숫자 시작</label>
-      <input id="minNumber" type="number" value="1" min="1" max="99" />
-
-      <label>숫자 끝 (~99까지 가능)</label>
-      <input id="maxNumber" type="number" value="99" min="1" max="99" />
-
-      <label>빙고판 개수 (최소 1개부터 가능)</label>
-      <input id="boardCount" type="number" value="1" min="1" max="20" />
-
-      <label>빙고판 크기 (3x3~7x7) </label>
-      <select id="boardSize">
-        <option value="3">3 x 3</option>
-        <option value="4">4 x 4</option>
-        <option value="5">5 x 5</option>
-        <option value="6">6 x 6</option>
-        <option value="7">7 x 7</option>
-      </select>
-
-      <button class="btn-primary btn-full" onclick="createRoom()">
-        빙고판 생성
-      </button>
-
-      <button class="btn-danger btn-full" onclick="resetRoom()">
-        방 전체 초기화
-      </button>
-
-      <div id="settingMessage" class="error"></div>
-
-      <div id="playerLinkBox" class="copy-box">
-        방을 생성하면 참가자 안내가 표시됩니다.
-      </div>
-    </section>
-
-    <section class="box">
-      <h2>빙고판</h2>
-      <div id="hostBoardArea" class="board-wrap">
-        <div class="help">아직 생성된 빙고판이 없습니다.</div>
-      </div>
-    </section>
-
-    <section class="box">
-      <h2>방장 숫자 입력</h2>
-
-      <label>빙고판 선택</label>
-      <select id="hostBoardSelect"></select>
-
-      <label>숫자 입력</label>
-      <input id="hostNumberInput" placeholder="예) 37, 45, 88" />
-
-      <p class="help">
-        숫자는 쉼표로 구분해 여러 개 입력할 수 있습니다.<br>
-
-      </p>
-
-      <button class="btn-primary btn-full" onclick="hostSubmitNumber()">
-        숫자 제출
-      </button>
-
-      <div id="hostInputMessage" class="error"></div>
-
-      <div class="history-toggle" style="margin-top:24px;">
-        <h2 style="margin:0;">입력 기록</h2>
-        <button id="hostHistoryBtn" class="btn-light small-btn" onclick="toggleHistory('host')">
-          펼치기
-        </button>
-      </div>
-
-      <div id="historyArea" class="history-list hidden">
-        <div class="help">아직 입력 기록이 없습니다.</div>
-      </div>
-    </section>
-
-  </div>
-
-  <div id="playerView" class="grid hidden">
-
-    <section class="box">
-      <h2>참가자 입력</h2>
-
-      <button class="btn-light btn-full" onclick="loadRoom()">
-        방 불러오기
-      </button>
-
-      <label>닉네임</label>
-      <input id="nickname" placeholder="예) 마토" autocomplete="off" />
-
-      <label>숫자를 반영할 빙고판</label>
-      <select id="playerBoardSelect"></select>
-
-      <label>숫자 입력</label>
-      <input id="playerNumberInput" placeholder="예) 37, 45, 88" />
-
-      <p class="help">
-        숫자는 쉼표로 구분해 여러 개 입력할 수 있습니다.<br>
-        예) 3, 17, 45
-      </p>
-
-      <button class="btn-primary btn-full" onclick="playerSubmitNumber()">
-        숫자 제출
-      </button>
-
-      <div id="playerMessage" class="error"></div>
-    </section>
-
-    <section class="box">
-      <h2>빙고판 보기</h2>
-
-      <label>보고 싶은 빙고판</label>
-      <select id="viewBoardSelect" onchange="renderPlayerBoardView()"></select>
-
-      <div id="playerBoardView" style="margin-top:16px;">
-        <div class="help">방을 불러온 뒤 빙고판을 선택하세요.</div>
-      </div>
-    </section>
-
-    <section class="box">
-      <div class="history-toggle">
-        <h2 style="margin:0;">최근 입력 기록</h2>
-        <button id="playerHistoryBtn" class="btn-light small-btn" onclick="toggleHistory('player')">
-          펼치기
-        </button>
-      </div>
-
-      <div id="playerHistoryArea" class="history-list hidden">
-        <div class="help">아직 입력 기록이 없습니다.</div>
-      </div>
-    </section>
-
-  </div>
-
-</div>
-
-<footer class="footer">
-
-  <div class="footer-copy">
-    © 2026 주니.킨콘. All Rights Reserved.
-  </div>
-
-  <div class="footer-links">
-
-    <a
-      href="https://www.sooplive.com/station/joony86"
-      target="_blank"
-      class="footer-icon"
-    >
-      <img
-  src="icons/soop-logo.png"
-  alt="SOOP"
-/>
-    </a>
-
-    <a
-      href="https://www.youtube.com/@kinkonvv"
-      target="_blank"
-      class="footer-icon"
-    >
-      <img
-  src="icons/youtube-logo.png"
-  alt="YouTube"
-/>
-    </a>
-
-  </div>
-
-</footer>
-
+<footer class="footer"><div>© 2026 주니.킨콘. All Rights Reserved.</div><div class="footer-links"><a class="footer-icon" href="https://www.sooplive.com/station/joony86" target="_blank"><img src="icons/soop-logo.png" alt="SOOP"></a><a class="footer-icon" href="https://www.youtube.com/@kinkonvv" target="_blank"><img src="icons/youtube-logo.png" alt="YouTube"></a></div></footer>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import {
-  getDatabase,
-  ref,
-  set,
-  update,
-  remove,
-  onValue,
-  push
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+import { getDatabase, ref, set, update, remove, onValue, push, get, onDisconnect } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 import { firebaseConfig } from "./firebase-config.js";
+const db=getDatabase(initializeApp(firebaseConfig));
+const COLORS=[['빨강','#ef4444'],['파랑','#3b82f6'],['초록','#16a34a'],['노랑','#eab308'],['보라','#8b5cf6'],['주황','#f97316'],['분홍','#ec4899'],['청록','#14b8a6']];
+let roomId='',unsub=null,presenceUnsub=null,state=null,activeTeam=1,selectedSize=4,timerTick=null,isHost=true,presenceRef=null,localMode=true;
+const presenceUid=sessionStorage.getItem('bingoPresenceUid')||('u_'+Math.random().toString(36).slice(2,10));sessionStorage.setItem('bingoPresenceUid',presenceUid);
+const $=id=>document.getElementById(id); const esc=s=>String(s??'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const SIZE_STORAGE_KEY='bingo-board-size-settings';
+const sizeChannel='BroadcastChannel' in window ? new BroadcastChannel('bingo-board-size-sync') : null;
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-let currentRoomId = "";
-let roomData = null;
-let chickenModeBoardId = null;
-let eraseModeBoardId = null;
-
-let hostHistoryOpen = false;
-let playerHistoryOpen = false;
-
-function escapeHTML(str){
-  return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;");
+function clampSize(value,min,max,fallback){
+  const number=Number.parseInt(value,10);
+  return Number.isFinite(number)?Math.min(max,Math.max(min,number)):fallback;
 }
 
-function shuffle(array){
-  for(let i=array.length-1;i>0;i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-function makeBoardNumbers(min,max,size){
-  const needed = size * size;
-  const pool = [];
-
-  for(let n=min;n<=max;n++){
-    pool.push(n);
-  }
-
-  if(pool.length < needed){
-    throw new Error(`${needed}개 이상의 숫자가 필요합니다. 숫자 범위를 넓혀주세요.`);
-  }
-
-  shuffle(pool);
-
-  return pool.slice(0,needed).map(num => ({
-    num,
-    marked:false,
-    chicken:false
-  }));
-}
-
-function getRoomId(){
-  return document.getElementById("globalRoomId").value.trim();
-}
-
-function roomRef(roomId){
-  return ref(db, `rooms/${roomId}`);
-}
-
-function listenRoom(roomId){
-  currentRoomId = roomId;
-
-  onValue(roomRef(roomId), snapshot => {
-    roomData = snapshot.val();
-    renderAll();
-  });
-}
-
-function parseNumbers(value){
-  return String(value)
-    .split(",")
-    .map(v => Number(v.trim()))
-    .filter(v => Number.isFinite(v) && v > 0);
-}
-
-window.changeMode = function(){
-  const mode = document.getElementById("modeSelect").value;
-
-  document.getElementById("hostView").classList.toggle("hidden", mode !== "host");
-  document.getElementById("playerView").classList.toggle("hidden", mode !== "player");
-
-  renderAll();
-};
-
-window.toggleHistory = function(type){
-  if(type === "host"){
-    hostHistoryOpen = !hostHistoryOpen;
-  }else{
-    playerHistoryOpen = !playerHistoryOpen;
-  }
-
-  renderHistory();
-};
-
-window.createRoom = async function(){
-  const message = document.getElementById("settingMessage");
-  message.className = "error";
-  message.textContent = "";
-
-  const roomId = getRoomId();
-  const min = Number(document.getElementById("minNumber").value);
-  const max = Number(document.getElementById("maxNumber").value);
-  const boardCount = Number(document.getElementById("boardCount").value);
-  const size = Number(document.getElementById("boardSize").value);
-
-  if(!roomId){
-    message.textContent = "방 ID를 입력해주세요.";
-    return;
-  }
-
-  if(min < 1 || max > 99 || min > max){
-    message.textContent = "숫자 범위는 1~99 사이로 입력해주세요.";
-    return;
-  }
-
-  const boards = {};
-
+function readSizeSettings(){
   try{
-    for(let i=1;i<=boardCount;i++){
-      boards[`board${i}`] = {
-        id:`board${i}`,
-        title:`${i}번 빙고판`,
-        chickenCount:0,
-        cells:makeBoardNumbers(min,max,size)
-      };
-    }
-  }catch(err){
-    message.textContent = err.message;
-    return;
+    const saved=JSON.parse(localStorage.getItem(SIZE_STORAGE_KEY)||'{}');
+    return{
+      main:clampSize(saved.main,240,720,520),
+      popup:clampSize(saved.popup,300,1000,760)
+    };
+  }catch{
+    return{main:520,popup:760};
   }
+}
 
-  await set(roomRef(roomId), {
-    settings:{
-      roomId,
-      min,
-      max,
-      boardCount,
-      size,
-      createdAt:Date.now()
-    },
-    boards,
-    submissions:{}
-  });
+function applySizeSettings(settings,updateControls=true){
+  const main=clampSize(settings?.main,240,720,520);
+  const popup=clampSize(settings?.popup,300,1000,760);
+  document.documentElement.style.setProperty('--main-board-size',`${main}px`);
+  document.documentElement.style.setProperty('--popup-board-size',`${popup}px`);
 
-  listenRoom(roomId);
-
-  message.className = "ok";
-  message.textContent = "빙고판 생성 완료!";
-};
-
-window.resetRoom = async function(){
-  const roomId = getRoomId() || currentRoomId;
-
-  if(!roomId){
-    alert("초기화할 방 ID가 없습니다.");
-    return;
+  if(updateControls){
+    if($('mainBoardSize')) $('mainBoardSize').value=main;
+    if($('popupBoardSize')) $('popupBoardSize').value=popup;
+    if($('mainBoardSizeValue')) $('mainBoardSizeValue').textContent=`${main}px`;
+    if($('popupBoardSizeValue')) $('popupBoardSizeValue').textContent=`${popup}px`;
   }
+}
 
-  if(!confirm("방 전체를 초기화할까요?")){
-    return;
-  }
-
-  await remove(roomRef(roomId));
-  roomData = null;
-  renderAll();
-};
-
-window.loadRoom = function(){
-  const roomId = getRoomId();
-  const message = document.getElementById("playerMessage");
-
-  message.className = "error";
-  message.textContent = "";
-
-  if(!roomId){
-    message.textContent = "방 ID를 입력해주세요.";
-    return;
-  }
-
-  listenRoom(roomId);
-  message.className = "ok";
-  message.textContent = "방을 불러오는 중입니다.";
-};
-
-window.resetBoard = async function(boardId){
-  if(!roomData || !currentRoomId) return;
-
-  if(!confirm(`${roomData.boards[boardId].title} 숫자를 다시 설정할까요?`)){
-    return;
-  }
-
-  const { min, max, size } = roomData.settings;
-  const cells = makeBoardNumbers(Number(min), Number(max), Number(size));
-
-  await update(ref(db, `rooms/${currentRoomId}/boards/${boardId}`), {
-    cells,
-    chickenCount:0
-  });
-
-  const logRef = push(ref(db, `rooms/${currentRoomId}/submissions`));
-  await set(logRef, {
-    nickname:"방장",
-    boardId,
-    number:"-",
-    type:"resetBoard",
-    createdAt:Date.now()
-  });
-};
-
-window.addBoardChicken = async function(boardId){
-  if(!roomData || !currentRoomId) return;
-
-  const count = Number(roomData.boards[boardId].chickenCount || 0) + 1;
-
-  await update(ref(db, `rooms/${currentRoomId}/boards/${boardId}`), {
-    chickenCount:count
-  });
-};
-
-window.toggleBoardChickenMode = function(boardId){
-  chickenModeBoardId = chickenModeBoardId === boardId ? null : boardId;
-
-  if(chickenModeBoardId){
-    eraseModeBoardId = null;
-  }
-
-  renderHostBoards();
-};
-
-window.toggleBoardEraseMode = function(boardId){
-  eraseModeBoardId = eraseModeBoardId === boardId ? null : boardId;
-
-  if(eraseModeBoardId){
-    chickenModeBoardId = null;
-  }
-
-  renderHostBoards();
-};
-
-window.handleCellClick = async function(boardId, cellIndex){
-  if(chickenModeBoardId === boardId){
-    await useChicken(boardId, cellIndex);
-    return;
-  }
-
-  if(eraseModeBoardId === boardId){
-    await eraseCell(boardId, cellIndex);
-    return;
-  }
-};
-
-async function useChicken(boardId, cellIndex){
-  if(!roomData || !currentRoomId) return;
-
-  const board = roomData.boards[boardId];
-  const chickenCount = Number(board.chickenCount || 0);
-
-  if(chickenCount <= 0){
-    alert("해당 빙고판에 보유한 치킨이 없습니다.");
-    return;
-  }
-
-  const cell = board.cells[cellIndex];
-
-  if(cell.marked || cell.chicken){
-    alert("이미 처리된 숫자입니다.");
-    return;
-  }
-
-  const updates = {};
-  updates[`rooms/${currentRoomId}/boards/${boardId}/cells/${cellIndex}/chicken`] = true;
-  updates[`rooms/${currentRoomId}/boards/${boardId}/chickenCount`] = chickenCount - 1;
-
-  const logRef = push(ref(db, `rooms/${currentRoomId}/submissions`));
-  updates[`rooms/${currentRoomId}/submissions/${logRef.key}`] = {
-    nickname:"방장",
-    boardId,
-    number:cell.num,
-    type:"chicken",
-    createdAt:Date.now()
+function saveSizeSettings(next){
+  const current=readSizeSettings();
+  const settings={
+    main:clampSize(next?.main??current.main,240,720,520),
+    popup:clampSize(next?.popup??current.popup,300,1000,760)
   };
-
-  await update(ref(db), updates);
+  localStorage.setItem(SIZE_STORAGE_KEY,JSON.stringify(settings));
+  applySizeSettings(settings);
+  sizeChannel?.postMessage(settings);
 }
 
-async function eraseCell(boardId, cellIndex){
-  if(!roomData || !currentRoomId) return;
+function setupSizeSliders(){
+  const settings=readSizeSettings();
+  applySizeSettings(settings);
 
-  const cell = roomData.boards[boardId].cells[cellIndex];
+  $('mainBoardSize')?.addEventListener('input',event=>{
+    saveSizeSettings({main:event.target.value});
+  });
 
-  if(!cell.marked && !cell.chicken){
-    return;
-  }
+  $('popupBoardSize')?.addEventListener('input',event=>{
+    saveSizeSettings({popup:event.target.value});
+  });
 
-  const updates = {};
-  updates[`rooms/${currentRoomId}/boards/${boardId}/cells/${cellIndex}/marked`] = false;
-  updates[`rooms/${currentRoomId}/boards/${boardId}/cells/${cellIndex}/chicken`] = false;
+  sizeChannel?.addEventListener('message',event=>{
+    applySizeSettings(event.data);
+  });
 
-  const logRef = push(ref(db, `rooms/${currentRoomId}/submissions`));
-  updates[`rooms/${currentRoomId}/submissions/${logRef.key}`] = {
-    nickname:"방장",
-    boardId,
-    number:cell.num,
-    type:"erase",
-    createdAt:Date.now()
-  };
-
-  await update(ref(db), updates);
+  window.addEventListener('storage',event=>{
+    if(event.key===SIZE_STORAGE_KEY) applySizeSettings(readSizeSettings());
+  });
 }
 
-window.hostSubmitNumber = async function(){
-  const boardId = document.getElementById("hostBoardSelect").value;
-  const raw = document.getElementById("hostNumberInput").value;
-  await submitNumbers("방장", boardId, raw, "host", "hostInputMessage");
-  document.getElementById("hostNumberInput").value = "";
+function emptyState(){return{settings:{size:selectedSize,mode:'classic',min:1,max:30,title:'빙고'},cells:Array(25).fill(''),checked:Array(25).fill(false),owners:Array(25).fill(0),teamNames:['1팀','2팀'],teamColors:['#ef4444','#3b82f6'],chicken:0,streaks:{},timer:{running:false,endAt:0,remaining:0},history:{}}}
+function path(s=''){return ref(db,`rooms/${roomId}${s?'/'+s:''}`)}
+function activeCount(){return (state?.settings?.size||4)**2}
+function normalize(){if(!state)return;const n=25;state.cells=Array.from({length:n},(_,i)=>state.cells?.[i]??'');state.checked=Array.from({length:n},(_,i)=>!!state.checked?.[i]);state.owners=Array.from({length:n},(_,i)=>[1,2].includes(+state.owners?.[i])?+state.owners[i]:0);state.teamNames=[String(state.teamNames?.[0]||'1팀'),String(state.teamNames?.[1]||'2팀')];state.teamColors=[state.teamColors?.[0]||'#ef4444',state.teamColors?.[1]||'#3b82f6'];state.settings=Object.assign({size:4,mode:'classic',min:1,max:30,title:'빙고'},state.settings||{});state.streaks=state.streaks||{};state.history=state.history||{};state.timer=Object.assign({running:false,endAt:0,remaining:0},state.timer||{})}
+function lines(team=0){const size=+state.settings.size,a=[];for(let r=0;r<size;r++)a.push(Array.from({length:size},(_,c)=>r*size+c));for(let c=0;c<size;c++)a.push(Array.from({length:size},(_,r)=>r*size+c));a.push(Array.from({length:size},(_,i)=>i*size+i));a.push(Array.from({length:size},(_,i)=>i*size+size-1-i));return a.filter(line=>line.every(i=>state.settings.mode==='territory'?state.owners[i]===team:state.checked[i]))}
+function ink(hex){const v=hex.replace('#','');const r=parseInt(v.slice(0,2),16),g=parseInt(v.slice(2,4),16),b=parseInt(v.slice(4,6),16);return (r*299+g*587+b*114)/1000>150?'#18202b':'#fff'}
+function render(){if(!state){$('previewBoard').innerHTML='<div class="help">방을 생성하거나 불러오세요.</div>';return}normalize();const size=+state.settings.size,count=size*size,classicLines=lines(),team1=lines(1),team2=lines(2),classicSet=new Set(classicLines.flat()),t1Set=new Set(team1.flat()),t2Set=new Set(team2.flat());$('previewBoard').style.gridTemplateColumns=`repeat(${size},1fr)`;$('editBoard').style.gridTemplateColumns=`repeat(${size},1fr)`;$('previewBoard').innerHTML='';$('editBoard').innerHTML='';for(let i=0;i<count;i++){const c=document.createElement('div');c.className='cell clickable';c.textContent=state.cells[i]||'';if(state.settings.mode==='territory'&&state.owners[i]){const t=state.owners[i]-1;c.classList.add('territory');c.style.setProperty('--claim-color',state.teamColors[t]);c.style.setProperty('--claim-ink',ink(state.teamColors[t]));if((t===0?t1Set:t2Set).has(i))c.classList.add('team-bingo')}else if(state.checked[i]){c.classList.add('marked');if(classicSet.has(i))c.classList.add('bingo-line')}c.onclick=()=>cellClick(i);$('previewBoard').append(c);const e=document.createElement('div');e.className='edit-cell';if(state.settings.mode==='territory'&&state.owners[i]){const t=state.owners[i]-1;e.classList.add('territory');e.style.setProperty('--claim-color',state.teamColors[t]);e.style.setProperty('--claim-ink',ink(state.teamColors[t]))}else if(state.checked[i])e.classList.add('marked');const inp=document.createElement('input');inp.value=state.cells[i]||'';inp.onchange=()=>hostPatch({[`cells/${i}`]:inp.value.trim()});e.append(inp);$('editBoard').append(e)}
+$('titleText').textContent=state.settings.title||'빙고';$('titleInput').value=state.settings.title||'빙고';$('chickenText').textContent=state.chicken||0;$('chickenOutput').textContent=state.chicken||0;document.documentElement.style.setProperty('--team-1',state.teamColors[0]);document.documentElement.style.setProperty('--team-2',state.teamColors[1]);$('team1Name').value=state.teamNames[0];$('team2Name').value=state.teamNames[1];$('team1Color').value=state.teamColors[0];$('team2Color').value=state.teamColors[1];const terr=state.settings.mode==='territory';$('territorySection').classList.toggle('hidden',!terr);document.querySelector('[data-mode="territory"]').classList.toggle('mode-active',terr);document.querySelectorAll('[data-size]').forEach(b=>b.classList.toggle('active',+b.dataset.size===size));renderScores(team1.length,team2.length,classicLines.length);updateRole();updateTeamUI()}
+function renderScores(a,b,c){if(state.settings.mode==='territory')$('scoreStrip').innerHTML=`<span class="score-pill" style="border-color:${state.teamColors[0]}">${esc(state.teamNames[0])} ${a}빙고</span><span class="score-pill" style="border-color:${state.teamColors[1]}">${esc(state.teamNames[1])} ${b}빙고</span>`;else $('scoreStrip').innerHTML=`<span class="score-pill">현재 ${c}빙고</span>`;$('bingoMessage').textContent=state.settings.mode==='territory'?(a||b?`${state.teamNames[0]} ${a}빙고 · ${state.teamNames[1]} ${b}빙고`:''):c?`🎉 ${c}빙고 달성!`:''}
+function updateRole(){document.querySelectorAll('.host-only,#hostCreateSection').forEach(el=>el.classList.remove('hidden'));$('createRoomBtn').classList.remove('hidden');document.querySelectorAll('#editBoard input').forEach(i=>i.disabled=false)}
+function setLocalByPath(target,key,value){const parts=String(key).split('/');let cur=target;for(let i=0;i<parts.length-1;i++){const part=parts[i];if(cur[part]==null)cur[part]=/^\d+$/.test(parts[i+1])?[]:{};cur=cur[part]}cur[parts.at(-1)]=value}
+async function hostPatch(obj){if(localMode||!roomId){Object.entries(obj).forEach(([key,value])=>{if(!key.includes('/')&&value&&typeof value==='object'&&!Array.isArray(value))state[key]=structuredClone(value);else setLocalByPath(state,key,structuredClone(value))});localStorage.setItem('bingo-local-state',JSON.stringify(state));render();return}await update(path(),obj)}
+async function log(nickname,text){if(localMode||!roomId){const key=`local_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;state.history[key]={nickname,text,createdAt:Date.now()};localStorage.setItem('bingo-local-state',JSON.stringify(state));renderHistory();return}const r=push(path('history'));await set(r,{nickname,text,createdAt:Date.now()})}
+async function cellClick(i){if(!state)return; if(state.settings.mode==='territory'){const next=state.owners[i]===activeTeam?0:activeTeam;await hostPatch({[`owners/${i}`]:next});}else await hostPatch({[`checked/${i}`]:!state.checked[i]})}
+function parseNums(v){return [...new Set(String(v).split(',').map(x=>Number(x.trim())).filter(Number.isFinite))]}
+function randomValues(min,max,count){const pool=[];for(let i=min;i<=max;i++)pool.push(i);for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}return pool.slice(0,count)}
+async function randomFill(){const min=+$('rangeStart').value,max=+$('rangeEnd').value,count=(state?.settings?.size||selectedSize)**2;if(min>max||max-min+1<count)return alert(`${count}개 이상의 숫자 범위가 필요합니다.`);const vals=randomValues(min,max,count);const cells=Array(25).fill('');vals.forEach((v,i)=>cells[i]=v);await hostPatch({cells,checked:Array(25).fill(false),owners:Array(25).fill(0),'settings/min':min,'settings/max':max})}
+function updateTeamUI(){if(!state)return;document.querySelectorAll('.team-btn').forEach(b=>{const t=+b.dataset.team;b.classList.toggle('active',t===activeTeam);b.textContent=state.teamNames[t-1];b.style.background=state.teamColors[t-1]});$('currentTeam').textContent=`현재 선택: ${state.teamNames[activeTeam-1]}`;$('currentTeam').style.setProperty('--team-color',state.teamColors[activeTeam-1]);$('currentTeam').style.setProperty('--team-ink',ink(state.teamColors[activeTeam-1]))}
+function generateRoomCode(){return Math.random().toString(36).slice(2,7).toUpperCase()}
+function setConnectionStatus(kind,text){const el=$('roomStatus');el.classList.remove('connected','missing');if(kind)el.classList.add(kind);$('roomStatusText').textContent=text}
+async function registerPresence(){if(!roomId)return;if(presenceRef){try{await remove(presenceRef)}catch{}}presenceRef=path(`presence/${presenceUid}`);await set(presenceRef,{joinedAt:Date.now(),role:'editor'});onDisconnect(presenceRef).remove();if(presenceUnsub)presenceUnsub();presenceUnsub=onValue(path('presence'),snap=>{$('participantCount').textContent=Object.keys(snap.val()||{}).length})}
+async function createNewRoom(){localMode=false;let code=$('roomId').value.trim();if(!code)code=generateRoomCode();roomId=code;$('roomId').value=code;selectedSize=+document.querySelector('[data-size].active')?.dataset.size||4;const st=emptyState();st.settings.size=selectedSize;st.settings.mode=document.querySelector('[data-mode="territory"]').classList.contains('mode-active')?'territory':'classic';st.settings.min=+$('rangeStart').value;st.settings.max=+$('rangeEnd').value;const count=selectedSize**2;if(st.settings.max-st.settings.min+1<count)return alert(`${count}개 이상의 숫자 범위가 필요합니다.`);randomValues(st.settings.min,st.settings.max,count).forEach((v,i)=>st.cells[i]=v);await set(path(),st);isHost=true;sessionStorage.setItem(`bingoHost:${roomId}`,'1');listen();await registerPresence();$('createMessage').className='ok';$('createMessage').textContent='새 방이 생성되었습니다.'}
+async function applyBoardSettings(){selectedSize=+document.querySelector('[data-size].active')?.dataset.size||4;const min=+$('rangeStart').value,max=+$('rangeEnd').value,count=selectedSize**2;if(max-min+1<count)return $('createMessage').textContent=`${count}개 이상의 숫자 범위가 필요합니다.`;const cells=Array(25).fill('');randomValues(min,max,count).forEach((v,i)=>cells[i]=v);const changes={'settings/size':selectedSize,'settings/mode':document.querySelector('[data-mode="territory"]').classList.contains('mode-active')?'territory':'classic','settings/min':min,'settings/max':max,cells,checked:Array(25).fill(false),owners:Array(25).fill(0)};if(localMode||!roomId){await hostPatch(changes)}else{await update(path(),changes)}$('createMessage').className='ok';$('createMessage').textContent='새 판 설정이 적용되었습니다.'}
+function listen(){if(!roomId)return;if(unsub)unsub();unsub=onValue(path(),snap=>{state=snap.val();if(state){setConnectionStatus('connected',`방 ${roomId} 연결됨`)}else{document.body.classList.remove('room-connected');setConnectionStatus('missing',`방 ${roomId}을 찾을 수 없음`)}render()})}
+async function joinRoom(){localMode=false;roomId=$('roomId').value.trim();if(!roomId)return alert('방 코드를 입력하세요.');const snap=await get(path());if(!snap.exists()){setConnectionStatus('missing','존재하지 않는 방입니다.');return}isHost=true;listen();await registerPresence();updateRole()}
+async function copyRoomLink(){if(!roomId)return alert('먼저 방을 만들거나 참여하세요.');const url=new URL(location.href);url.searchParams.set('room',roomId);url.searchParams.delete('view');try{await navigator.clipboard.writeText(url.toString());setConnectionStatus('connected','참여 링크를 복사했습니다.')}catch{prompt('아래 링크를 복사하세요.',url.toString())}}
+async function resetCurrentRoom(){if(localMode||!roomId){if(!confirm('현재 빙고판을 초기 상태로 되돌릴까요?'))return;state=emptyState();isHost=true;localStorage.setItem('bingo-local-state',JSON.stringify(state));render();setConnectionStatus('', '로컬 편집 중 · 방을 만들면 실시간 공유됩니다.');return}if(confirm('방 전체를 초기화할까요?')){await remove(path());sessionStorage.removeItem(`bingoHost:${roomId}`);roomId='';$('roomId').value='';localMode=true;document.body.classList.remove('room-connected');state=emptyState();isHost=true;$('participantCount').textContent='0';setConnectionStatus('', '로컬 편집 중 · 방을 만들면 실시간 공유됩니다.');render()}}
+function setupColors(){['team1Color','team2Color'].forEach((id,idx)=>{$(id).innerHTML=COLORS.map(([n,v])=>`<option value="${v}" ${v===(idx?'#3b82f6':'#ef4444')?'selected':''}>${n}</option>`).join('')})}
+$('newRoomBtn').onclick=createNewRoom;$('joinRoomBtn').onclick=joinRoom;$('copyLinkBtn').onclick=copyRoomLink;$('resetRoomTop').onclick=resetCurrentRoom;$('createRoomBtn').onclick=applyBoardSettings;document.querySelectorAll('[data-size]').forEach(b=>b.onclick=()=>{selectedSize=+b.dataset.size;document.querySelectorAll('[data-size]').forEach(x=>x.classList.toggle('active',x===b))});document.querySelector('[data-mode="territory"]').onclick=e=>{e.currentTarget.classList.toggle('mode-active')};document.querySelectorAll('.team-btn').forEach(b=>b.onclick=()=>{activeTeam=+b.dataset.team;updateTeamUI()});
+$('titleInput').onchange=e=>hostPatch({'settings/title':e.target.value.trim()||'빙고'});$('chickenMinus').onclick=()=>hostPatch({chicken:Math.max(0,(state?.chicken||0)-1)});$('chickenPlus').onclick=()=>hostPatch({chicken:(state?.chicken||0)+1});$('team1Name').onchange=e=>hostPatch({'teamNames/0':e.target.value.trim()||'1팀'});$('team2Name').onchange=e=>hostPatch({'teamNames/1':e.target.value.trim()||'2팀'});$('team1Color').onchange=e=>hostPatch({'teamColors/0':e.target.value});$('team2Color').onchange=e=>hostPatch({'teamColors/1':e.target.value});$('randomFill').onclick=randomFill;$('clearMarks').onclick=()=>hostPatch({checked:Array(25).fill(false),owners:Array(25).fill(0)});$('clearAll').onclick=()=>hostPatch({cells:Array(25).fill(''),checked:Array(25).fill(false),owners:Array(25).fill(0)});
+$('openBroadcast').onclick=()=>{
+  if(!roomId)return alert('새 창 실시간 송출은 먼저 방을 만들어 주세요.');
+
+  const u=new URL(location.href);
+  u.searchParams.set('room',roomId);
+  u.searchParams.set('view','broadcast');
+
+  const popupWidth=600;
+  const popupHeight=850;
+  const popupLeft=Math.max(0,window.screenX+(window.outerWidth-popupWidth)/2);
+  const popupTop=Math.max(0,window.screenY+(window.outerHeight-popupHeight)/2);
+
+  window.open(
+    u.toString(),
+    'bingoBroadcast',
+    [
+      `width=${popupWidth}`,
+      `height=${popupHeight}`,
+      `left=${Math.round(popupLeft)}`,
+      `top=${Math.round(popupTop)}`,
+      'resizable=yes',
+      'scrollbars=no',
+      'status=no',
+      'toolbar=no',
+      'menubar=no',
+      'location=no'
+    ].join(',')
+  );
 };
-
-window.playerSubmitNumber = async function(){
-  const nickname = document.getElementById("nickname").value.trim();
-  const boardId = document.getElementById("playerBoardSelect").value;
-  const raw = document.getElementById("playerNumberInput").value;
-
-  if(!nickname){
-    const msg = document.getElementById("playerMessage");
-    msg.className = "error";
-    msg.textContent = "닉네임을 입력해주세요.";
-    return;
-  }
-
-  await submitNumbers(nickname, boardId, raw, "submit", "playerMessage");
-  document.getElementById("playerNumberInput").value = "";
-};
-
-async function submitNumbers(nickname, boardId, rawValue, type, messageId){
-  const message = document.getElementById(messageId);
-  message.className = "error";
-  message.textContent = "";
-
-  if(!currentRoomId || !roomData){
-    message.textContent = "먼저 방을 불러오거나 생성해주세요.";
-    return;
-  }
-
-  if(!boardId){
-    message.textContent = "빙고판을 선택해주세요.";
-    return;
-  }
-
-  const numbers = [...new Set(parseNumbers(rawValue))];
-
-  if(!numbers.length){
-    message.textContent = "숫자를 입력해주세요.";
-    return;
-  }
-
-  const min = Number(roomData.settings.min);
-  const max = Number(roomData.settings.max);
-  const board = roomData.boards[boardId];
-
-  const updates = {};
-  const applied = [];
-  const skipped = [];
-
-  for(const numberValue of numbers){
-    if(numberValue < min || numberValue > max){
-      skipped.push(numberValue);
-      continue;
-    }
-
-    const cellIndex = board.cells.findIndex(cell => Number(cell.num) === numberValue);
-
-    if(cellIndex === -1){
-      skipped.push(numberValue);
-      continue;
-    }
-
-    const cell = board.cells[cellIndex];
-
-    if(cell.marked || cell.chicken){
-      skipped.push(numberValue);
-      continue;
-    }
-
-    updates[`rooms/${currentRoomId}/boards/${boardId}/cells/${cellIndex}/marked`] = true;
-    applied.push(numberValue);
-  }
-
-  if(!applied.length){
-    message.textContent = "반영 가능한 숫자가 없습니다. 이미 처리되었거나 해당 빙고판에 없는 숫자입니다.";
-    return;
-  }
-
-  const logRef = push(ref(db, `rooms/${currentRoomId}/submissions`));
-  updates[`rooms/${currentRoomId}/submissions/${logRef.key}`] = {
-    nickname,
-    boardId,
-    number:applied.join(", "),
-    skipped:skipped.join(", "),
-    type,
-    createdAt:Date.now()
-  };
-
-  await update(ref(db), updates);
-
-  message.className = "ok";
-  message.textContent =
-    skipped.length
-    ? `${applied.length}개 반영 완료 / ${skipped.length}개는 건너뜀`
-    : `${applied.length}개 숫자가 반영되었습니다.`;
-}
-
-function calculateBingoLines(cells,size){
-  const marked = cells.map(cell => cell.marked || cell.chicken);
-  const lines = [];
-
-  for(let r=0;r<size;r++){
-    const row = [];
-    for(let c=0;c<size;c++) row.push(r*size+c);
-    if(row.every(i => marked[i])) lines.push(row);
-  }
-
-  for(let c=0;c<size;c++){
-    const col = [];
-    for(let r=0;r<size;r++) col.push(r*size+c);
-    if(col.every(i => marked[i])) lines.push(col);
-  }
-
-  const d1 = [];
-  const d2 = [];
-
-  for(let i=0;i<size;i++){
-    d1.push(i*size+i);
-    d2.push(i*size+(size-1-i));
-  }
-
-  if(d1.every(i => marked[i])) lines.push(d1);
-  if(d2.every(i => marked[i])) lines.push(d2);
-
-  return lines;
-}
-
-function renderAll(){
-  renderHostBoards();
-  renderHistory();
-  renderPlayerControls();
-  renderPlayerBoardView();
-  renderPlayerLink();
-}
-
-function renderPlayerLink(){
-  const box = document.getElementById("playerLinkBox");
-  const roomId = currentRoomId || getRoomId();
-
-  if(!roomId){
-    box.textContent = "방을 생성하면 참가자 안내가 표시됩니다.";
-    return;
-  }
-
-  box.innerHTML = `
-    참가자는 같은 주소에서 <strong>참가자 모드</strong>를 선택하세요.<br>
-    방 ID : <strong>${escapeHTML(roomId)}</strong>
-  `;
-}
-
-function renderSelects(){
-  const hostSelect = document.getElementById("hostBoardSelect");
-  const playerSelect = document.getElementById("playerBoardSelect");
-  const viewSelect = document.getElementById("viewBoardSelect");
-
-  if(!roomData?.boards){
-    hostSelect.innerHTML = `<option value="">빙고판 없음</option>`;
-    playerSelect.innerHTML = `<option value="">빙고판 없음</option>`;
-    viewSelect.innerHTML = `<option value="">빙고판 없음</option>`;
-    return;
-  }
-
-  const oldHost = hostSelect.value;
-  const oldPlayer = playerSelect.value;
-  const oldView = viewSelect.value;
-
-  const html = Object.values(roomData.boards).map(board => `
-    <option value="${board.id}">
-      ${escapeHTML(board.title)}
-    </option>
-  `).join("");
-
-  hostSelect.innerHTML = html;
-  playerSelect.innerHTML = html;
-  viewSelect.innerHTML = html;
-
-  if(oldHost && roomData.boards[oldHost]) hostSelect.value = oldHost;
-  if(oldPlayer && roomData.boards[oldPlayer]) playerSelect.value = oldPlayer;
-  if(oldView && roomData.boards[oldView]) viewSelect.value = oldView;
-}
-
-function renderHostBoards(){
-  renderSelects();
-
-  const area = document.getElementById("hostBoardArea");
-
-  if(!roomData?.boards){
-    area.innerHTML = `<div class="help">아직 생성된 빙고판이 없습니다.</div>`;
-    return;
-  }
-
-  const size = Number(roomData.settings.size);
-
-  area.innerHTML = Object.values(roomData.boards).map(board => renderBoard(board,size,true)).join("");
-}
-
-function renderBoard(board,size,isHost){
-  const lines = calculateBingoLines(board.cells,size);
-  const lineCells = new Set(lines.flat());
-  const chickenMode = chickenModeBoardId === board.id;
-  const eraseMode = eraseModeBoardId === board.id;
-
-  return `
-    <div class="bingo-board">
-
-      <div class="board-title-row">
-        <div class="board-title">${escapeHTML(board.title)}</div>
-      </div>
-
-      <div class="board-info-row">
-        <span class="pill-blue">${lines.length} BINGO</span>
-        <span class="pill-blue">🍗 ${Number(board.chickenCount || 0)}</span>
-
-        ${isHost ? `
-          <button class="btn-danger small-btn" onclick="resetBoard('${board.id}')">
-            리셋
-          </button>
-        ` : ""}
-      </div>
-
-      ${isHost ? `
-        <div class="board-action-row">
-          <button class="btn-gold small-btn" onclick="addBoardChicken('${board.id}')">
-            치킨 +1
-          </button>
-
-          <button class="${chickenMode ? "btn-success" : "btn-light"} small-btn" onclick="toggleBoardChickenMode('${board.id}')">
-            치킨사용 ${chickenMode ? "ON" : "OFF"}
-          </button>
-
-          <button class="${eraseMode ? "btn-success" : "btn-light"} small-btn" onclick="toggleBoardEraseMode('${board.id}')">
-            지우개 ${eraseMode ? "ON" : "OFF"}
-          </button>
-        </div>
-      ` : ""}
-
-      <div class="bingo-grid" style="grid-template-columns:repeat(${size},1fr);">
-        ${board.cells.map((cell,index) => `
-          <div
-            class="cell ${cell.marked ? "marked" : ""} ${cell.chicken ? "chicken" : ""} ${lineCells.has(index) ? "bingo-line" : ""} ${chickenMode || eraseMode ? "clickable" : ""} ${eraseMode ? "erase-mode" : ""}"
-            onclick="handleCellClick('${board.id}', ${index})"
-          >
-            ${cell.num}
-          </div>
-        `).join("")}
-      </div>
-    </div>
-  `;
-}
-
-function renderPlayerControls(){
-  renderSelects();
-}
-
-window.renderPlayerBoardView = function(){
-  const area = document.getElementById("playerBoardView");
-  const boardId = document.getElementById("viewBoardSelect").value;
-
-  if(!roomData?.boards || !boardId || !roomData.boards[boardId]){
-    area.innerHTML = `<div class="help">방을 불러온 뒤 빙고판을 선택하세요.</div>`;
-    return;
-  }
-
-  area.innerHTML = renderBoard(roomData.boards[boardId], Number(roomData.settings.size), false);
-};
-
-function renderHistory(){
-  const hostArea = document.getElementById("historyArea");
-  const playerArea = document.getElementById("playerHistoryArea");
-  const hostBtn = document.getElementById("hostHistoryBtn");
-  const playerBtn = document.getElementById("playerHistoryBtn");
-
-  hostArea.classList.toggle("hidden", !hostHistoryOpen);
-  playerArea.classList.toggle("hidden", !playerHistoryOpen);
-
-  hostBtn.textContent = hostHistoryOpen ? "접기" : "펼치기";
-  playerBtn.textContent = playerHistoryOpen ? "접기" : "펼치기";
-
-  if(!roomData?.submissions){
-    hostArea.innerHTML = `<div class="help">아직 입력 기록이 없습니다.</div>`;
-    playerArea.innerHTML = `<div class="help">아직 입력 기록이 없습니다.</div>`;
-    return;
-  }
-
-  const logs = Object.values(roomData.submissions)
-    .sort((a,b) => b.createdAt - a.createdAt)
-    .slice(0,30);
-
-  const html = logs.map(log => `
-    <div class="history-item">
-      <div class="history-title">
-        ${
-          log.type === "chicken"
-          ? "🍗 치킨 사용"
-          : log.type === "resetBoard"
-          ? "🔄 빙고판 리셋"
-          : log.type === "erase"
-          ? "🧽 지우개 사용"
-          : "🎯 숫자 입력"
-        } · ${escapeHTML(log.nickname || "-")}
-      </div>
-
-      <div class="history-meta">
-        ${escapeHTML(log.boardId)} · 숫자 ${escapeHTML(log.number)}<br>
-        ${
-          log.skipped
-          ? `건너뜀 : ${escapeHTML(log.skipped)}<br>`
-          : ""
-        }
-        ${new Date(log.createdAt).toLocaleString("ko-KR")}
-      </div>
-    </div>
-  `).join("");
-
-  hostArea.innerHTML = html;
-  playerArea.innerHTML = html;
-}
-
-document.getElementById("globalRoomId").addEventListener("change", e => {
-  const roomId = e.target.value.trim();
-  if(roomId){
-    listenRoom(roomId);
-  }
-});
-
-document.getElementById("hostNumberInput").addEventListener("keydown", e => {
-  if(e.key === "Enter") hostSubmitNumber();
-});
-
-document.getElementById("playerNumberInput").addEventListener("keydown", e => {
-  if(e.key === "Enter") playerSubmitNumber();
-});
-
-window.addEventListener("DOMContentLoaded", () => {
-  changeMode();
-});
-
-function toggleMobileMenu(){
-  document.getElementById("mobileMenu").classList.toggle("show");
-}
-window.toggleMobileMenu = toggleMobileMenu;
-
+window.toggleMobileMenu=()=>$('mobileMenu').classList.toggle('show');
+setupSizeSliders();setupColors();{const saved=localStorage.getItem('bingo-local-state');if(saved){try{state=JSON.parse(saved)}catch{state=emptyState()}}else state=emptyState();normalize();isHost=true;localMode=true;setConnectionStatus('', '로컬 편집 중 · 방을 만들면 실시간 공유됩니다.');render()}const qs=new URLSearchParams(location.search);if(qs.get('room')){$('roomId').value=qs.get('room');roomId=qs.get('room');localMode=false;isHost=true;joinRoom()}if(qs.get('view')==='broadcast'){document.body.classList.add('broadcast-view');document.querySelector('.editor').classList.add('hidden');document.querySelector('.workspace').style.gridTemplateColumns='1fr';document.querySelector('.room-bar').classList.add('hidden');document.querySelector('.hero').classList.add('hidden');document.querySelector('.top-tabs')?.classList.add('hidden');document.querySelector('.mobile-nav')?.classList.add('hidden')}updateRole();
 </script>
 </body>
 </html>
