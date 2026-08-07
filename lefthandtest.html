@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>캄몬 도구 모음 - 왼손 명령 테스트</title>
+<link rel="icon" href="./favicon.png" type="image/png" />
+<style>
+:root{
+  --bg:#f6f7fb;--card:#fff;--text:#171923;--muted:#718096;--line:#e2e8f0;
+  --primary:#2563eb;--primary-dark:#1d4ed8;--danger:#dc2626;--success:#16a34a;
+  --gold:#f59e0b;--purple:#7c3aed;--shadow:0 10px 30px rgba(15,23,42,.06);
+}
+*{box-sizing:border-box}
+html{overflow-y:scroll}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input,select{font:inherit}
+.hidden{display:none!important}
+
+/* ===== bingo.html 공통 레이아웃 그대로 사용 ===== */
+.wrap{max-width:1500px;margin:0 auto;padding:28px 24px 60px}
+.top-tabs{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.tab-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 22px;border-radius:16px;background:#fff;border:1px solid var(--line);
+  color:var(--text);font-size:16px;font-weight:900;text-decoration:none;
+  box-shadow:0 6px 18px rgba(15,23,42,.05)
+}
+.tab-btn.active{
+  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+  color:#fff;border-color:transparent
+}
+
+.mobile-nav{display:none}
+.hamburger-btn{
+  width:100%;height:48px;border:0;border-radius:14px;
+  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+  color:#fff;font-size:16px;font-weight:1000
+}
+.mobile-menu{
+  display:none;margin-top:8px;background:#fff;border:1px solid var(--line);
+  border-radius:16px;overflow:hidden;box-shadow:var(--shadow)
+}
+.mobile-menu.show{display:block}
+.mobile-menu a{
+  display:block;padding:14px 16px;color:var(--text);text-decoration:none;
+  font-weight:900;border-bottom:1px solid var(--line)
+}
+
+.hero{
+  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+  color:#fff;padding:28px;border-radius:24px;margin-bottom:20px;
+  box-shadow:0 18px 40px rgba(37,99,235,.22);
+  min-height:150px;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;overflow:hidden
+}
+.hero-title{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.hero-logo{width:48px;height:48px;object-fit:contain}
+.hero h1{margin:0;font-size:26px}
+.hero p{margin:0;font-size:16px;line-height:1.6;opacity:.92}
+.hero-image{
+  width:140px;height:100px;display:grid;place-items:center;flex:0 0 auto;
+  border-radius:22px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.12);
+  font-size:58px;line-height:1
+}
+
+/* ===== 왼손 명령 테스트 본문 ===== */
+.command-panel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.test-section{
+  position:relative;
+  padding:22px 24px;
+  border-bottom:1px solid var(--line);
+}
+.test-section:last-child{border-bottom:0}
+
+.section-title{
+  display:flex;align-items:center;gap:9px;
+  margin:0 0 16px;font-size:16px;font-weight:1000
+}
+.section-number{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:25px;height:25px;border-radius:8px;
+  color:#3730a3;background:#eef2ff;border:1px solid #c7d2fe;
+  font-size:12px;font-weight:1000
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 170px 210px;
+  gap:10px;
+  align-items:end
+}
+.field label{
+  display:block;
+  margin:0 0 7px;
+  color:#475569;
+  font-size:13px;
+  font-weight:900
+}
+.field input,.field select,.typing-input{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px 13px;
+  background:#fff;
+  outline:none;
+  color:var(--text)
+}
+.field input:focus,.field select:focus,.typing-input:focus{
+  border-color:#93c5fd;
+  box-shadow:0 0 0 3px rgba(37,99,235,.12)
+}
+.field input:disabled,.field select:disabled{
+  opacity:.55;background:#f8fafc
+}
+.mode-description,.input-guide{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55
+}
+.mode-description{margin:10px 0 0}
+
+.start-button,.action-button{
+  border:0;border-radius:14px;padding:11px 14px;
+  font-weight:900;cursor:pointer
+}
+.start-button{
+  width:100%;margin-top:14px;
+  color:#fff;background:linear-gradient(135deg,#2563eb,#7c3aed)
+}
+.start-button:hover{filter:brightness(.98)}
+.start-button:disabled,.action-button:disabled{opacity:.5;cursor:not-allowed}
+
+.test-status-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;margin-bottom:12px
+}
+.status-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 11px;border-radius:999px;
+  background:#f8fafc;color:#64748b;
+  border:1px solid var(--line);
+  font-size:12px;font-weight:900
+}
+.status-badge.ready{color:#b45309;background:#fffbeb;border-color:#fde68a}
+.status-badge.playing{color:#0f766e;background:#ecfdf5;border-color:#bbf7d0}
+.status-badge.finished{color:#3730a3;background:#eef2ff;border-color:#c7d2fe}
+.live-time{
+  color:#334155;font-size:13px;font-weight:1000;
+  font-variant-numeric:tabular-nums
+}
+
+.target-box{
+  min-height:116px;
+  padding:20px;
+  border:1px solid #dbeafe;
+  border-radius:16px;
+  background:linear-gradient(135deg,#f8fbff,#faf7ff);
+  line-height:1.8;
+  word-break:break-all
+}
+.target-placeholder{color:#94a3b8;font-size:13px}
+.target-character{
+  display:inline-block;min-width:.54em;margin:1px 0;
+  border-bottom:2px solid transparent;
+  color:#94a3b8;
+  font-family:"JetBrains Mono",Consolas,monospace;
+  font-size:clamp(22px,3vw,31px);
+  font-weight:1000;line-height:1.45;text-align:center
+}
+.target-character.correct{color:#16a34a}
+.target-character.incorrect{
+  color:#dc2626;background:#fee2e2;border-radius:4px
+}
+.target-character.current{
+  color:#312e81;border-bottom-color:#2563eb;
+  animation:currentBlink .9s infinite
+}
+@keyframes currentBlink{
+  0%,100%{border-bottom-color:#2563eb}
+  50%{border-bottom-color:transparent}
+}
+
+.typing-input{
+  min-height:52px;
+  margin-top:12px;
+  font-family:"JetBrains Mono",Consolas,monospace;
+  font-size:18px;font-weight:900
+}
+.typing-input.error-flash{
+  border-color:#f87171;background:#fff7f7;
+  animation:inputShake .18s linear
+}
+@keyframes inputShake{
+  0%{transform:translateX(0)}
+  33%{transform:translateX(-4px)}
+  66%{transform:translateX(4px)}
+  100%{transform:translateX(0)}
+}
+.input-guide{
+  display:flex;gap:8px 18px;flex-wrap:wrap;margin:10px 2px 0
+}
+
+.countdown-overlay{
+  position:absolute;z-index:10;inset:0;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(246,247,251,.94);backdrop-filter:blur(5px)
+}
+.countdown-overlay.show{display:flex}
+.countdown-number{
+  color:#4f46e5;
+  font-size:clamp(72px,13vw,128px);
+  font-weight:1000;line-height:1;
+  text-shadow:0 12px 30px rgba(79,70,229,.18);
+  animation:countdownPop .65s ease
+}
+@keyframes countdownPop{
+  0%{opacity:0;transform:scale(.55)}
+  60%{opacity:1;transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+.results-section{display:none}
+.results-section.show{display:block}
+.result-summary{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px
+}
+.result-item{
+  min-width:0;padding:16px;
+  border:1px solid var(--line);border-radius:16px;
+  background:#f8fafc
+}
+.result-item.primary-result{
+  background:#eef2ff;border-color:#c7d2fe
+}
+.result-label{
+  margin-bottom:7px;color:#64748b;font-size:12px;font-weight:900
+}
+.result-value{
+  overflow:hidden;color:#171923;
+  font-size:clamp(22px,2.7vw,30px);
+  font-weight:1000;letter-spacing:-.04em;
+  text-overflow:ellipsis;white-space:nowrap
+}
+.result-value span{
+  margin-left:3px;color:#94a3b8;font-size:12px;font-weight:900
+}
+.result-detail{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 18px;margin-top:14px;padding:14px 15px;
+  border:1px solid var(--line);border-radius:14px;
+  background:#fff;color:#64748b;font-size:12px
+}
+.result-detail strong{color:#334155}
+.result-actions{display:flex;gap:10px;margin-top:14px}
+.action-button{flex:1}
+.retry-button{color:#fff;background:linear-gradient(135deg,#2563eb,#7c3aed)}
+.copy-button{color:#3730a3;background:#eef2ff}
+.copy-button.copied{color:#0f766e;background:#ecfdf5}
+.empty-warning{
+  display:none;margin-top:9px;color:#dc2626;font-size:13px;font-weight:900
+}
+.empty-warning.show{display:block}
+
+.footer{
+  padding:28px 20px 40px;
+  text-align:center;color:#94a3b8
+}
+
+/* bingo.html 최종 좌측 정렬 규칙 그대로 */
+.wrap{
+  width:calc(100% - 24px) !important;
+  max-width:1500px !important;
+  margin-left:24px !important;
+  margin-right:auto !important;
+}
+
+@media(max-width:768px){
+  .wrap{
+    width:100% !important;
+    max-width:100% !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+    padding:16px 12px 40px
+  }
+  .top-tabs{display:none}
+  .mobile-nav{display:block;margin-bottom:14px}
+  .hero{padding:20px}
+  .hero-image{display:none}
+  .hero h1{font-size:22px}
+  .hero p{font-size:14px}
+  .form-grid{grid-template-columns:1fr 1fr}
+  .field--text{grid-column:1/-1}
+  .result-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:520px){
+  .test-section{padding:16px 14px}
+  .form-grid{grid-template-columns:1fr}
+  .field--text{grid-column:auto}
+  .result-summary{grid-template-columns:1fr 1fr}
+  .result-detail{grid-template-columns:1fr}
+  .result-actions{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mobile-nav">
+    <button class="hamburger-btn" type="button" onclick="toggleMobileMenu()">☰ 메뉴</button>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="./index.html">덕몽어스</a>
+      <a href="./rating.html">캄푸평점</a>
+      <a href="../bingo.html">래더 빙고</a>
+      <a href="./scoreboard.html">엔트리 보드</a>
+      <a href="./lefthandtest.html">왼손 명령 테스트</a>
+    </div>
+  </div>
+
+  <div class="top-tabs">
+    <a href="../index.html" class="tab-btn">덕몽어스</a>
+    <a href="../rating.html" class="tab-btn">캄푸평점</a>
+    <a href="./bingo.html" class="tab-btn">래더 빙고</a>
+    <a href="../scoreboard.html" class="tab-btn">엔트리 보드</a>
+    <a href="./lefthandtest.html" class="tab-btn active">왼손 명령 테스트</a>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="hero-title">
+        <img class="hero-logo" src="./icons/calm_logo.png" alt="로고">
+        <h1>왼손 명령 테스트</h1>
+      </div>
+      <p>
+        ① 테스트할 명령어와 반복 횟수, 테스트 모드를 설정합니다.<br>
+        ② 카운트다운 후 목표 문구를 최대한 빠르고 정확하게 입력합니다.
+      </p>
+    </div>
+    <div class="hero-image" aria-hidden="true">⌨️</div>
+  </section>
+
+  <main class="command-panel">
+    <section class="test-section">
+      <h2 class="section-title">
+        <span class="section-number">1</span>
+        테스트 설정
+      </h2>
+
+      <div class="form-grid">
+        <div class="field field--text">
+          <label for="testText">테스트 문구</label>
+          <input
+            id="testText"
+            type="text"
+            value="1a2a3a4a5a"
+            maxlength="100"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="테스트할 문구를 입력하세요"
+          >
+        </div>
+
+        <div class="field">
+          <label for="repeatCount">반복 횟수</label>
+          <select id="repeatCount">
+            <option value="1">1회</option>
+            <option value="3">3회</option>
+            <option value="5">5회</option>
+            <option value="10">10회</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="testMode">테스트 모드</label>
+          <select id="testMode">
+            <option value="strict">정확도 모드</option>
+            <option value="free">실전 모드</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="modeDescription" class="mode-description">
+        틀린 문자는 입력되지 않으며, 정확하게 입력해야 다음 문자로 넘어갑니다.
+      </p>
+
+      <button id="startButton" class="start-button" type="button">테스트 시작</button>
+      <p id="emptyWarning" class="empty-warning">테스트할 문구를 입력해주세요.</p>
+    </section>
+
+    <section class="test-section test-area">
+      <div id="countdownOverlay" class="countdown-overlay" aria-live="assertive">
+        <div id="countdownNumber" class="countdown-number">3</div>
+      </div>
+
+      <h2 class="section-title">
+        <span class="section-number">2</span>
+        문구 입력
+      </h2>
+
+      <div class="test-status-row">
+        <span id="statusBadge" class="status-badge">테스트를 시작해주세요</span>
+        <span id="liveTime" class="live-time">0.000초</span>
+      </div>
+
+      <div id="targetBox" class="target-box">
+        <span class="target-placeholder">테스트 시작 후 목표 문구가 표시됩니다.</span>
+      </div>
+
+      <input
+        id="typingInput"
+        class="typing-input"
+        type="text"
+        disabled
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="카운트다운 후 입력할 수 있습니다"
+        aria-label="왼손 명령 테스트 입력창"
+      >
+
+      <div class="input-guide">
+        <span>첫 번째 문자를 입력하면 시간 측정이 시작됩니다.</span>
+        <span>완료하면 자동으로 결과가 표시됩니다.</span>
+      </div>
+    </section>
+
+    <section id="resultsSection" class="test-section results-section">
+      <h2 class="section-title">
+        <span class="section-number">3</span>
+        테스트 결과
+      </h2>
+
+      <div class="result-summary">
+        <article class="result-item primary-result">
+          <div class="result-label">소요 시간</div>
+          <div id="resultTime" class="result-value">0.000<span>초</span></div>
+        </article>
+
+        <article class="result-item">
+          <div class="result-label">초당 입력 수</div>
+          <div id="resultCps" class="result-value">0.00<span>타/초</span></div>
+        </article>
+
+        <article class="result-item">
+          <div class="result-label">정확도</div>
+          <div id="resultAccuracy" class="result-value">100.00<span>%</span></div>
+        </article>
+
+        <article class="result-item">
+          <div class="result-label">오타 / Backspace</div>
+          <div id="resultMistakes" class="result-value">0 / 0<span>회</span></div>
+        </article>
+      </div>
+
+      <div class="result-detail">
+        <div>테스트 문구: <strong id="resultBaseText">-</strong></div>
+        <div>반복 횟수: <strong id="resultRepeat">-</strong></div>
+        <div>전체 문자: <strong id="resultLength">-</strong></div>
+        <div>테스트 모드: <strong id="resultMode">-</strong></div>
+      </div>
+
+      <div class="result-actions">
+        <button id="retryButton" class="action-button retry-button" type="button">
+          같은 조건으로 재도전
+        </button>
+        <button id="copyButton" class="action-button copy-button" type="button">
+          결과 복사
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="footer">© 2026 주니.킨콘. All Rights Reserved.</footer>
+
+<script>
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobileMenu');
+  if(menu) menu.classList.toggle('show');
+}
+</script>
+
+<script>
+    (() => {
+      "use strict";
+
+      const testTextInput = document.getElementById("testText");
+      const repeatCountSelect = document.getElementById("repeatCount");
+      const testModeSelect = document.getElementById("testMode");
+      const modeDescription = document.getElementById("modeDescription");
+
+      const startButton = document.getElementById("startButton");
+      const retryButton = document.getElementById("retryButton");
+      const copyButton = document.getElementById("copyButton");
+
+      const emptyWarning = document.getElementById("emptyWarning");
+      const countdownOverlay =
+        document.getElementById("countdownOverlay");
+      const countdownNumber =
+        document.getElementById("countdownNumber");
+
+      const targetBox = document.getElementById("targetBox");
+      const typingInput = document.getElementById("typingInput");
+      const statusBadge = document.getElementById("statusBadge");
+      const liveTime = document.getElementById("liveTime");
+
+      const resultsSection =
+        document.getElementById("resultsSection");
+      const resultTime = document.getElementById("resultTime");
+      const resultCps = document.getElementById("resultCps");
+      const resultAccuracy =
+        document.getElementById("resultAccuracy");
+      const resultMistakes =
+        document.getElementById("resultMistakes");
+
+      const resultBaseText =
+        document.getElementById("resultBaseText");
+      const resultRepeat =
+        document.getElementById("resultRepeat");
+      const resultLength =
+        document.getElementById("resultLength");
+      const resultMode =
+        document.getElementById("resultMode");
+
+      let baseText = "";
+      let targetText = "";
+      let repeatCount = 1;
+      let currentMode = "strict";
+
+      let testState = "idle";
+      let startTime = null;
+      let endTime = null;
+      let timerFrame = null;
+
+      let mistakes = 0;
+      let backspaces = 0;
+      let totalCharacterAttempts = 0;
+      let correctCharacterAttempts = 0;
+
+      let strictValue = "";
+      let previousFreeValue = "";
+      let isComposing = false;
+
+      function updateModeDescription() {
+        if (testModeSelect.value === "strict") {
+          modeDescription.textContent =
+            "틀린 문자는 입력되지 않으며, 정확하게 입력해야 다음 문자로 넘어갑니다.";
+        } else {
+          modeDescription.textContent =
+            "틀린 문자도 입력되며, 목표 길이까지 입력하면 오타를 포함해 결과를 계산합니다.";
+        }
+      }
+
+      function setStatus(text, type = "") {
+        statusBadge.textContent = text;
+        statusBadge.className = "status-badge";
+
+        if (type) {
+          statusBadge.classList.add(type);
+        }
+      }
+
+      function setSettingsDisabled(disabled) {
+        testTextInput.disabled = disabled;
+        repeatCountSelect.disabled = disabled;
+        testModeSelect.disabled = disabled;
+        startButton.disabled = disabled;
+      }
+
+      function renderTarget(enteredValue = "") {
+        targetBox.innerHTML = "";
+
+        if (!targetText) {
+          targetBox.innerHTML = `
+            <span class="target-placeholder">
+              테스트 시작 후 목표 문구가 표시됩니다.
+            </span>
+          `;
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        Array.from(targetText).forEach((character, index) => {
+          const span = document.createElement("span");
+          span.className = "target-character";
+
+          if (character === " ") {
+            span.innerHTML = "&nbsp;";
+          } else {
+            span.textContent = character;
+          }
+
+          if (index < enteredValue.length) {
+            if (enteredValue[index] === character) {
+              span.classList.add("correct");
+            } else {
+              span.classList.add("incorrect");
+            }
+          } else if (
+            index === enteredValue.length &&
+            testState !== "finished"
+          ) {
+            span.classList.add("current");
+          }
+
+          fragment.appendChild(span);
+        });
+
+        targetBox.appendChild(fragment);
+      }
+
+      function resetMetrics() {
+        startTime = null;
+        endTime = null;
+
+        mistakes = 0;
+        backspaces = 0;
+        totalCharacterAttempts = 0;
+        correctCharacterAttempts = 0;
+
+        strictValue = "";
+        previousFreeValue = "";
+
+        typingInput.value = "";
+        typingInput.classList.remove("error-flash");
+
+        liveTime.textContent = "0.000초";
+
+        if (timerFrame) {
+          cancelAnimationFrame(timerFrame);
+          timerFrame = null;
+        }
+      }
+
+      function beginTimerIfNeeded() {
+        if (startTime !== null) {
+          return;
+        }
+
+        startTime = performance.now();
+        setStatus("측정 중", "playing");
+        updateLiveTimer();
+      }
+
+      function updateLiveTimer() {
+        if (testState !== "playing" || startTime === null) {
+          return;
+        }
+
+        const elapsed = (performance.now() - startTime) / 1000;
+        liveTime.textContent = `${elapsed.toFixed(3)}초`;
+
+        timerFrame = requestAnimationFrame(updateLiveTimer);
+      }
+
+      function flashInputError() {
+        typingInput.classList.remove("error-flash");
+
+        void typingInput.offsetWidth;
+
+        typingInput.classList.add("error-flash");
+
+        window.setTimeout(() => {
+          typingInput.classList.remove("error-flash");
+        }, 220);
+      }
+
+      async function runCountdown() {
+        countdownOverlay.classList.add("show");
+
+        for (let count = 3; count >= 1; count -= 1) {
+          countdownNumber.textContent = String(count);
+          countdownNumber.style.animation = "none";
+
+          void countdownNumber.offsetWidth;
+
+          countdownNumber.style.animation =
+            "countdownPop 0.65s ease";
+
+          await wait(1000);
+        }
+
+        countdownNumber.textContent = "START";
+        countdownNumber.style.fontSize =
+          "clamp(45px, 10vw, 86px)";
+
+        await wait(550);
+
+        countdownOverlay.classList.remove("show");
+        countdownNumber.style.fontSize = "";
+
+        typingInput.disabled = false;
+        typingInput.placeholder = "목표 문구를 입력하세요";
+        typingInput.focus();
+
+        testState = "playing";
+        setStatus("입력 대기", "ready");
+        renderTarget("");
+      }
+
+      function wait(milliseconds) {
+        return new Promise((resolve) => {
+          window.setTimeout(resolve, milliseconds);
+        });
+      }
+
+      async function startTest() {
+        const enteredText = testTextInput.value;
+
+        if (!enteredText.length) {
+          emptyWarning.classList.add("show");
+          testTextInput.focus();
+          return;
+        }
+
+        emptyWarning.classList.remove("show");
+
+        baseText = enteredText;
+        repeatCount = Number(repeatCountSelect.value);
+        currentMode = testModeSelect.value;
+        targetText = baseText.repeat(repeatCount);
+
+        testState = "countdown";
+
+        setSettingsDisabled(true);
+        resultsSection.classList.remove("show");
+        copyButton.classList.remove("copied");
+        copyButton.textContent = "결과 복사";
+
+        resetMetrics();
+        renderTarget("");
+        setStatus("곧 시작합니다", "ready");
+
+        typingInput.disabled = true;
+        typingInput.placeholder = "카운트다운 중입니다";
+
+        await runCountdown();
+      }
+
+      function handleStrictBeforeInput(event) {
+        if (
+          testState !== "playing" ||
+          currentMode !== "strict" ||
+          isComposing
+        ) {
+          return;
+        }
+
+        if (event.inputType === "deleteContentBackward") {
+          event.preventDefault();
+
+          backspaces += 1;
+
+          if (strictValue.length > 0) {
+            strictValue = strictValue.slice(0, -1);
+            typingInput.value = strictValue;
+            renderTarget(strictValue);
+          }
+
+          return;
+        }
+
+        if (
+          event.inputType !== "insertText" ||
+          typeof event.data !== "string"
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const insertedCharacters = Array.from(event.data);
+
+        insertedCharacters.forEach((character) => {
+          if (strictValue.length >= targetText.length) {
+            return;
+          }
+
+          beginTimerIfNeeded();
+
+          const expectedCharacter =
+            targetText[strictValue.length];
+
+          totalCharacterAttempts += 1;
+
+          if (character === expectedCharacter) {
+            correctCharacterAttempts += 1;
+            strictValue += character;
+          } else {
+            mistakes += 1;
+            flashInputError();
+          }
+        });
+
+        typingInput.value = strictValue;
+        renderTarget(strictValue);
+
+        if (strictValue === targetText) {
+          finishTest();
+        }
+      }
+
+      function handleFreeInput() {
+        if (
+          testState !== "playing" ||
+          currentMode !== "free" ||
+          isComposing
+        ) {
+          return;
+        }
+
+        let currentValue = typingInput.value;
+
+        if (currentValue.length > targetText.length) {
+          currentValue = currentValue.slice(0, targetText.length);
+          typingInput.value = currentValue;
+        }
+
+        if (currentValue.length > previousFreeValue.length) {
+          beginTimerIfNeeded();
+
+          const addedText = currentValue.slice(
+            previousFreeValue.length
+          );
+
+          Array.from(addedText).forEach((character, offset) => {
+            const index = previousFreeValue.length + offset;
+            const expectedCharacter = targetText[index];
+
+            totalCharacterAttempts += 1;
+
+            if (character === expectedCharacter) {
+              correctCharacterAttempts += 1;
+            } else {
+              mistakes += 1;
+            }
+          });
+        }
+
+        previousFreeValue = currentValue;
+        renderTarget(currentValue);
+
+        if (currentValue.length === targetText.length) {
+          finishTest();
+        }
+      }
+
+      function handleKeyDown(event) {
+        if (testState !== "playing") {
+          return;
+        }
+
+        if (
+          event.key === "Tab" ||
+          event.key === "Enter"
+        ) {
+          event.preventDefault();
+        }
+
+        if (
+          currentMode === "free" &&
+          event.key === "Backspace"
+        ) {
+          backspaces += 1;
+        }
+      }
+
+      function handleCompositionStart() {
+        isComposing = true;
+      }
+
+      function handleCompositionEnd() {
+        isComposing = false;
+
+        if (currentMode === "free") {
+          handleFreeInput();
+        }
+      }
+
+      function calculateFinalCorrectCount(finalValue) {
+        let correctCount = 0;
+
+        Array.from(targetText).forEach((character, index) => {
+          if (finalValue[index] === character) {
+            correctCount += 1;
+          }
+        });
+
+        return correctCount;
+      }
+
+      function finishTest() {
+        if (testState === "finished") {
+          return;
+        }
+
+        testState = "finished";
+        endTime = performance.now();
+
+        if (startTime === null) {
+          startTime = endTime;
+        }
+
+        if (timerFrame) {
+          cancelAnimationFrame(timerFrame);
+          timerFrame = null;
+        }
+
+        typingInput.disabled = true;
+        setSettingsDisabled(false);
+        setStatus("테스트 완료", "finished");
+
+        const elapsedMilliseconds = Math.max(
+          endTime - startTime,
+          1
+        );
+
+        const elapsedSeconds = elapsedMilliseconds / 1000;
+        const finalValue =
+          currentMode === "strict"
+            ? strictValue
+            : typingInput.value;
+
+        const correctFinalCharacters =
+          calculateFinalCorrectCount(finalValue);
+
+        const charactersPerSecond =
+          correctFinalCharacters / elapsedSeconds;
+
+        const accuracy =
+          totalCharacterAttempts > 0
+            ? (
+                correctCharacterAttempts /
+                totalCharacterAttempts
+              ) * 100
+            : 100;
+
+        liveTime.textContent =
+          `${elapsedSeconds.toFixed(3)}초`;
+
+        renderTarget(finalValue);
+
+        resultTime.innerHTML =
+          `${elapsedSeconds.toFixed(3)}<span>초</span>`;
+
+        resultCps.innerHTML =
+          `${charactersPerSecond.toFixed(2)}<span>타/초</span>`;
+
+        resultAccuracy.innerHTML =
+          `${accuracy.toFixed(2)}<span>%</span>`;
+
+        resultMistakes.innerHTML =
+          `${mistakes} / ${backspaces}<span>회</span>`;
+
+        resultBaseText.textContent = baseText;
+        resultRepeat.textContent = `${repeatCount}회`;
+        resultLength.textContent = `${targetText.length}자`;
+        resultMode.textContent =
+          currentMode === "strict"
+            ? "정확도 모드"
+            : "실전 모드";
+
+        resultsSection.classList.add("show");
+
+        resultsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      }
+
+      async function copyResult() {
+        const timeText =
+          resultTime.textContent.trim().replace(/\s+/g, "");
+        const cpsText =
+          resultCps.textContent.trim().replace(/\s+/g, "");
+        const accuracyText =
+          resultAccuracy.textContent.trim().replace(/\s+/g, "");
+
+        const copyText = [
+          "⌨️ 왼손 명령 테스트 결과",
+          "",
+          `테스트 문구: ${baseText}`,
+          `반복 횟수: ${repeatCount}회`,
+          `전체 문자: ${targetText.length}자`,
+          `모드: ${
+            currentMode === "strict"
+              ? "정확도 모드"
+              : "실전 모드"
+          }`,
+          "",
+          `소요 시간: ${timeText}`,
+          `초당 입력 수: ${cpsText}`,
+          `정확도: ${accuracyText}`,
+          `오타: ${mistakes}회`,
+          `Backspace: ${backspaces}회`
+        ].join("\n");
+
+        try {
+          await navigator.clipboard.writeText(copyText);
+
+          copyButton.textContent = "복사 완료";
+          copyButton.classList.add("copied");
+
+          window.setTimeout(() => {
+            copyButton.textContent = "결과 복사";
+            copyButton.classList.remove("copied");
+          }, 1800);
+        } catch (error) {
+          fallbackCopy(copyText);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const textarea = document.createElement("textarea");
+
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "0";
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        const copied = document.execCommand("copy");
+
+        document.body.removeChild(textarea);
+
+        if (copied) {
+          copyButton.textContent = "복사 완료";
+          copyButton.classList.add("copied");
+
+          window.setTimeout(() => {
+            copyButton.textContent = "결과 복사";
+            copyButton.classList.remove("copied");
+          }, 1800);
+        } else {
+          alert("결과 복사에 실패했습니다.");
+        }
+      }
+
+      function retryTest() {
+        startTest();
+      }
+
+      testModeSelect.addEventListener(
+        "change",
+        updateModeDescription
+      );
+
+      startButton.addEventListener("click", startTest);
+      retryButton.addEventListener("click", retryTest);
+      copyButton.addEventListener("click", copyResult);
+
+      typingInput.addEventListener(
+        "beforeinput",
+        handleStrictBeforeInput
+      );
+
+      typingInput.addEventListener("input", handleFreeInput);
+      typingInput.addEventListener("keydown", handleKeyDown);
+
+      typingInput.addEventListener(
+        "compositionstart",
+        handleCompositionStart
+      );
+
+      typingInput.addEventListener(
+        "compositionend",
+        handleCompositionEnd
+      );
+
+      testTextInput.addEventListener("input", () => {
+        if (testTextInput.value.length) {
+          emptyWarning.classList.remove("show");
+        }
+      });
+
+      updateModeDescription();
+    })();
+  </script>
+</body>
+</html>
