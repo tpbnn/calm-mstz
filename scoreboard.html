@@ -624,6 +624,108 @@ body.dark .round-no{color:#cbd5e1}.round-line input,.round-line button{height:34
   width:100%;
 }
 
+
+/* 새창(팝업) 보기 */
+
+.popup-open-btn{
+  background:#3730a3;
+  color:#ffffff;
+}
+
+.popup-open-btn:hover{
+  background:#3730a3;
+}
+
+
+
+.popup-copy-bar{
+  display:none;
+}
+
+body.popup-mode{
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+body.popup-mode .wrap{
+  width:100%;
+  max-width:620px;
+  margin:0 auto;
+  padding:20px 20px 12px;
+}
+
+body.popup-mode .top-tabs,
+body.popup-mode .mobile-nav,
+body.popup-mode .hero{
+  display:none !important;
+}
+
+body.popup-mode .boards{
+  display:block;
+}
+
+body.popup-mode .layout{
+  display:none;
+}
+
+body.popup-mode .layout.popup-target{
+  display:block;
+  width:540px;
+  max-width:100%;
+  margin:0 auto;
+}
+
+body.popup-mode .layout.popup-target .control-panel{
+  display:none !important;
+}
+
+body.popup-mode .layout.popup-target .panel{
+  width:540px;
+  max-width:100%;
+  margin:0 auto;
+}
+
+body.popup-mode .popup-copy-bar{
+  display:flex;
+  width:540px;
+  max-width:100%;
+  margin:12px auto 0;
+  gap:10px;
+}
+
+body.popup-mode .popup-copy-btn{
+  width:100%;
+  height:52px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+  color:#fff;
+  font-size:17px;
+  font-weight:900;
+}
+
+body.popup-mode .footer{
+  display:none;
+}
+
+@media(max-width:768px){
+  body.popup-mode .wrap{
+    padding:12px 10px 8px;
+  }
+
+  body.popup-mode .layout.popup-target,
+  body.popup-mode .layout.popup-target .panel,
+  body.popup-mode .popup-copy-bar{
+    width:100%;
+    max-width:100%;
+  }
+
+  body.popup-mode .popup-copy-btn{
+    height:46px;
+    font-size:14px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -770,7 +872,7 @@ function applyTeamStyle(el, teamName){
 
 
 function boardById(id){return boards.find(b=>b.id===Number(id));}
-function renderAll(){const area=document.getElementById('boards');area.innerHTML=boards.map(b=>boardTemplate(b)).join('');boards.forEach(renderBoard);} 
+function renderAll(){const area=document.getElementById('boards');area.innerHTML=boards.map(b=>boardTemplate(b)).join('');boards.forEach(renderBoard);if(getPopupBoardId())requestAnimationFrame(applyPopupMode);} 
 function boardTemplate(b){
   const canDelete=boards.length>1;
   const deleteSlot=canDelete
@@ -833,7 +935,7 @@ function boardTemplate(b){
       <div class="bottom-tools two">
         <button class="tool-btn gray" onclick="addBoard()">보드 추가</button>
         ${deleteSlot}
-        <div class="tool-placeholder" aria-hidden="true"></div>
+        <button class="tool-btn popup-open-btn" onclick="openBoardPopup(${b.id})">새창으로 열기</button>
       </div>
     </aside>
   </div>`;
@@ -1311,6 +1413,92 @@ const idxTeamText = header.indexOf("팀글자색");
 
 
 
+
+function getPopupBoardId(){
+  const params = new URLSearchParams(location.search);
+  const value = params.get('popup');
+  return value ? Number(value) : null;
+}
+
+function openBoardPopup(id){
+  saveState();
+
+  const url = new URL(location.href);
+  url.searchParams.set('popup', String(id));
+
+  const popupWidth = 620;
+  const popupHeight = Math.min(900, Math.max(520, screen.availHeight - 120));
+  const left = Math.max(0, Math.round((screen.availWidth - popupWidth) / 2));
+  const top = Math.max(0, Math.round((screen.availHeight - popupHeight) / 2));
+
+  window.open(
+    url.toString(),
+    `scoreboardPopup-${id}`,
+    `popup=yes,width=${popupWidth},height=${popupHeight},left=${left},top=${top},resizable=yes,scrollbars=yes`
+  );
+}
+
+function applyPopupMode(){
+  const popupId = getPopupBoardId();
+  if(!popupId) return;
+
+  document.body.classList.add('popup-mode');
+
+  document.querySelectorAll('.layout').forEach(layout=>{
+    const isTarget = Number(layout.dataset.boardId) === popupId;
+    layout.classList.toggle('popup-target', isTarget);
+  });
+
+  let copyBar = document.getElementById('popupCopyBar');
+  if(!copyBar){
+    copyBar = document.createElement('div');
+    copyBar.id = 'popupCopyBar';
+    copyBar.className = 'popup-copy-bar';
+    copyBar.innerHTML = `
+      <button type="button" class="popup-copy-btn" onclick="copyPopupLink(this)">
+        링크 복사
+      </button>
+    `;
+
+    const target = document.querySelector(`.layout[data-board-id="${popupId}"]`);
+    if(target){
+      target.insertAdjacentElement('afterend', copyBar);
+    }
+  }
+}
+
+async function copyPopupLink(btn){
+  const url = location.href;
+
+  try{
+    await navigator.clipboard.writeText(url);
+  }catch(err){
+    const textarea = document.createElement('textarea');
+    textarea.value = url;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+
+  if(btn){
+    const oldText = btn.textContent;
+    btn.textContent = '복사 완료';
+    setTimeout(()=>btn.textContent = oldText, 1200);
+  }
+}
+
+window.addEventListener('storage', e=>{
+  if(e.key !== STORAGE_KEY || !getPopupBoardId()) return;
+
+  loadStore();
+  renderAll();
+  applyPopupMode();
+});
+
 function toggleMobileMenu(){
   const m=document.getElementById('mobileMenu');
   if(!m) return;
@@ -1331,7 +1519,7 @@ document.addEventListener('keydown',e=>{
     document.querySelectorAll('.auto-list,.team-suggest').forEach(hideList);
   }
 });
-loadStore();if(!boards.length)boards=[createBoard()];renderAll();loadBattleData();
+loadStore();if(!boards.length)boards=[createBoard()];renderAll();applyPopupMode();loadBattleData();
 </script>
 </body>
 <footer class="footer"><div class="footer-copy">© 2026 주니.킨콘. All Rights Reserved.</div><div class="footer-links"><a href="https://www.sooplive.com/station/joony86" target="_blank" class="footer-icon"><img src="icons/soop-logo.png" alt="SOOP"></a><a href="https://www.youtube.com/@kinkonvv" target="_blank" class="footer-icon"><img src="icons/youtube-logo.png" alt="YouTube"></a></div></footer>
