@@ -1109,6 +1109,110 @@ body.broadcast-view #directEditSection{
   }
 }
 
+
+/* =========================================================
+   새 창: 빙고판 아래 점수/치킨 표시
+   ========================================================= */
+
+/* 기존 broadcast-view 숨김 규칙을 덮어써서 새 창에서 점수 표시 */
+body.broadcast-view .broadcast-stage .score-strip,
+body.broadcast-view.room-connected .broadcast-stage .score-strip{
+  display:flex !important;
+  flex:0 0 auto !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  width:fit-content !important;
+  max-width:92vw !important;
+  margin:14px auto 0 !important;
+  padding:0 !important;
+  flex-wrap:wrap !important;
+}
+
+/* 새 창 점수 배지 */
+body.broadcast-view .broadcast-stage .score-pill,
+body.broadcast-view.room-connected .broadcast-stage .score-pill{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:42px !important;
+  padding:9px 16px !important;
+  border-width:2px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.94) !important;
+  box-shadow:0 8px 22px rgba(15,23,42,.10) !important;
+  color:#334155 !important;
+  font-size:clamp(14px,2.2vmin,21px) !important;
+  font-weight:1000 !important;
+  white-space:nowrap !important;
+}
+
+body.broadcast-view .broadcast-stage .team-score-content,
+body.broadcast-view.room-connected .broadcast-stage .team-score-content{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:7px !important;
+}
+
+body.broadcast-view .broadcast-stage .team-score-chicken,
+body.broadcast-view.room-connected .broadcast-stage .team-score-chicken{
+  margin-left:5px !important;
+  color:#92400e !important;
+}
+
+/*
+  제목 + 점수 요약 + 하단 슬라이더 공간을 확보.
+  슬라이더를 키워도 위쪽 기준으로 빙고판이 유지됨.
+*/
+body.broadcast-view .broadcast-stage .bingo-grid,
+body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+  width:min(var(--popup-board-size),92vw,calc(100vh - 238px)) !important;
+  height:min(var(--popup-board-size),92vw,calc(100vh - 238px)) !important;
+  max-width:min(var(--popup-board-size),92vw,calc(100vh - 238px)) !important;
+  max-height:min(var(--popup-board-size),92vw,calc(100vh - 238px)) !important;
+}
+
+/* 좁거나 낮은 새 창 대응 */
+@media(max-width:600px), (max-height:620px){
+  body.broadcast-view .broadcast-stage .score-strip,
+  body.broadcast-view.room-connected .broadcast-stage .score-strip{
+    margin-top:9px !important;
+    gap:6px !important;
+  }
+
+  body.broadcast-view .broadcast-stage .score-pill,
+  body.broadcast-view.room-connected .broadcast-stage .score-pill{
+    min-height:34px !important;
+    padding:6px 10px !important;
+    font-size:clamp(12px,2.1vmin,17px) !important;
+  }
+
+  body.broadcast-view .broadcast-stage .bingo-grid,
+  body.broadcast-view.room-connected .broadcast-stage .bingo-grid{
+    width:min(var(--popup-board-size),92vw,calc(100vh - 205px)) !important;
+    height:min(var(--popup-board-size),92vw,calc(100vh - 205px)) !important;
+    max-width:min(var(--popup-board-size),92vw,calc(100vh - 205px)) !important;
+    max-height:min(var(--popup-board-size),92vw,calc(100vh - 205px)) !important;
+  }
+}
+
+/* =========================================
+   새창 - 제목 / 빙고판 / 점수 사이 간격
+   ========================================= */
+
+/* 1. 빙고 이름 → 빙고판 사이 간격 */
+body.broadcast-view .broadcast-stage .stage-title{
+  margin-bottom: 30px !important;
+}
+
+/* 2. 빙고판 → 빙고/치킨 개수 사이 간격 */
+body.broadcast-view .broadcast-stage .score-strip{
+  margin-top: 30px !important;
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -1360,7 +1464,8 @@ function renderScores(a,b,c){
     const c1=Number(state.teamChickens?.[0]||0),c2=Number(state.teamChickens?.[1]||0);
     $('scoreStrip').innerHTML=`<span class="score-pill" style="border-color:${state.teamColors[0]}"><span class="team-score-content">${esc(state.teamNames[0])} ${a}빙고 <span class="team-score-chicken">🍗 ${c1}</span></span></span><span class="score-pill" style="border-color:${state.teamColors[1]}"><span class="team-score-content">${esc(state.teamNames[1])} ${b}빙고 <span class="team-score-chicken">🍗 ${c2}</span></span></span>`;
   }else{
-    $('scoreStrip').innerHTML=`<span class="score-pill">현재 ${c}빙고</span>`;
+    const chicken=Number(state.chicken||0);
+    $('scoreStrip').innerHTML=`<span class="score-pill">현재 ${c}빙고 <span class="team-score-chicken">🍗 ${chicken}</span></span>`;
   }
   $('bingoMessage').textContent=state.settings.mode==='territory'?(a||b?`${state.teamNames[0]} ${a}빙고 · ${state.teamNames[1]} ${b}빙고`:''):c?`🎉 ${c}빙고 달성!`:'';
 }
