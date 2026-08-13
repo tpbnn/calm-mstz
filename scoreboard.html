@@ -763,6 +763,88 @@ body.popup-mode .footer{display:none}
   }
 }
 
+
+/* SOOP 매크로 */
+.macro-section{
+  display:grid;
+  grid-template-columns:1fr 1.35fr;
+  gap:12px;
+  padding:12px 18px;
+  border-bottom:1px solid var(--line);
+  background:var(--card);
+}
+.macro-card{
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  background:var(--card);
+}
+.macro-card-head{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:7px 10px;
+  border-bottom:1px solid var(--line);
+  background:rgba(99,102,241,.08);
+}
+.macro-card--notice .macro-card-head{background:rgba(217,70,239,.10)}
+.macro-card-head strong{font-size:14px;font-weight:900}
+.macro-title-input{
+  width:170px;
+  height:30px;
+  min-width:0;
+  font-size:13px;
+  text-align:left;
+}
+.macro-copy-btn{
+  flex:0 0 auto;
+  height:30px;
+  padding:0 10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--card);
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+}
+.macro-output{
+  display:block;
+  width:100%;
+  resize:vertical;
+  border:0;
+  border-radius:0;
+  outline:0;
+  box-shadow:none!important;
+  background:var(--card);
+  color:var(--text);
+  font-family:Consolas,'Noto Sans KR',monospace;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.5;
+  padding:10px;
+}
+.macro-output--notice{min-height:78px}
+.macro-output--board{min-height:170px}
+.macro-current-note{
+  grid-column:1/-1;
+  margin-top:-4px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:700;
+}
+@media(max-width:768px){
+  .macro-section{grid-template-columns:1fr;padding:8px 6px;gap:8px}
+  .macro-title-input{width:130px;font-size:11px}
+  .macro-card-head strong{font-size:12px}
+  .macro-copy-btn{font-size:11px}
+  .macro-output{font-size:11px}
+  .macro-output--notice{min-height:72px}
+  .macro-output--board{min-height:150px}
+}
+
 </style>
 </head>
 <body>
@@ -818,9 +900,9 @@ const defaultRaceColors={'PLAYER-Z':'#E35D5D','PLAYER-T':'#4DA3FF','PLAYER-P':'#
 let boards=[];
 let boardSeq=1;
 
-function createBoard(){return {id:boardSeq++,home:'',away:'',count:9,rounds:Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}))};}
+function createBoard(){return {id:boardSeq++,title:'캄몬 매치',home:'',away:'',count:9,rounds:Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}))};}
 function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify({boards,seq:boardSeq,dark:document.body.classList.contains('dark')}));}
-function loadStore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved){boards=saved.boards||[];boardSeq=saved.seq||1;if(saved.dark)document.body.classList.add('dark');}}catch(e){}}
+function loadStore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved){boards=saved.boards||[];boards.forEach(b=>{if(typeof b.title!=='string')b.title='캄몬 매치';});boardSeq=saved.seq||1;if(saved.dark)document.body.classList.add('dark');}}catch(e){}}
 
 async function loadBattleData(btn){
 
@@ -935,13 +1017,18 @@ function boardTemplate(b){
     <aside class="control-panel">
       <div class="toolbar">
         <div class="big-label">매치 수</div>
-        <select class="round-select" onchange="changeRoundCount(${b.id},this.value)">
-          <option value="5" ${b.count==5?'selected':''}>5R</option>
-          <option value="7" ${b.count==7?'selected':''}>7R</option>
-          <option value="9" ${b.count==9?'selected':''}>9R</option>
-          <option value="11" ${b.count==11?'selected':''}>11R</option>
-          <option value="13" ${b.count==13?'selected':''}>13R</option>
-        </select>
+        <input
+          class="round-select"
+          type="number"
+          min="1"
+          max="99"
+          step="1"
+          value="${b.count}"
+          aria-label="매치 수 직접 입력"
+          placeholder="예: 9"
+          onchange="changeRoundCount(${b.id},this.value)"
+          onkeydown="if(event.key==='Enter'){this.blur();}"
+        >
         <div class="spacer"></div>
         <button id="themeToggle-${b.id}" class="dark-toggle" onclick="toggleDarkMode()">${document.body.classList.contains('dark')?'☀️':'🌙'}</button>
       </div>
@@ -957,6 +1044,26 @@ function boardTemplate(b){
           <input value="${esc(b.away)}" placeholder="팀명을 입력하세요" autocomplete="off" oninput="updateTeam(${b.id},'away',this.value);showTeamSuggest(this)" onkeydown="handleTeamKey(event,this)">
           <div class="team-suggest"></div>
         </div>
+      </div>
+
+      <div class="macro-section">
+        <div class="macro-card macro-card--notice">
+          <div class="macro-card-head">
+            <strong>공지용 매크로</strong>
+            <button type="button" class="macro-copy-btn" onclick="copyMacro(${b.id},'notice',this)">공지 복사</button>
+          </div>
+          <textarea id="noticeMacro-${b.id}" class="macro-output macro-output--notice" readonly spellcheck="false"></textarea>
+        </div>
+
+        <div class="macro-card macro-card--board">
+          <div class="macro-card-head">
+            <strong>전체 현황 매크로</strong>
+            <input id="macroTitle-${b.id}" class="macro-title-input" value="${esc(b.title||'캄몬 매치')}" maxlength="24" placeholder="매크로 제목" oninput="updateMacroTitle(${b.id},this.value)">
+            <button type="button" class="macro-copy-btn" onclick="copyMacro(${b.id},'board',this)">현황 복사</button>
+          </div>
+          <textarea id="boardMacro-${b.id}" class="macro-output macro-output--board" readonly spellcheck="false"></textarea>
+        </div>
+        <div id="macroCurrentNote-${b.id}" class="macro-current-note"></div>
       </div>
 
       <div class="round-grid">
@@ -1031,11 +1138,153 @@ editors.innerHTML=b.rounds.map((r,i)=>`
     <div class="drag-handle">☰</div>
   </div>
 `).join('');
+renderMacros(b);
+}
+
+function keycapNumber(value){
+  const digits={'0':'0️⃣','1':'1️⃣','2':'2️⃣','3':'3️⃣','4':'4️⃣','5':'5️⃣','6':'6️⃣','7':'7️⃣','8':'8️⃣','9':'9️⃣'};
+  return String(Math.max(0,Number(value)||0)).split('').map(v=>digits[v]||v).join('');
+}
+
+function getAutoCurrentRoundIndex(b){
+  if(!b||!Array.isArray(b.rounds)||!b.rounds.length)return 0;
+
+  // 1순위: 선수/맵이 입력되어 있으면서 아직 승패가 없는 첫 경기
+  const unresolved=b.rounds.findIndex(r=>
+    !r.winner && (String(r.homePlayer||'').trim() || String(r.awayPlayer||'').trim() || String(r.map||'').trim())
+  );
+  if(unresolved>=0)return unresolved;
+
+  // 2순위: 마지막으로 결과가 입력된 경기의 다음 경기
+  let lastDone=-1;
+  b.rounds.forEach((r,i)=>{if(r.winner)lastDone=i;});
+  if(lastDone>=0)return Math.min(lastDone+1,b.rounds.length-1);
+
+  return 0;
+}
+
+function getBoardScores(b){
+  return {
+    home:b.rounds.filter(r=>r.winner==='home').length,
+    away:b.rounds.filter(r=>r.winner==='away').length
+  };
+}
+
+function getMacroRoundLine(r,i,isCurrent){
+  const no=keycapNumber(i+1);
+  const home=String(r.homePlayer||'').trim();
+  const away=String(r.awayPlayer||'').trim();
+  const map=String(r.map||'').trim();
+  const gun=isCurrent?'🔫🔫':'';
+
+  if(!home&&!away){
+    return `${no}🌐${map}${gun}`;
+  }
+
+  let h='⚪',a='⚪';
+  if(r.winner==='home'){h='🟢';a='❌';}
+  if(r.winner==='away'){h='❌';a='🟢';}
+
+  return `${no}${home||'-'}${h}🆚️${a}${away||'-'}🌐${map}${gun}`;
+}
+
+function buildNoticeMacro(b){
+  const title=String(b.title||'캄몬 매치').trim()||'캄몬 매치';
+  const scores=getBoardScores(b);
+  const currentIndex=getAutoCurrentRoundIndex(b);
+  const r=b.rounds[currentIndex]||{};
+  const left=String(r.homePlayer||'').trim()||'-';
+  const right=String(r.awayPlayer||'').trim()||'-';
+  return `!공지 🏆${title}🏆 !멤버\n${left}${keycapNumber(scores.home)}⚔️${keycapNumber(scores.away)}${right}`;
+}
+
+function buildBoardMacro(b){
+  const title=String(b.title||'캄몬 매치').trim()||'캄몬 매치';
+  const scores=getBoardScores(b);
+  const currentIndex=getAutoCurrentRoundIndex(b);
+  const winsNeeded=Math.floor(Number(b.count||9)/2)+1;
+  const lines=b.rounds.map((r,i)=>getMacroRoundLine(r,i,i===currentIndex));
+
+  return [
+    `🏆${title}🏆 ${b.count}/${winsNeeded}`,
+    '========================',
+    `${b.home||'홈팀'}${keycapNumber(scores.home)}🆚${keycapNumber(scores.away)}${b.away||'어웨이팀'}`,
+    '========================',
+    ...lines,
+    '========================'
+  ].join('\n');
+}
+
+function renderMacros(b){
+  if(!b)return;
+  const notice=document.getElementById(`noticeMacro-${b.id}`);
+  const board=document.getElementById(`boardMacro-${b.id}`);
+  const title=document.getElementById(`macroTitle-${b.id}`);
+  const note=document.getElementById(`macroCurrentNote-${b.id}`);
+
+  if(notice)notice.value=buildNoticeMacro(b);
+  if(board)board.value=buildBoardMacro(b);
+  if(title&&document.activeElement!==title)title.value=b.title||'캄몬 매치';
+
+  if(note){
+    const idx=getAutoCurrentRoundIndex(b);
+    note.textContent=`현재 경기 자동 인식: ${idx+1}경기 · 승패가 없는 첫 입력 경기 기준`;
+  }
+}
+
+function updateMacroTitle(id,value){
+  const b=boardById(id);
+  if(!b)return;
+  b.title=value;
+  renderMacros(b);
+  saveState();
+}
+
+async function copyMacro(id,type,btn){
+  const b=boardById(id);
+  if(!b)return;
+  const text=type==='notice'?buildNoticeMacro(b):buildBoardMacro(b);
+
+  try{
+    await navigator.clipboard.writeText(text);
+  }catch(err){
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.style.position='fixed';
+    ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+
+  if(btn){
+    const old=btn.textContent;
+    btn.textContent='복사 완료';
+    setTimeout(()=>btn.textContent=old,1200);
+  }
 }
 
 function addBoard(){boards.push(createBoard());renderAll();saveState();}
 function deleteBoard(id){if(boards.length<=1)return;if(!confirm('이 보드를 삭제할까요?'))return;boards=boards.filter(b=>b.id!==Number(id));renderAll();saveState();}
-function changeRoundCount(id,val){const b=boardById(id);b.count=Number(val||9);b.rounds=Array.from({length:b.count},(_,i)=>b.rounds[i]||{map:'',homePlayer:'',awayPlayer:'',winner:null});renderBoard(b);saveState();}
+function changeRoundCount(id,val){
+  const b=boardById(id);
+  if(!b) return;
+
+  let count=parseInt(val,10);
+  if(!Number.isFinite(count)) count=b.count||9;
+  count=Math.max(1,Math.min(99,count));
+
+  b.count=count;
+  b.rounds=Array.from(
+    {length:b.count},
+    (_,i)=>b.rounds[i]||{map:'',homePlayer:'',awayPlayer:'',winner:null}
+  );
+
+  renderBoard(b);
+  saveState();
+}
 function updateTeam(id,key,value){
   const b=boardById(id);
   if(!b) return;
@@ -1054,6 +1303,7 @@ function updateTeam(id,key,value){
     applyTeamStyle(away,b.away);
   }
 
+  renderMacros(b);
   saveState();
 }
 
@@ -1092,6 +1342,7 @@ function renderScoreOnly(b){
       <div>${resultText('away',r)}</div>
     </div>`;
   }).join('');
+  renderMacros(b);
 }
 
 function updateRound(id,i,key,value){
@@ -1151,7 +1402,7 @@ function dragEnd(e){
 
 
 function clearResults(id){const b=boardById(id);b.rounds.forEach(r=>r.winner=null);renderBoard(b);saveState();}
-function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
+function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.title='캄몬 매치';b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
 function showAuto(input,type,id,i,key){
   const q = normalizeText(input.value);
   const box = input.parentElement.querySelector(".auto-list");
