@@ -1175,17 +1175,17 @@ function getMacroRoundLine(r,i,isCurrent){
   const home=String(r.homePlayer||'').trim();
   const away=String(r.awayPlayer||'').trim();
   const map=String(r.map||'').trim();
-  const gun=isCurrent?'🔫🔫':'';
+  const gun=isCurrent?'👈':'';
 
   if(!home&&!away){
-    return `${no}🌐${map}${gun}`;
+    return `${no}🌎${map}${gun}`;
   }
 
-  let h='⚪',a='⚪';
+  let h='⬜',a='⬜';
   if(r.winner==='home'){h='🟢';a='❌';}
   if(r.winner==='away'){h='❌';a='🟢';}
 
-  return `${no}${home||'-'}${h}🆚️${a}${away||'-'}🌐${map}${gun}`;
+  return `${no}${home||'-'}${h}🆚️${a}${away||'-'}🌎${map}${gun}`;
 }
 
 function buildNoticeMacro(b){
