@@ -1005,7 +1005,7 @@ function boardTemplate(b){
           id="matchTitle-${b.id}"
           class="match-title-input"
           type="text"
-          value="${esc(b.title||'캄몬 매치')}"
+          value="${esc(b.title||'스타크래프트')}"
           maxlength="24"
           placeholder="경기 이름을 입력하세요"
           aria-label="경기 이름"
@@ -1069,7 +1069,7 @@ function boardTemplate(b){
         <div class="macro-card macro-card--board">
           <div class="macro-card-head">
             <strong>전체 현황 매크로</strong>
-            <input id="macroTitle-${b.id}" class="macro-title-input" value="${esc(b.title||'캄몬 매치')}" maxlength="24" placeholder="매크로 제목" oninput="updateMacroTitle(${b.id},this.value)">
+            <input id="macroTitle-${b.id}" class="macro-title-input" value="${esc(b.title||'스타크래프트')}" maxlength="24" placeholder="매크로 제목" oninput="updateMacroTitle(${b.id},this.value)">
             <button type="button" class="macro-copy-btn" onclick="copyMacro(${b.id},'board',this)">현황 복사</button>
           </div>
           <textarea id="boardMacro-${b.id}" class="macro-output macro-output--board" readonly spellcheck="false"></textarea>
