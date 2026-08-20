@@ -900,9 +900,9 @@ const defaultRaceColors={'PLAYER-Z':'#E35D5D','PLAYER-T':'#4DA3FF','PLAYER-P':'#
 let boards=[];
 let boardSeq=1;
 
-function createBoard(){return {id:boardSeq++,title:'캄몬 매치',home:'',away:'',count:9,rounds:Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}))};}
+function createBoard(){return {id:boardSeq++,title:'스타크래프트',home:'',away:'',count:9,rounds:Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}))};}
 function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify({boards,seq:boardSeq,dark:document.body.classList.contains('dark')}));}
-function loadStore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved){boards=saved.boards||[];boards.forEach(b=>{if(typeof b.title!=='string')b.title='캄몬 매치';});boardSeq=saved.seq||1;if(saved.dark)document.body.classList.add('dark');}}catch(e){}}
+function loadStore(){try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));if(saved){boards=saved.boards||[];boards.forEach(b=>{if(typeof b.title!=='string')b.title='스타크래프트';});boardSeq=saved.seq||1;if(saved.dark)document.body.classList.add('dark');}}catch(e){}}
 
 async function loadBattleData(btn){
 
@@ -1200,7 +1200,7 @@ function getMacroRoundLine(r,i,isCurrent){
 }
 
 function buildNoticeMacro(b){
-  const title=String(b.title||'캄몬 매치').trim()||'캄몬 매치';
+  const title=String(b.title||'스타크래프트').trim()||'스타크래프트';
   const scores=getBoardScores(b);
   const currentIndex=getAutoCurrentRoundIndex(b);
   const r=b.rounds[currentIndex]||{};
@@ -1210,7 +1210,7 @@ function buildNoticeMacro(b){
 }
 
 function buildBoardMacro(b){
-  const title=String(b.title||'캄몬 매치').trim()||'캄몬 매치';
+  const title=String(b.title||'스타크래프트').trim()||'스타크래프트';
   const scores=getBoardScores(b);
   const currentIndex=getAutoCurrentRoundIndex(b);
   const winsNeeded=Math.floor(Number(b.count||9)/2)+1;
@@ -1236,8 +1236,8 @@ function renderMacros(b){
 
   if(notice)notice.value=buildNoticeMacro(b);
   if(board)board.value=buildBoardMacro(b);
-  if(title&&document.activeElement!==title)title.value=b.title||'캄몬 매치';
-  if(matchTitle&&document.activeElement!==matchTitle)matchTitle.value=b.title||'캄몬 매치';
+  if(title&&document.activeElement!==title)title.value=b.title||'스타크래프트';
+  if(matchTitle&&document.activeElement!==matchTitle)matchTitle.value=b.title||'스타크래프트';
 
   if(note){
     const idx=getAutoCurrentRoundIndex(b);
@@ -1415,7 +1415,7 @@ function dragEnd(e){
 
 
 function clearResults(id){const b=boardById(id);b.rounds.forEach(r=>r.winner=null);renderBoard(b);saveState();}
-function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.title='캄몬 매치';b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
+function resetBoard(id){if(!confirm('보드를 초기화할까요?'))return;const b=boardById(id);b.title='스타크래프트';b.home='';b.away='';b.count=9;b.rounds=Array.from({length:9},()=>({map:'',homePlayer:'',awayPlayer:'',winner:null}));renderAll();saveState();}
 function showAuto(input,type,id,i,key){
   const q = normalizeText(input.value);
   const box = input.parentElement.querySelector(".auto-list");
